@@ -12,6 +12,33 @@ nomes. Editar sempre este.
 
 ---
 
+## 0 · Vocabulário — ler antes de tudo
+
+**Zona 1 · Zona 2 · Zona 3** — os três painéis dentro do frame. As Zonas 1 e 2
+são o par de cima; a Zona 3 é a base, fixa em todos os estados, e contém o
+Hero mais o parágrafo dos blocos temáticos.
+
+As Zonas 1 e 2 **não têm tipo fixo** — não são "a da imagem" e "a do texto".
+O conteúdo troca conforme o estado da página:
+
+| Estado | Zona 1 | Zona 2 |
+|---|---|---|
+| Home | imagem/animação | contactos + tagline |
+| bloco temático | Nº + Legenda | Filosofia + lista de projectos |
+| Nuno | bio | foto |
+
+**Blocos temáticos** — coisa diferente: os 6 territórios de trabalho
+(`FILES FESTIVAL` · `SYSTEM MINDED` · `SPACE WISE` · `EDITORIAL ATTENTION` ·
+`E-SALES` · `CRUEL ADVISER`), que aparecem como um parágrafo corrido na Zona 3,
+separados por `|`, com os nomes sublinhados a servir de navegação — não há
+barra de menu. Sublinhado vermelho = por visitar · verde = activo/visitado.
+
+⚠️ **Nunca chamar "bloco" a uma zona.** Era o termo antigo e foi abandonado a
+12.09.2026 exactamente por se confundir com os blocos temáticos. Se aparecer
+`Bloco 1/2/3` em documentação antiga ou na base Notion, é isto.
+
+---
+
 ## 1 · Onde vive
 
 | | |
@@ -82,7 +109,7 @@ indexável.
 Os 6 blocos: `FILES FESTIVAL` · `SYSTEM MINDED` · `SPACE WISE` ·
 `EDITORIAL ATTENTION` · `E-SALES` · `CRUEL ADVISER`.
 
-A **imagem/animação só existe na Home**. É onde entra a pedra 3D (modelo em
+A **imagem/animação só existe na Home** (Zona 1). É onde entra a pedra 3D (modelo em
 `../DPX26 Portfolio/the-rosetta-stone/`, `.obj` de 48 MB — converter para
 `.glb` comprimido, alvo < 2 MB, antes de tocar na web).
 
