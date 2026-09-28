@@ -1,0 +1,12 @@
+---
+import Frame from '../layouts/Frame.astro';
+import Donut from '../components/Donut.astro';
+import { projectos, tipologias, donutProjectos } from '../lib/conteudo';
+---
+<Frame titulo="Projects — DPX" pagina="projects">
+  <div slot="z1" class="z1-dados">
+    <Donut fatias={donutProjectos()} centro={String(projectos.length)} subcentro="projects" legenda />
+    <p class="verde legenda">Projects solved</p>
+  </div>
+  <ul slot="z2" class="lista">{tipologias.map((t) => <li>{t.nome}</li>)}</ul>
+</Frame>

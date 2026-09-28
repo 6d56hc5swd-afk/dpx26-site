@@ -106,12 +106,28 @@ Os estilos de texto vão ser afinados com conteúdos reais.
 Clients, Projects e Nuno. Cada uma com o seu endereço — partilhável e
 indexável.
 
+**Mapa fechado a 28.09** em `../DPX26 Portfolio/02_Mapa-Site.md` — ler antes
+de criar rotas. Resumo: 10 páginas, **sem páginas de projecto**; listas da
+Zona 2 não clicáveis, com scroll interno se não couberem; verde de visitado
+guardado no browser para sempre; fundo de cada página = placeholder de media.
+
 Os 6 blocos: `FILES FESTIVAL` · `SYSTEM MINDED` · `SPACE WISE` ·
 `EDITORIAL ATTENTION` · `E-SALES` · `CRUEL ADVISER`.
 
 A **imagem/animação só existe na Home** (Zona 1). É onde entra a pedra 3D (modelo em
 `../DPX26 Portfolio/the-rosetta-stone/`, `.obj` de 48 MB — converter para
 `.glb` comprimido, alvo < 2 MB, antes de tocar na web).
+
+**Fase 2 (28.09):** os conteúdos vêm de `src/data/notion-snapshot.json`,
+um retrato da Notion tirado pelo Claude via MCP — provisório até existir token
+da API. Só `src/lib/conteudo.ts` lê o snapshot; quando houver token, muda-se
+esse ficheiro e mais nenhum. Para actualizar entretanto: pedir ao Claude um
+snapshot novo, nunca editar o JSON à mão.
+
+**Armadilha do cqw:** unidades `cqw` num elemento medem o contentor *acima*
+dele, não ele próprio. Por isso o `.frame` é o contentor e a grelha das zonas
+vive num `.grelha` lá dentro — com a grelha no próprio frame, tudo media a
+janela e o desktop rebentava.
 
 **A Notion é a fonte de verdade dos conteúdos** — textos, projectos, clientes.
 O site lê a Notion no build. O Nuno muda lá, publica-se, aparece. Não duplicar
@@ -125,7 +141,19 @@ A pasta do Nuno chega até aqui por uma ponte que **não permite apagar
 ficheiros**. Consequências, todas reais:
 
 - O `.git` vive **fora** da pasta, em `~/repos/dpx26.git`; cá dentro há só um
-  ficheiro `.git` com o ponteiro. Sem isto o segundo commit falha, porque o
+  ficheiro `.git` com o ponteiro.
+  **A casa da sessão é apagada quando a sessão acaba** — o `.git` de fora
+  perde-se sempre. Arranque de cada sessão (desde 28.09):
+  ```
+  export GIT_SSH_COMMAND="ssh -i $HOME/mnt/WORK/Reposicionamento/.dpx26-deploy/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+  git clone --bare git@github.com:6d56hc5swd-afk/dpx26-site.git ~/repos/dpx26.git
+  git --git-dir ~/repos/dpx26.git config core.bare false
+  git --git-dir ~/repos/dpx26.git config core.worktree "$PWD"   # a partir de DPX26-site/
+  echo "gitdir: $HOME/repos/dpx26.git" > .git
+  ```
+  A chave é uma *deploy key* só deste repositório, em
+  `Reposicionamento/.dpx26-deploy/` (fora do repo). Revoga-se no GitHub em
+  Settings → Deploy keys. Sem isto o segundo commit falha, porque o
   git não consegue remover os seus ficheiros de bloqueio.
 - A referência real do histórico é o **GitHub**. Se o ambiente for reciclado,
   recupera-se com `git clone`.

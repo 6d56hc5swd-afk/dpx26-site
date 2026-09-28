@@ -1,0 +1,15 @@
+---
+import Frame from '../layouts/Frame.astro';
+---
+<Frame titulo="Nuno Rodrigues — DPX" pagina="nuno">
+  <div slot="z1" class="bio">
+    <p class="por-escrever">Bio — to be written.<br />(Notion · Textos · Bio, ecrã Nuno)</p>
+  </div>
+  <div slot="z2" class="foto"><img src="/nuno.webp" alt="Nuno Rodrigues" /></div>
+</Frame>
+<style>
+  .bio { font-size: 2.42cqw; line-height: 1.45; }
+  .por-escrever { margin: 0; opacity: .55; }
+  .foto { height: 100%; margin: -3.2cqw -2.8cqw; }
+  .foto img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; filter: grayscale(1); }
+</style>

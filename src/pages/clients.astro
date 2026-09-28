@@ -1,0 +1,13 @@
+---
+import Frame from '../layouts/Frame.astro';
+import Donut from '../components/Donut.astro';
+import { clientes, donutClientes } from '../lib/conteudo';
+const nomes = clientes.map((c) => c.nome);
+---
+<Frame titulo="Clients — DPX" pagina="clients">
+  <div slot="z1" class="z1-dados">
+    <Donut fatias={donutClientes()} />
+    <p class="verde legenda">Clients forgetting keys.</p>
+  </div>
+  <ul slot="z2" class="lista">{nomes.map((n) => <li>{n}</li>)}</ul>
+</Frame>

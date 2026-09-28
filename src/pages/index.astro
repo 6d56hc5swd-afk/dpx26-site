@@ -1,64 +1,35 @@
 ---
-const build = new Date().toLocaleString('pt-PT', {
-  dateStyle: 'short',
-  timeStyle: 'short',
-  timeZone: 'Europe/Lisbon',
-});
+import Frame from '../layouts/Frame.astro';
+import { contactos, tagline } from '../lib/conteudo';
+const ts = tagline.terminacoes;
 ---
+<Frame titulo="DPX — Nuno Rodrigues" pagina="home">
+  <div slot="z1" class="z1-home">
+    <div class="pedra" title="Pedra — entra na Fase 4"></div>
+  </div>
+  <div slot="z2" class="z2-home">
+    <address>
+      <a href={`mailto:${contactos.mail}`}>{contactos.mail}</a><br />
+      <a href={`tel:${contactos.telefone.replace(/\s/g, '')}`}>{contactos.telefone}</a><br />
+      <a class="fora" title="Cristo-Roto — em breve" aria-disabled="true">Cristo-\-Roto</a>
+    </address>
+    <p class="verde tag">{tagline.formula} <span id="fim">___</span>.</p>
+  </div>
+</Frame>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="robots" content="noindex" />
-		<title>DPX26 — Fase 1</title>
-		<style>
-			:root { color-scheme: light dark; }
-			* { box-sizing: border-box; }
-			body {
-				margin: 0;
-				min-height: 100svh;
-				display: grid;
-				place-items: center;
-				font: 400 16px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
-				background: #0e0e0e;
-				color: #e8e8e8;
-			}
-			main { text-align: center; padding: 2rem; }
-			h1 {
-				margin: 0;
-				font-size: clamp(4rem, 22vw, 14rem);
-				font-weight: 400;
-				letter-spacing: -0.04em;
-				line-height: 0.85;
-			}
-			p { margin: 1.5rem 0 0; font-size: 0.75rem; opacity: 0.45; }
-			#vp {
-				position: fixed;
-				bottom: 0.75rem;
-				right: 0.75rem;
-				font-size: 0.7rem;
-				opacity: 0.35;
-				font-variant-numeric: tabular-nums;
-			}
-		</style>
-	</head>
-	<body>
-		<main>
-			<h1>DPX</h1>
-			<p>
-				Fase 1 · circuito verificado<br />
-				build {build}<br />
-				sem design — o design entra na Fase 3
-			</p>
-		</main>
-		<div id="vp"></div>
-		<script is:inline>
-			const vp = document.getElementById('vp');
-			const paint = () => { vp.textContent = window.innerWidth + ' × ' + window.innerHeight; };
-			paint();
-			addEventListener('resize', paint);
-		</script>
-	</body>
-</html>
+<!-- Terminação aleatória a cada carregamento. Sem JS fica "___". -->
+<script is:inline define:vars={{ ts }}>
+  document.getElementById('fim').textContent = ts[Math.floor(Math.random() * ts.length)];
+</script>
+
+<style>
+  .z1-home { height: 100%; display: grid; place-items: center; }
+  .pedra { width: 26cqw; height: 33cqw; border-radius: 42% 46% 36% 50%;
+           background: repeating-linear-gradient(92deg, rgba(242,241,232,.55) 0 2px, rgba(242,241,232,.12) 2px 5px); }
+  .z2-home { height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+  address { font-style: normal; }
+  address a { text-decoration: none; }
+  address a:hover { text-decoration: underline; }
+  .fora { cursor: default; opacity: .8; }
+  .tag { margin: 0; }
+</style>

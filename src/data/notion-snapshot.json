@@ -1,0 +1,2277 @@
+{
+ "_nota": "Snapshot da Notion (bases Textos, Projectos, Clientes) tirado a 28.09.2026 pelo Claude via MCP. Provisório: substitui-se pela leitura directa da API quando houver token. Não editar à mão — editar na Notion.",
+ "tirado": "2026-09-28",
+ "hero": [
+  "A client knocks. Speaks in riddles.",
+  "Reveals a mystery stone to solve.",
+  "Nuno solves the mystery.",
+  "Client nods and leaves.",
+  "Client returns knocking.",
+  "Forgot keys."
+ ],
+ "tagline": {
+  "formula": "Turning stones into",
+  "estado": "Para rever",
+  "terminacoes": [
+   "blueprints",
+   "carts",
+   "chapters",
+   "conversions",
+   "countdowns",
+   "currency",
+   "customers",
+   "deadlines",
+   "edges",
+   "footnotes",
+   "foundations",
+   "frameworks",
+   "grids",
+   "margins",
+   "mirrors",
+   "momentum",
+   "order",
+   "pages",
+   "performance",
+   "questions",
+   "receipts",
+   "rooms",
+   "routes",
+   "scenes",
+   "sentences",
+   "signal",
+   "stages",
+   "thresholds",
+   "truths",
+   "verdicts"
+  ]
+ },
+ "contactos": {
+  "mail": "mail@mail.com",
+  "telefone": "+351 000 000 000",
+  "cristoRoto": null,
+  "_nota": "placeholders da maquete — não existem na base"
+ },
+ "blocos": [
+  {
+   "slug": "editorial-attention",
+   "nome": "EDITORIAL ATTENTION",
+   "base": "Editorial attention",
+   "filosofia": "Content as craft.",
+   "corpo": "Books, catalogues, reports and academic publications — grid, typographic hierarchy, rhythm and detail, page after page. For authors, universities, institutions and companies that publish long-form documents.",
+   "numero": "000",
+   "legenda": "Publicações"
+  },
+  {
+   "slug": "system-minded",
+   "nome": "SYSTEM MINDED",
+   "base": "System minded",
+   "filosofia": "Information as architecture.",
+   "corpo": "Identity systems, editorial templates, grids, components and documented design rules, ready for handover. For organisations that produce at volume and need consistency without a designer on call.",
+   "numero": "000",
+   "legenda": "Sistemas"
+  },
+  {
+   "slug": "files-festival",
+   "nome": "FILES FESTIVAL",
+   "base": "Files festival",
+   "filosofia": "Organisation as mantra.",
+   "corpo": "Festival and event branding, applications, signage, print supports and production pipelines, delivered on immovable deadlines. For venues, festivals and municipalities running recurring programmes.",
+   "numero": "000",
+   "legenda": "Festivais"
+  },
+  {
+   "slug": "space-wise",
+   "nome": "SPACE WISE",
+   "base": "Space wise",
+   "filosofia": "Space as narrative.",
+   "corpo": "Scenography, stage design, exhibition storytelling, signage and environmental graphics — giving a space a script. For museums, galleries, heritage sites, theatres and performance venues.",
+   "numero": "000",
+   "legenda": "Espaços"
+  },
+  {
+   "slug": "e-sales",
+   "nome": "E-SALES",
+   "base": "e-sales",
+   "filosofia": "Conversion as a game.",
+   "corpo": "Online shop strategy, structure, content and Shopify implementation, plus the operation that keeps it selling. For small producers and brands moving from shelf to direct sales.",
+   "numero": "000",
+   "legenda": "Lojas"
+  },
+  {
+   "slug": "cruel-adviser",
+   "nome": "CRUEL ADVISER",
+   "base": "Cruel Adviser",
+   "filosofia": "The outsider as unblocker.",
+   "corpo": "Creative direction and project mentoring from idea to production, with sensible critique, honest applause. For artists, publishers and small teams too close to their own project.",
+   "numero": "000",
+   "legenda": "Acompanhamentos"
+  }
+ ],
+ "projectos": [
+  {
+   "nome": "Mochos no Telhado — A História das Coisas",
+   "bloco": "Cruel Adviser",
+   "tipologias": [
+    "Identidade",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CCDR-N Agenda 26",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CCDR-N Estudo Inovador Norte 2025",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CCDR-N Territorialização das Cadeias",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CCDR-N Horizonte Europa",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CCDR-N Comércio Internacional",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "Carmo81 Karma Zine 25",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Ilustração"
+   ]
+  },
+  {
+   "nome": "MYCOTOX IPB25 — Guia de Boas Práticas",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "MF24 Jornal Rotunda",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "MF24 APPACDM",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Ilustração",
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "MC23 Glossário do Valor",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "Castilho Macário — registo vídeo",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Vídeo / motion"
+   ]
+  },
+  {
+   "nome": "MC23 NFTs",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Ilustração",
+    "Web / site"
+   ]
+  },
+  {
+   "nome": "CMV23 Livro do Abastecimento de Água",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "MF Catálogo NACO",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "Liliana Castilho — Mapa das Portas da Muralha",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Ilustração",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "Gongori — CD e vinil",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Packaging",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "Tese Sónia Barbosa — Karamázov",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "Diocese de Viseu — Livro Infantil",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Ilustração"
+   ]
+  },
+  {
+   "nome": "CMV Livro Europeade 2019",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Street Art — Roteiro 2019",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Passaporte dos Museus 2018",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Merchandising",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Street Art — Roteiro 2018",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Agenda Municipal 2018",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Agenda Municipal 2017",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CCDR-N Sumário Executivo",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Edição Conteúdos",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Carta Gastronómica — livro",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Postais Antigos de Viseu",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "CCDR-N EEC PROVERE",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "RD Livro Karamázov",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CCDR-N Especialização",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CCDR-N Norte 2030 S3 — publicações",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Relatório institucional",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "Beira Ilustre — livro",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Ilustração"
+   ]
+  },
+  {
+   "nome": "MF Livro Intergeracional",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CCDR-N Agenda + Notebook",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "CMV Revista Municipal",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CCDR-N Planos Norte 2030",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Relatório institucional",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CMV Guia Turístico de Viseu — reprodução",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "FSM Feira em Revista — série",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CCDR-N Estratégias de Eficiência",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "GalerVatri Dossiê Ed. Maria Patrocínio",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Golden Book",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Livros do Património — série",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Agenda Cultural — série",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CCDR-N ProtNorte",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CriaVerde Catálogo",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Editorial / livro",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "CMV Smart Cities — apresentação",
+   "bloco": "Editorial attention",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "WBTB26 — Bienal",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Editorial / livro",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "RD Oficina Teatral Fev24",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "C'81 Newsletter 24",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Web / site",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "TA Feira dos Santos 24",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Sinalética / ambiente",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD23 Robalo",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Identidade",
+    "Campanha",
+    "Ilustração"
+   ]
+  },
+  {
+   "nome": "RD23 Cenas Conjugais",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "É o que se leva da vida — DJ set",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Cartaz",
+    "Campanha",
+    "Ilustração"
+   ]
+  },
+  {
+   "nome": "TA Feira dos Santos 23",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Sinalética / ambiente",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD23 A Matança do Porco do Pai",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "C'81 Programação 23 — série",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Cartaz",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD22 A Gaivota, de Tchekhov",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "RD22 Take My Breath Away",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Fotografia",
+    "Vídeo / motion"
+   ]
+  },
+  {
+   "nome": "C'81 Karma 22",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Mentoring",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "MnT22 Solitude",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Vídeo / motion",
+    "Fotografia",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "C'81 Circuit Bending Fev22",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "C'81 Programação 22 — série",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Cartaz",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "C'81 25 de Abril 22",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "ESCS — Conferência 30 Anos RPCE",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "C'81 Karma 21",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Vídeo / motion",
+    "Merchandising",
+    "Sinalética / ambiente",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "MF21 Comunicação",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "RD21 Karamázov",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Editorial / livro",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "C'81 Karma 20",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Vídeo / motion",
+    "Web / site",
+    "Sinalética / ambiente",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "C'81 Programa regular",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Edição Conteúdos",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CMV Desporto 2020",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD20 A Vida das Árvores",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "C'81 Indo Eu — Viseu em Lisboa",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "FSM'20 — Feira de São Mateus 2020",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "FSM'19 — Feira de São Mateus 2019",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha",
+    "Sinalética / ambiente",
+    "Editorial / livro",
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "CMV #viseufazbem",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CriaVerde Campanhas 19",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Dia Internacional dos Museus 2019",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "FSM'19 Merchandising",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "RD Dmitri ou o Pecado",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "Amarelo Silvestre — Conferência Refúgio",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "C'81 Karma 19",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Edição Conteúdos",
+    "Editorial / livro",
+    "Merchandising",
+    "Sinalética / ambiente",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "Amarelo Silvestre — Engolir Sapos",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CriaVerde Fotografia 2019",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "CMV Paulo Ribeiro — Memórias de Pedra",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CMV Vindimas 19",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Arboris",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Mentoring",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Desporto 2019",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD19 O Meu Amor Virá de Comboio",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "CMV FITUR 19",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Natal 19",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Passagem de Ano 2019–2020",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CMV Viseu Gastronómico 19 — proposta",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "FSM'18 — Feira de São Mateus 2018",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha",
+    "Sinalética / ambiente",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CMV Dia Internacional dos Museus 2018",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CMV Passagem de Ano 2018–2019",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "CMV Natal 18",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "C'81 Animar 18",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Natal 17",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV Green Business Week 17",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Feira de Arte 17",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Cartaz",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "FSM'17 — Feira de São Mateus 2017",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente",
+    "Museografia / exposição",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CMV BTL 17",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Comboio Turístico",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Festival da Primavera — capa falsa DV",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Estacionamento no Centro",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Cultura Urbana 17",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CMV Centro sem Carros — Verão 2016",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Natal 16",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "FSM'16 — Feira de São Mateus 2016",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente",
+    "Museografia / exposição"
+   ]
+  },
+  {
+   "nome": "Natal de Viseu — série",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "Feira de São Mateus — série",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha",
+    "Sinalética / ambiente",
+    "Editorial / livro",
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "IPV EDP Bright Centre",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "TA Fotografia de produto",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "CCDR-N Encerramento do 20.º aniversário",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Solos e Solidão",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CMV Afirmar Viseu — campanha",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Arboris",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Identidade",
+    "Editorial / livro",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CCDR-N Congresso das Aldeias",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Petróleo Histórico",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CMV Gala da Natalidade",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD Dizer Poesia",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CMV Viseu Amigo das Famílias",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "Maria Xica — programação 18–20",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "RD Folhas Caídas",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "RD Cartazes — série",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Cartaz",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Concurso Viseu 2020",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CCDR-N Natal",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "Giro Hc — Museu do Côa",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD Rituais Para o Futuro",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Relatório institucional",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "Giro Hc — OES Seia e ESAM Viseu",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "C'81 Natal Tropical — série",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "RD A Fragilidade",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CCDR-N Congresso da Inovação Social",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Senhor Jorge — promo",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Vídeo / motion",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "RD O Que Tenho Para Contar",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "C'81 Teatro Estado Zero",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "C'81 Circuito Venues",
+   "bloco": "Files festival",
+   "tipologias": [
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "GalerVatri Tela II Jan26",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "Revelação — Manuscritos Sagrados de Santa Cruz",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Editorial / livro",
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "CCV24 CINE—PT | POLA—NT (Nuno Tudela)",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Editorial / livro",
+    "Campanha",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "MF24 Alcântara",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "C'81 Expo Farias 24",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição"
+   ]
+  },
+  {
+   "nome": "Museu do Falso 2023",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "MF22 Núcleo Linguístico",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CCV22 Exposição Tito Mouraz — Fluvial",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV MAM22 Exposição de Escrita",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "MMV21 Exposição Credo",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV MAM Presépios 2021",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Cartaz",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "MMV21 Peregrinar nos Caminhos de Santiago",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Fontelo — instalação Karma 21",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Sinalética / ambiente",
+    "Vídeo / motion"
+   ]
+  },
+  {
+   "nome": "Museu do Falso 2021 — Paleo Deidades",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "Street Art 20 — Cut Copy",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente",
+    "Ilustração"
+   ]
+  },
+  {
+   "nome": "CMV Centenário do Armistício",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Expo Rua da Gastronomia",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Polo Arqueológico de Viseu",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Museu Almeida Moreira",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "MMV Museu D. Leonor",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Fotografia",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CMV Expositor Urbano",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CMV Casa da Ribeira",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "BMV Imagens de Escritores",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição"
+   ]
+  },
+  {
+   "nome": "MMV Genius Loci",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição"
+   ]
+  },
+  {
+   "nome": "CMV Multiusos — entrada em vinil",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Anjos70 — exposição",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "BMV Painel de BD no foyer",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Ilustração",
+    "Sinalética / ambiente",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "Beira Ilustre — exposição MAM",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Ilustração"
+   ]
+  },
+  {
+   "nome": "CMV Quinta da Cruz",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente",
+    "Editorial / livro"
+   ]
+  },
+  {
+   "nome": "CCV Acácio de Almeida",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Fotografia",
+    "Museografia / exposição"
+   ]
+  },
+  {
+   "nome": "CMV Almeida Moreira, Museólogo",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição"
+   ]
+  },
+  {
+   "nome": "MMV Museu da Misericórdia — exposição do sino",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "CMV José Coelho",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "CMV Museu do Quartzo",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente",
+    "Campanha",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "CMV Parque de Santiago — sinalética",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "C'81 Fotografia do espaço",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "MMV Exposição do Órgão e Benfeitores",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "BMV Exposição João Ferreira de Almeida",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Edição Conteúdos",
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "Cava Galeria — Terrarium",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "Cava Galeria — Pousada de Viseu",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Fotografia",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "GalerVatri Tela MP",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "MF Gabinete de Curiosidades",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Museografia / exposição"
+   ]
+  },
+  {
+   "nome": "BMV Tela",
+   "bloco": "Space wise",
+   "tipologias": [
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "Catarina Restani — Color Knitt",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "Negrão Pastilhas Set25",
+   "bloco": "System minded",
+   "tipologias": [
+    "Packaging"
+   ]
+  },
+  {
+   "nome": "Cafés Negrão 1kg — embalagem",
+   "bloco": "System minded",
+   "tipologias": [
+    "Packaging"
+   ]
+  },
+  {
+   "nome": "Cafés Negrão — rebrand 24",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "RD Brand 2024",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "Sanskrit — identidade",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "C'81 Dossiê Institucional 23",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "C'81 Dossiê Karma 23",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "RD Site 22",
+   "bloco": "System minded",
+   "tipologias": [
+    "Web / site",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "MYCOTOX-PALOP — marca",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "C'81 Dossiê Institucional 22",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "C'81 Copo 28 cl 22",
+   "bloco": "System minded",
+   "tipologias": [
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "O Grito e o Cochicho — marca",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "Gongori — documentário e filme",
+   "bloco": "System minded",
+   "tipologias": [
+    "Vídeo / motion",
+    "Cartaz"
+   ]
+  },
+  {
+   "nome": "CRETA — podcast Quase Invisível",
+   "bloco": "System minded",
+   "tipologias": [
+    "Ilustração",
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "ALVA — marca e manual",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Editorial / livro",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "Gongori — identidade e redes",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Campanha"
+   ]
+  },
+  {
+   "nome": "IPV Lista Monney Paiva 21",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "CMV Relatório Viseu Ajuda 2020",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "RD Site 20",
+   "bloco": "System minded",
+   "tipologias": [
+    "Web / site",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "IPV Vídeos Promocionais",
+   "bloco": "System minded",
+   "tipologias": [
+    "Vídeo / motion"
+   ]
+  },
+  {
+   "nome": "Maria Xica — marca e cartas",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Editorial / livro",
+    "Mentoring",
+    "Cartaz",
+    "Campanha",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "Beira Ilustre — candidatura Viseu Cultura",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "CriaVerde — marca",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "Claudia Marques Home & Kids — marca",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Merchandising",
+    "Packaging"
+   ]
+  },
+  {
+   "nome": "IPV Rebrand",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "C'81 Candidatura Viseu Cultura 18",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "C'81 Rebrand 17",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "Moinhos do Dão — logótipo",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "GalerVatri — marca e manual",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "Caminho do Dão — site",
+   "bloco": "System minded",
+   "tipologias": [
+    "Web / site"
+   ]
+  },
+  {
+   "nome": "CMV Site do Associativismo",
+   "bloco": "System minded",
+   "tipologias": [
+    "Web / site"
+   ]
+  },
+  {
+   "nome": "CMV Marketing e Comunicação 17–21",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "C'81 Apoios Viseu Cultura",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "CMV Viseu Cultura 2017–2021",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "GalerVatri Site",
+   "bloco": "System minded",
+   "tipologias": [
+    "Web / site"
+   ]
+  },
+  {
+   "nome": "CMV Bases — sistema de marca e formatos",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "CriaVerde Fardas e viaturas",
+   "bloco": "System minded",
+   "tipologias": [
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "CMV Mandato 1 — Resultados",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "João Dias Studio — logótipo",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "ALVA Future Foresight — relatório",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional",
+    "Mentoring"
+   ]
+  },
+  {
+   "nome": "ieSolutions — marcas de clientes finais",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Web / site"
+   ]
+  },
+  {
+   "nome": "Mercado Urbano — marca e montras",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Sinalética / ambiente",
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "Deli.Pro — marca",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Packaging"
+   ]
+  },
+  {
+   "nome": "Maria Xica — fotografia do espaço e pratos",
+   "bloco": "System minded",
+   "tipologias": [
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "C'81 Site Readymag",
+   "bloco": "System minded",
+   "tipologias": [
+    "Web / site"
+   ]
+  },
+  {
+   "nome": "ieSolutions — marca",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Web / site",
+    "Sinalética / ambiente"
+   ]
+  },
+  {
+   "nome": "CCDR-N Slides e Layouts — sistema",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade",
+    "Relatório institucional"
+   ]
+  },
+  {
+   "nome": "Intruso / Romulus — dossiê de criações",
+   "bloco": "System minded",
+   "tipologias": [
+    "Relatório institucional",
+    "Web / site"
+   ]
+  },
+  {
+   "nome": "TA Rótulos e embalagem",
+   "bloco": "System minded",
+   "tipologias": [
+    "Packaging"
+   ]
+  },
+  {
+   "nome": "ALVA — site",
+   "bloco": "System minded",
+   "tipologias": [
+    "Web / site",
+    "Edição Conteúdos"
+   ]
+  },
+  {
+   "nome": "Caminho do Dão — marca",
+   "bloco": "System minded",
+   "tipologias": [
+    "Identidade"
+   ]
+  },
+  {
+   "nome": "C'81 Merch",
+   "bloco": "System minded",
+   "tipologias": [
+    "Merchandising"
+   ]
+  },
+  {
+   "nome": "t*nuts — marca e loja",
+   "bloco": "e-sales",
+   "tipologias": [
+    "Identidade",
+    "Packaging",
+    "E-commerce",
+    "Fotografia"
+   ]
+  },
+  {
+   "nome": "TA Shopify — loja",
+   "bloco": "e-sales",
+   "tipologias": [
+    "E-commerce",
+    "Web / site"
+   ]
+  }
+ ],
+ "clientes": [
+  {
+   "nome": "ALVA — Research and Consulting",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Amarelo Silvestre",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "APPACDM",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Beira Ilustre",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Beiragel",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Biblioteca Municipal de Viseu",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Cafés Negrão",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Caminho do Dão / Moinhos do Dão",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Carmo'81",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Castilho Macário",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Catarina Restani",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Cava Galeria",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "CCDR-Norte",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Cine Clube de Viseu",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Claudia Marques — Home & Kids",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Companhia Paulo Ribeiro",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Comum — Rede Cultural",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Comédias do Minho",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Controlvet",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "CRETA",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "CriaVerde",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "De Lemos / Habidecor",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Deli.Pro",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Design Compacto",
+   "relacao": "Subcontratado"
+  },
+  {
+   "nome": "Diocese de Viseu — Bens Culturais",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "ESCS",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "GalerVatri",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Gest Pro",
+   "relacao": "Agência intermediária"
+  },
+  {
+   "nome": "Giro Hc",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Gongori",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "ieSolutions",
+   "relacao": "Agência intermediária"
+  },
+  {
+   "nome": "Improviso",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Incoveca",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Instituto Politécnico de Viseu",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Jardins Efémeros",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Joana Filipa Gomes Martins",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Jornal do Centro",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "João Dias Studio",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "JS Clínica Médica",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Liliana Castilho",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Lucky Day",
+   "relacao": "Pessoal / próprio"
+  },
+  {
+   "nome": "Lugar Presente",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Maria Xica",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Memória Comum / Museu do Falso",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Mercado Urbano / Grow Longer",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Misericórdia de Santo Tirso",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Misericórdia de Viseu",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Mochos no Telhado",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Município de Monção",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Município de Vila Nova de Paiva",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Município de Viseu",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Museu e Bibliotecas do Porto",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "MYCOTOX / IPB",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "NACO",
+   "relacao": "Continuada"
+  },
+  {
+   "nome": "Nuno Tudela",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "O Grito e o Cochicho",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Partido Socialista — Viseu",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Ritual de Domingo",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Romulus / Intruso",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Sanskrit",
+   "relacao": "Pessoal / próprio"
+  },
+  {
+   "nome": "Street Art Viseu / Cut Copy",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Supermoon",
+   "relacao": "Pessoal / próprio"
+  },
+  {
+   "nome": "Só Sabão",
+   "relacao": "Pontual"
+  },
+  {
+   "nome": "Teatro Viriato",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Tese Sónia Barbosa",
+   "relacao": "Retornado"
+  },
+  {
+   "nome": "Transagri",
+   "relacao": "Âncora"
+  },
+  {
+   "nome": "Viseu Marca",
+   "relacao": "Agência intermediária"
+  },
+  {
+   "nome": "É o que se leva da vida",
+   "relacao": "Pontual"
+  }
+ ]
+}

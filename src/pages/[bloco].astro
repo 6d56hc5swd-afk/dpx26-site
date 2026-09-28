@@ -1,0 +1,26 @@
+---
+import Frame from '../layouts/Frame.astro';
+import { blocos, projectosDoBloco, type Bloco } from '../lib/conteudo';
+
+export function getStaticPaths() {
+  return blocos.map((b) => ({ params: { bloco: b.slug }, props: { b } }));
+}
+const { b } = Astro.props as { b: Bloco };
+const lista = projectosDoBloco(b);
+---
+<Frame titulo={`${b.nome} — DPX`} pagina={b.slug}>
+  <div slot="z1" class="z1-num">
+    <p class="num">{b.numero}</p>
+    <p class="verde legenda">{b.legenda}</p>
+  </div>
+  <div slot="z2">
+    <h2 class="filosofia">{b.filosofia}</h2>
+    <ul class="lista">{lista.map((n) => <li>{n}</li>)}</ul>
+  </div>
+</Frame>
+<style>
+  .z1-num { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+  .num { margin: 0; font-family: Namdhinggo, Georgia, serif; font-weight: 600;
+         font-size: 19cqw; line-height: .9; letter-spacing: 0; }
+  .filosofia { margin: 0 0 2.4cqw; font-weight: 400; font-size: 3.64cqw; line-height: 1.2; }
+</style>

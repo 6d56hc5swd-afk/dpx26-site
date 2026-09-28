@@ -1,0 +1,48 @@
+---
+// Donut em SVG puro, desenhado no build. Escala com o frame (viewBox).
+interface Fatia { nome: string; n: number; cor: string }
+interface Props { fatias: Fatia[]; centro?: string; subcentro?: string; legenda?: boolean }
+const { fatias, centro, subcentro, legenda = false } = Astro.props;
+const total = fatias.reduce((s, f) => s + f.n, 0);
+const R = 40, C = 2 * Math.PI * R;
+let acc = 0;
+const arcos = fatias.map((f) => {
+  const len = (f.n / total) * C;
+  const a = { ...f, len, off: -acc };
+  acc += len;
+  return a;
+});
+const pct = (n: number) => {
+  const v = (n / total) * 100;
+  return (v < 1 ? v.toFixed(1) : Math.round(v).toString()).replace('.', ',') + '%';
+};
+---
+<div class="donut">
+  <svg viewBox="0 0 100 100" role="img" aria-label={fatias.map((f) => `${f.nome} ${f.n}`).join(', ')}>
+    <g transform="rotate(-90 50 50)">
+      {arcos.map((a) => (
+        <circle cx="50" cy="50" r={R} fill="none" stroke={a.cor} stroke-width="16"
+          stroke-dasharray={`${a.len} ${C - a.len}`} stroke-dashoffset={a.off} />
+      ))}
+    </g>
+    {centro && <text x="50" y="52" text-anchor="middle" class="c">{centro}</text>}
+    {subcentro && <text x="50" y="61" text-anchor="middle" class="s">{subcentro}</text>}
+  </svg>
+  {legenda && (
+    <ul>
+      {fatias.map((f) => (
+        <li><i style={`background:${f.cor}`}></i>{f.nome} <span>{pct(f.n)}</span></li>
+      ))}
+    </ul>
+  )}
+</div>
+<style>
+  .donut { display: flex; align-items: center; gap: 2.4cqw; }
+  svg { width: 26cqw; height: 26cqw; flex: none; }
+  .c { fill: var(--light); font: 400 15px Inter, sans-serif; }
+  .s { fill: var(--light); opacity: .6; font: 400 5px Inter, sans-serif; letter-spacing: .6px; text-transform: uppercase; }
+  ul { list-style: none; margin: 0; padding: 0; font-size: 1.6cqw; line-height: 1.9; letter-spacing: .1cqw; }
+  li { white-space: nowrap; }
+  i { display: inline-block; width: 1.3cqw; height: 1.3cqw; margin-right: 1cqw; vertical-align: -.1cqw; }
+  span { opacity: .7; }
+</style>

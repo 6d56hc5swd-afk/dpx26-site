@@ -1,0 +1,151 @@
+---
+// O frame 9:16 e a Zona 3, iguais em todas as páginas.
+// Cada página só preenche as Zonas 1 e 2 (slots "z1" e "z2").
+// Regras em AGENTS.md §2 — tudo em cqw, nada de JavaScript a medir a janela.
+import { hero, blocos } from '../lib/conteudo';
+
+interface Props { titulo: string; pagina: string }
+const { titulo, pagina } = Astro.props;
+
+// Palavras do Hero que são navegação (mapa: 02_Mapa-Site.md).
+const LIGACOES: Record<string, { href: string; id: string }> = {
+  client: { href: '/clients', id: 'clients' },
+  solve: { href: '/projects', id: 'projects' },
+  Nuno: { href: '/nuno', id: 'nuno' },
+};
+const usadas = new Set<string>();
+const linhas = hero.map((linha) =>
+  linha.split(/(\bclient\b|\bsolve\b|\bNuno\b)/).map((parte) => {
+    const l = LIGACOES[parte];
+    if (!l || usadas.has(parte)) return { texto: parte };
+    usadas.add(parte);
+    return { texto: parte, ...l };
+  }),
+);
+const actual = (id: string) => (id === pagina ? 'page' : undefined);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <title>{titulo}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Namdhinggo:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body data-pagina={pagina}>
+  <div class="fundo" aria-hidden="true"></div>
+
+  <div class="palco">
+    <a class="casa" href="/" aria-label="Home" aria-current={actual('home')}>~</a>
+
+    <main class="frame"><div class="grelha">
+      <section class="z1"><slot name="z1" /></section>
+      <section class="z2"><slot name="z2" /></section>
+
+      <section class="z3">
+        <h1 class="hero">
+          {linhas.map((partes) => (
+            <span class="linha">
+              {partes.map((p) => p.href
+                ? <a class="lk" href={p.href} aria-current={actual(p.id)}>{p.texto}</a>
+                : p.texto)}
+            </span>
+          ))}
+        </h1>
+
+        <p class="temas">
+          {blocos.map((b, i) => (
+            <>
+              {i > 0 && ' | '}
+              <a class="lk tema" href={`/${b.slug}`} aria-current={actual(b.slug)}>{b.nome}</a>: {b.corpo}
+            </>
+          ))}
+        </p>
+      </section>
+    </div></main>
+  </div>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --light: #F2F1E8; --dark: #333330;
+    --c1: #F64724;  /* sublinhado por visitar */
+    --c2: #31E192;  /* sublinhado visitado / actual */
+    --margem: 24px;
+    --linha: 1px solid rgba(242, 241, 232, .55);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--dark); color: var(--light);
+    font-family: Inter, system-ui, sans-serif;
+    display: grid; place-items: center; overflow: hidden;
+  }
+
+  /* Fundo: placeholder do media ofuscado (por estudar). */
+  .fundo {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 30% 30%, rgba(242,241,232,.05), transparent 70%),
+      radial-gradient(50% 60% at 75% 70%, rgba(49,225,146,.04), transparent 70%);
+  }
+
+  .palco { position: relative; z-index: 1; }
+
+  /* O FRAME — uma linha decide o tamanho (AGENTS.md §2). */
+  .frame {
+    width: min(100svw - var(--margem) * 2, (100svh - var(--margem) * 2) * 0.5625);
+    aspect-ratio: 9 / 16;
+    container-type: inline-size;
+  }
+  /* A grelha vive dentro do frame: só assim o cqw mede o frame e não a janela. */
+  .grelha {
+    height: 100%;
+    border: var(--linha); border-radius: 5.6cqw;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 66.4% 1fr;
+    grid-template-rows: 44.6cqw 1fr;
+    letter-spacing: .2cqw;
+  }
+  .z1 { border-right: var(--linha); border-bottom: var(--linha); padding: 3.9cqw; min-height: 0; overflow: hidden; }
+  .z2 { border-bottom: var(--linha); padding: 3.2cqw 2.8cqw; min-height: 0; overflow-y: auto;
+        font-size: 2.42cqw; line-height: 1.45; scrollbar-width: thin; scrollbar-color: rgba(242,241,232,.3) transparent; }
+  .z3 { grid-column: 1 / -1; padding: 3.2cqw 3.9cqw 3.9cqw; min-height: 0; overflow: hidden;
+        display: flex; flex-direction: column; justify-content: space-between; }
+
+  .hero { margin: 0; font-family: Namdhinggo, Georgia, serif; font-weight: 600;
+          font-size: 5.25cqw; line-height: 1.1; letter-spacing: 0; }
+  .hero .linha { display: block; }
+  .temas { margin: 0; font-size: 2.83cqw; line-height: 1.33; }
+  .tema { font-weight: 600; }
+
+  /* Casa: o ~ vermelho por cima do frame. */
+  .casa {
+    position: absolute; bottom: 100%; left: 18px;
+    color: var(--c1); text-decoration: none; font: 600 22px/1 Inter, sans-serif;
+  }
+  .casa[aria-current] { color: var(--c2); }
+
+  /* Links: vermelho por visitar · verde visitado (para sempre — é o histórico
+     do browser que guarda) · verde liso na página actual. */
+  a { color: inherit; }
+  .lk { text-decoration: underline wavy var(--c1); text-decoration-thickness: .25cqw;
+        text-underline-offset: .6cqw; text-decoration-skip-ink: none; }
+  .lk:visited { text-decoration-color: var(--c2); }
+  .lk[aria-current] { text-decoration-style: solid; text-decoration-color: var(--c2); }
+  .lk:hover { text-decoration-color: var(--c2); }
+
+  /* Listas da Zona 2: não clicáveis, scroll interno se não couberem. */
+  .lista { margin: 0; padding-left: 2.6cqw; }
+  .verde { color: var(--c2); }
+</style>
+<style is:global>
+  .z1-dados { height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+  .legenda { margin: 0; font-size: 4.04cqw; line-height: 1.2; letter-spacing: 0; }
+</style>
