@@ -9,9 +9,9 @@ const { titulo, pagina } = Astro.props;
 
 // Palavras do Hero que são navegação (mapa: 02_Mapa-Site.md).
 const LIGACOES: Record<string, { href: string; id: string }> = {
-  client: { href: '/clients', id: 'clients' },
-  solve: { href: '/projects', id: 'projects' },
-  Nuno: { href: '/nuno', id: 'nuno' },
+  client: { href: '/clients/', id: 'clients' },
+  solve: { href: '/projects/', id: 'projects' },
+  Nuno: { href: '/nuno/', id: 'nuno' },
 };
 const usadas = new Set<string>();
 const linhas = hero.map((linha) =>
@@ -61,7 +61,7 @@ const actual = (id: string) => (id === pagina ? 'page' : undefined);
           {blocos.map((b, i) => (
             <>
               {i > 0 && ' | '}
-              <a class="lk tema" href={`/${b.slug}`} aria-current={actual(b.slug)}>{b.nome}</a>: {b.corpo}
+              <a class="lk tema" href={`/${b.slug}/`} aria-current={actual(b.slug)}>{b.nome}</a>: {b.corpo}
             </>
           ))}
         </p>
