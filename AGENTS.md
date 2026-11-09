@@ -1,5 +1,17 @@
 # DPX26 — site de portfólio
 
+> **⚠️ Regras da V1 — 09.11.2026.** O Nuno fechou a V1; a **V2 é a fonte de
+> verdade** (Notion *Portfolio V2*, Figma `DPX-MIX` página *Portfolio develop*,
+> node 440-2) e nasce por cima deste repositório. O que está abaixo descreve a
+> V1, guardada na etiqueta git **`v1`**. **Nenhuma regra de desenho daqui vale
+> para a V2 sem decisão dele** — frame 9:16, Zonas, sublinhados, paleta, mapa
+> de 10 páginas. Mantém-se só o que é do ambiente: §5 (arranque de sessão e
+> armadilhas). Os documentos da V1 (roadmap, mapa, tracker, handover) estão em
+> `WORK/Reposicionamento/Portfolio-V1-arquivo/docs/`; as referências a
+> `DPX26 Portfolio/` abaixo apontam para lá, excepto `the-rosetta-stone/`, que
+> ficou em `DPX26 Portfolio Assets/`. Contas e acessos: `ACESSOS.md` no
+> projecto Claude WORK.
+
 Portfólio do Nuno Rodrigues (DPX, Viseu). Substitui o Adobe Portfolio.
 Conteúdos em **EN-EU**. Maquete no Figma `DPX-MIX`, ficheiro
 `x7DPCAV9NeSz8wqlLCPz0E`.
