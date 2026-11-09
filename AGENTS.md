@@ -170,13 +170,30 @@ ficheiros**. Consequências, todas reais:
   ficheiro `.git` com o ponteiro.
   **A casa da sessão é apagada quando a sessão acaba** — o `.git` de fora
   perde-se sempre. Arranque de cada sessão (desde 28.09):
-  ```
-  export GIT_SSH_COMMAND="ssh -i $HOME/mnt/WORK/Reposicionamento/.dpx26-deploy/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
-  git clone --bare git@github.com:6d56hc5swd-afk/dpx26-site.git ~/repos/dpx26.git
+  ```bash
+  # 1. confirmar como se chama a pasta montada NESTA sessao — muda!
+  ls $HOME/mnt/          # ja foi "WORK", em 11.2026 e "Documents"
+  cd "$HOME/mnt/<pasta>/WORK/Reposicionamento/DPX26-site"
+
+  # 2. a chave tem de estar fora do mount, com permissoes 600
+  mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+  cp ../.dpx26-deploy/id_ed25519 "$HOME/.ssh/dpx26" && chmod 600 "$HOME/.ssh/dpx26"
+  export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/dpx26 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+
+  # 3. recriar o gitdir
+  git clone --bare -q git@github.com:6d56hc5swd-afk/dpx26-site.git ~/repos/dpx26.git
   git --git-dir ~/repos/dpx26.git config core.bare false
-  git --git-dir ~/repos/dpx26.git config core.worktree "$PWD"   # a partir de DPX26-site/
+  git --git-dir ~/repos/dpx26.git config core.worktree "$PWD"
   echo "gitdir: $HOME/repos/dpx26.git" > .git
+
+  # 4. o indice vem vazio do clone bare e o git le tudo como apagado.
+  #    `git reset` (sem --hard) refaz o indice sem tocar nos ficheiros.
+  git reset -q && git status --short     # so deve listar alteracoes reais
   ```
+
+  ⚠️ **Nao fixar o caminho da pasta montada** — o nome depende do que o Nuno
+  ligou a sessao, e um caminho fixo aqui foi a causa de o arranque falhar em
+  09.11.2026.
   A chave é uma *deploy key* só deste repositório, em
   `Reposicionamento/.dpx26-deploy/` (fora do repo). Revoga-se no GitHub em
   Settings → Deploy keys. Sem isto o segundo commit falha, porque o
