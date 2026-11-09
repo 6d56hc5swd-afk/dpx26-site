@@ -86,13 +86,39 @@ Vêm das variáveis do Figma. Nomes a manter.
 
 ```
 Site Light   #F2F1E8      Site Dark    #333330
+Site Gray    #858585
 Site Color 1 #F64724      (sublinhado por visitar)
 Site Color 2 #31E192      (sublinhado activo/visitado)
+
+Blocos temáticos — identidade dos 6 territórios        Light    / Dark
+Site Files Festival        H 329              #E09CDC / #8F4B8C
+Site System Minded         H 257              #88BAFF / #3569AF
+Site Space Wise            H 293              #BAA9FA / #6D59AA
+Site Editorial Attention   H  85              #D9B15B / #846305
+Site E-Sales               H 221              #53C8EB / #02758F
+Site Cruel Adviser         neutro             #BCB7AC / #6D6860
+
+   Light = o tom claro, usa-se SOBRE Site Dark
+   Dark  = o tom escuro, usa-se SOBRE Site Light
 
 Site Hero       Namdhinggo SemiBold 26 / 1.1
 Site txt bloco  Inter Regular 14 / 1.33 / +1
 Site Lista      Inter Regular 12 / 1.45 / +1
 ```
+
+**Regra da cor dos blocos.** O vermelho e o verde são **estado de navegação**
+(por visitar / visitado) e não pertencem a nenhum bloco. Por isso nenhuma cor
+de bloco se aproxima da matiz do `Site Color 1` (33) nem do `Site Color 2`
+(158), e todas têm croma mais baixa do que os dois acentos: a identidade do
+território é mais silenciosa do que o estado do link. Cada bloco tem **duas
+versões da mesma matiz**, ambas acima de 4,5:1 sobre o seu fundo. O sufixo
+nomeia o **tom da própria cor**, como em `Site Dark` e `Site Light` — não o
+fundo onde assenta. Por isso `Site Files Festival Light` é o rosa claro, e é
+esse que vai sobre fundo escuro. Trocar as duas não é um defeito subtil: a
+clara sobre fundo claro desaparece.
+
+Swatches e descrições no Figma, frame `DPX portfolio Brand system`
+(`498:563`), e como estilos de cor soltos com prefixo `Site`.
 
 Espaçamentos e tamanhos por ecrã ainda não estão fechados no Figma. Até
 estarem, **não inventar nomes novos** — usar os valores medidos e assinalar.
