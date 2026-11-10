@@ -1,0 +1,161 @@
+---
+// Pedra de Roseta em 3D (Home). Segue o rato; sem cursor, balança devagar.
+// Etiquetas presas às três escritas, com traço lima, como na maquete.
+import { hero } from '../lib/conteudo';
+// Ponto de cada escrita na face (x e y em fracções da largura/altura da
+// pedra, a partir do centro) e deslocamento da etiqueta em rem.
+const ESCRITAS = [
+  { ax: -0.06, ay: 0.30, dx: -10.4, dy: -3.0 },  // hieróglifos
+  { ax: 0.09, ay: -0.03, dx: 12.2, dy: -5.0 },   // demótico
+  { ax: -0.05, ay: -0.35, dx: -10.7, dy: -3.1 }, // grego
+];
+const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ...ESCRITAS[i] }));
+---
+<figure class="pedra" data-pedra data-escritas={JSON.stringify(etiquetas)}>
+  <canvas aria-hidden="true"></canvas>
+  <svg class="tracos" aria-hidden="true"></svg>
+  {etiquetas.map((e) => <span class="etiqueta">{e.t}</span>)}
+  <figcaption class="sr">The Rosetta Stone: the same decree in hieroglyphs (symbolic), Demotic (popular) and Ancient Greek (bureaucratic).</figcaption>
+</figure>
+
+<script>
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+
+  // Alinhamento calculado a partir da forma da pedra (ver _tmp-pedra/):
+  // centro e rotação que a põem de pé, e meia volta para mostrar a face escrita.
+  const CENTRO = new THREE.Vector3(-11.4468, 3.8079, -5.8202);
+  const ROT = new THREE.Quaternion(0.051892, -0.057337, 0.993638, 0.081871);
+  const INCLINA_MAX = 0.25;
+  const BALANCO_SEG = 14, BALANCO_AMP = 0.7;
+
+  let parar: (() => void) | null = null;
+  let modelo: Promise<THREE.Group> | null = null;
+  const carregar = () => (modelo ??= new GLTFLoader().setMeshoptDecoder(MeshoptDecoder)
+    .loadAsync('/modelos/pedra.glb').then((g) => g.scene));
+
+  async function iniciar() {
+    const fig = document.querySelector<HTMLElement>('[data-pedra]');
+    if (!fig) return;
+    const canvas = fig.querySelector('canvas')!;
+    const svg = fig.querySelector<SVGSVGElement>('.tracos')!;
+    const els = [...fig.querySelectorAll<HTMLElement>('.etiqueta')];
+    const escritas = JSON.parse(fig.dataset.escritas!);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.35;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(26, 1, 0.1, 100);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x3a3935, 0.9));
+    const rasante = new THREE.DirectionalLight(0xffffff, 2.6); rasante.position.set(-2.5, 3.5, 1.4); scene.add(rasante);
+    const ench = new THREE.DirectionalLight(0xffffff, 0.6); ench.position.set(3, -1, 3); scene.add(ench);
+
+    const pivot = new THREE.Group(); scene.add(pivot);
+    const ancoras = escritas.map(() => new THREE.Object3D());
+    let caixa = new THREE.Vector3(1, 1.6, 0.4);
+
+    const obj = (await carregar()).clone(true);
+    // Pedra em cinzento, como na maquete: tira a cor à textura.
+    obj.traverse((o: any) => {
+      if (!o.isMesh) return;
+      o.material = o.material.clone();
+      o.material.onBeforeCompile = (s: any) => {
+        s.fragmentShader = s.fragmentShader.replace('#include <map_fragment>',
+          '#include <map_fragment>\n float g = dot(diffuseColor.rgb, vec3(.299,.587,.114)); diffuseColor.rgb = vec3(g);');
+      };
+    });
+    obj.position.copy(CENTRO).negate();
+    const endireitada = new THREE.Group(); endireitada.add(obj); endireitada.quaternion.copy(ROT);
+    const virada = new THREE.Group(); virada.add(endireitada); virada.rotation.y = Math.PI;
+    const box = new THREE.Box3().setFromObject(virada, true);
+    const size = box.getSize(new THREE.Vector3());
+    const s = 1.6 / size.y; virada.scale.setScalar(s);
+    virada.position.copy(box.getCenter(new THREE.Vector3()).multiplyScalar(-s));
+    caixa = size.multiplyScalar(s);
+    pivot.add(virada);
+    escritas.forEach((e: any, i: number) => {
+      ancoras[i].position.set(e.ax * caixa.x, e.ay * caixa.y, caixa.z * 0.5);
+      pivot.add(ancoras[i]);
+    });
+
+    let W = 0, H = 0, rem = 16;
+    const enquadrar = () => {
+      W = fig.clientWidth; H = fig.clientHeight;
+      rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      renderer.setSize(W, H, false);
+      camera.aspect = W / H; camera.updateProjectionMatrix();
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      const t = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
+      // a pedra ocupa ~80% da altura e deixa espaço às etiquetas nos lados
+      const dH = (caixa.y / 0.8) / 2 / t;
+      const larguraUtil = Math.max(W - 2 * 9 * rem * (W < 600 ? 0.55 : 1), W * 0.45);
+      const dW = (caixa.x * W / larguraUtil) / 2 / t / camera.aspect;
+      camera.position.set(0, 0, Math.max(dH, dW));
+      camera.lookAt(0, 0, 0);
+    };
+    const ro = new ResizeObserver(enquadrar); ro.observe(fig); enquadrar();
+
+    let tx = 0, ty = 0;
+    const mover = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') return;
+      tx = (e.clientX / innerWidth - 0.5) * 2; ty = (e.clientY / innerHeight - 0.5) * 2;
+    };
+    addEventListener('pointermove', mover);
+    const semCursor = matchMedia('(hover: none)').matches;
+    const quieta = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const linhas = escritas.map(() => {
+      const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      svg.appendChild(l); return l;
+    });
+    const v = new THREE.Vector3();
+    renderer.setAnimationLoop((t: number) => {
+      if (semCursor && !quieta) {
+        const f = (t / 1000) * (2 * Math.PI / BALANCO_SEG);
+        tx = Math.sin(f) * BALANCO_AMP; ty = Math.sin(f * 2) * BALANCO_AMP * 0.4;
+      }
+      pivot.rotation.y += (tx * INCLINA_MAX - pivot.rotation.y) * 0.06;
+      pivot.rotation.x += (ty * INCLINA_MAX - pivot.rotation.x) * 0.06;
+      pivot.updateMatrixWorld();
+      renderer.render(scene, camera);
+      escritas.forEach((e: any, i: number) => {
+        ancoras[i].getWorldPosition(v).project(camera);
+        const x = (v.x * 0.5 + 0.5) * W, y = (-v.y * 0.5 + 0.5) * H;
+        const k = W < 600 ? 0.55 : 1;   // no telemóvel os traços encolhem
+        const sx = x + e.dx * rem * k, sy = y + e.dy * rem * k;
+        const l = linhas[i];
+        l.setAttribute('x1', String(sx)); l.setAttribute('y1', String(sy));
+        l.setAttribute('x2', String(x)); l.setAttribute('y2', String(y));
+        els[i].style.transform = `translate(${sx}px, ${sy}px) translate(-50%, calc(-100% - 1.6rem))`;
+      });
+    });
+    fig.classList.add('pronta');
+
+    parar = () => {
+      renderer.setAnimationLoop(null); ro.disconnect();
+      removeEventListener('pointermove', mover); renderer.dispose();
+    };
+  }
+
+  document.addEventListener('astro:page-load', () => { iniciar().catch(console.error); });
+  document.addEventListener('astro:before-swap', () => { parar?.(); parar = null; });
+</script>
+
+<style>
+  .pedra { position: relative; margin: 0; width: 100%; height: 100%; min-height: 0; }
+  canvas, .tracos { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .tracos { pointer-events: none; overflow: visible; }
+  .tracos :global(line) { stroke: var(--lima); stroke-width: 2.5; }
+  .etiqueta { position: absolute; left: 0; top: 0; white-space: nowrap; pointer-events: none;
+    font-style: italic; font-size: 2.1rem; color: var(--texto); opacity: 0; transition: opacity .6s; }
+  .pedra.pronta .etiqueta { opacity: 1; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  @media (max-width: 860px) {
+    .etiqueta { font-size: 1.1rem; }
+    .tracos :global(line) { stroke-width: 1.6; }
+  }
+</style>

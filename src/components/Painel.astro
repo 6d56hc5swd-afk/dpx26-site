@@ -1,0 +1,104 @@
+---
+// Coluna direita: igual em todas as páginas e persistente na navegação
+// (não se redesenha ao mudar de bloco). O activo marca-se no cliente.
+import { blocos, bio, clientes, contactos } from '../lib/conteudo';
+---
+<aside class="direita" transition:persist="painel">
+  <div class="topo-dir">
+    <header class="cabeca">
+      <a href="/" class="logo" aria-label="DPX Studio — home">DPX STUDI<svg class="o" viewBox="0 0 40 40" aria-hidden="true"><circle cx="19" cy="22" r="14" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="14" cy="20" r="1.8" fill="currentColor"/><circle cx="23" cy="20" r="1.8" fill="currentColor"/><path d="M12.5 25.5q6.5 6 13 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M33 3v9M28.5 7.5h9" stroke="currentColor" stroke-width="2.2"/></svg></a>
+      <nav class="vistas" aria-label="Views">
+        <a href="/" data-vista="humana" title="Human view" aria-label="Human view">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6.5c-1.6-2-5.6-2-6.6.8-2.6-.2-4.4 2.4-3.4 4.6-2.4 1-2.6 4.4-.6 5.8-1 2.6 1 5.2 3.6 4.8.6 2.6 4.4 3.4 7 1.6V6.5zm0 0c1.6-2 5.6-2 6.6.8 2.6-.2 4.4 2.4 3.4 4.6 2.4 1 2.6 4.4.6 5.8 1 2.6-1 5.2-3.6 4.8-.6 2.6-4.4 3.4-7 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 12h-4M16 18h3.5" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+        <a href="/machine/" data-vista="maquina" title="Machine view" aria-label="Machine view: content for language models and agents">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="4" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 12h2M19 12h2M11 19h10M5 29h22" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+      </nav>
+    </header>
+
+    <nav class="blocos" aria-label="Areas of practice">
+      <ul>
+        {blocos.map((b) => <li><a href={b.href} data-bloco={b.slug}>{b.especialidade}</a></li>)}
+      </ul>
+    </nav>
+
+    <section class="bio" aria-label="About">
+      <p><b class="lima">{bio.nome}</b> {bio.linha}</p>
+      <p>{bio.texto}</p>
+    </section>
+
+    <section class="clientes" aria-label="Clients">
+      <p><b class="lima">Clients</b> {clientes.map((c, i) => <>{i > 0 && <b> | </b>}<b>{c.nome}</b> {c.descricao}</>)}</p>
+    </section>
+  </div>
+
+  <footer class="rodape contactos">
+    <a href={`mailto:${contactos.email}`} class="email">{contactos.email}</a>
+    <a href={`tel:${contactos.telefone.replace(/\s/g, '')}`} class="tel">{contactos.telefone}</a>
+  </footer>
+</aside>
+
+<script>
+  // Marca o bloco activo e a vista (humana/máquina) a cada mudança de página.
+  const marcar = () => {
+    const p = location.pathname;
+    document.querySelectorAll<HTMLAnchorElement>('.blocos a').forEach((a) => {
+      const on = p === a.getAttribute('href');
+      a.classList.toggle('activo', on);
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    const maquina = p.startsWith('/machine');
+    document.querySelectorAll<HTMLAnchorElement>('.vistas a').forEach((a) =>
+      a.classList.toggle('activo', (a.dataset.vista === 'maquina') === maquina));
+  };
+  document.addEventListener('astro:page-load', marcar);
+</script>
+
+<style>
+  .direita { overflow: hidden; }
+  .topo-dir { min-height: 0; overflow-y: auto; scrollbar-width: none; }
+  .lima { color: var(--lima); }
+
+  .cabeca { display: flex; justify-content: space-between; align-items: center; }
+  .logo { color: var(--lima); text-decoration: none; font-weight: 300; font-size: 2.3rem;
+    letter-spacing: .14em; display: inline-flex; align-items: center; line-height: 1; }
+  .logo .o { width: 1.05em; height: 1.05em; margin-left: .02em; }
+  .vistas { display: flex; gap: 1rem; }
+  .vistas a { color: var(--texto); width: 2rem; height: 2rem; display: block; opacity: .85; }
+  .vistas a.activo { color: var(--lima); opacity: 1; }
+  .vistas svg { width: 100%; height: 100%; }
+
+  .blocos ul { list-style: none; margin: 6.4rem 0 0; padding: 0; }
+  .blocos li { font-size: 1.85rem; line-height: 2.75rem; font-style: italic; }
+  .blocos a { text-decoration: underline wavy; text-decoration-thickness: 1px;
+    text-underline-offset: .32em; text-decoration-color: color-mix(in srgb, var(--texto) 70%, transparent);
+    transition: color .2s; }
+  .blocos a:hover, .blocos a.activo { color: var(--lima); text-decoration-color: var(--lima); }
+
+  .bio, .clientes { font-size: .94rem; line-height: 1.44rem; }
+  .bio { margin-top: 3.2rem; }
+  .bio p, .clientes p { margin: 0; }
+  .bio p + p { margin-top: .1rem; }
+  .clientes { margin-top: 3.4rem; }
+
+  .contactos { display: flex; justify-content: space-between; align-items: end; padding-top: 0;
+    padding-bottom: .2rem; color: var(--lima); }
+  .email { font-size: 1.25rem; text-underline-offset: .25em; }
+  .tel { font-size: 1.25rem; text-decoration: none; letter-spacing: .1em; }
+
+  @media (max-width: 860px) {
+    .direita { overflow: visible; display: block; }
+    .topo-dir { overflow: visible; }
+    .logo { font-size: 1.25rem; }
+    .vistas a { width: 1.15rem; height: 1.15rem; }
+    .vistas { gap: .7rem; }
+    .blocos ul { margin-top: 2.6rem; }
+    .blocos li { font-size: .86rem; line-height: 1.75rem; font-weight: 700; }
+    .bio { margin-top: 1.6rem; }
+    .bio, .clientes { font-size: .8rem; line-height: 1.25rem; }
+    .clientes { margin-top: 1.6rem; }
+    .contactos { margin-top: 2rem; padding: 1.2rem 0 2.4rem; flex-direction: column; align-items: start; gap: .6rem; min-height: 0; }
+    .email, .tel { font-size: .95rem; }
+  }
+</style>

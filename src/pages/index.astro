@@ -1,35 +1,19 @@
 ---
-import Frame from '../layouts/Frame.astro';
-import { contactos, tagline } from '../lib/conteudo';
-const ts = tagline.terminacoes;
+import Base from '../layouts/Base.astro';
+import Pedra from '../components/Pedra.astro';
+import { bio, hero, SITE_NOME } from '../lib/conteudo';
 ---
-<Frame titulo="DPX — Nuno Rodrigues" pagina="home">
-  <div slot="z1" class="z1-home">
-    <div class="pedra" title="Pedra — entra na Fase 4"></div>
-  </div>
-  <div slot="z2" class="z2-home">
-    <address>
-      <a href={`mailto:${contactos.mail}`}>{contactos.mail}</a><br />
-      <a href={`tel:${contactos.telefone.replace(/\s/g, '')}`}>{contactos.telefone}</a><br />
-      <a class="fora" title="Cristo-Roto — em breve" aria-disabled="true">Cristo-\-Roto</a>
-    </address>
-    <p class="verde tag">{tagline.formula} <span id="fim">___</span>.</p>
-  </div>
-</Frame>
-
-<!-- Terminação aleatória a cada carregamento. Sem JS fica "___". -->
-<script is:inline define:vars={{ ts }}>
-  document.getElementById('fim').textContent = ts[Math.floor(Math.random() * ts.length)];
-</script>
+<Base titulo={`${bio.nome} — ${SITE_NOME}`} descricao={bio.texto} md="/index.md">
+  <h1 class="sr">{bio.nome} — {SITE_NOME}</h1>
+  <Pedra />
+  <footer class="rodape legenda">
+    <p><b><i class="lima">{hero.titulo}</i></b> <span set:html={hero.legenda.replace(/<\/?b>/g, '')} /></p>
+  </footer>
+</Base>
 
 <style>
-  .z1-home { height: 100%; display: grid; place-items: center; }
-  .pedra { width: 26cqw; height: 33cqw; border-radius: 42% 46% 36% 50%;
-           background: repeating-linear-gradient(92deg, rgba(242,241,232,.55) 0 2px, rgba(242,241,232,.12) 2px 5px); }
-  .z2-home { height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-  address { font-style: normal; }
-  address a { text-decoration: none; }
-  address a:hover { text-decoration: underline; }
-  .fora { cursor: default; opacity: .8; }
-  .tag { margin: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .legenda { display: flex; align-items: end; }
+  .legenda p { margin: 0; font-size: .94rem; line-height: 1.44rem; max-width: 38rem; }
+  .lima { color: var(--lima); }
 </style>

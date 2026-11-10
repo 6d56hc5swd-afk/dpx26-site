@@ -1,0 +1,29 @@
+---
+// Vista máquina: mostra às pessoas exactamente o texto que as máquinas lêem.
+import Base from '../layouts/Base.astro';
+import { FICHEIROS, mdCompleto } from '../lib/maquina';
+import { bio, SITE_NOME } from '../lib/conteudo';
+const site = Astro.site ?? new URL(Astro.url.origin);
+const texto = mdCompleto(site);
+---
+<Base titulo={`Machine view — ${bio.nome}, ${SITE_NOME}`} descricao={`Plain-text version of ${SITE_NOME} for language models, agents and search engines.`} md="/llms-full.txt">
+  <article class="maquina">
+    <p class="nota">// machine view — this is what language models and agents read. Same content as the human view, without the design.</p>
+    <pre>{texto}</pre>
+  </article>
+  <footer class="rodape ficheiros">
+    <ul>{FICHEIROS.slice(0, 3).map((f) => <li><a href={f.href}>{f.href}</a></li>)}</ul>
+  </footer>
+</Base>
+
+<style>
+  .maquina { min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--filete) transparent; }
+  .nota { margin: 0 0 1.6rem; color: var(--lima); font-size: .94rem; line-height: 1.44rem; }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit;
+    font-size: .94rem; line-height: 1.44rem; color: var(--texto); }
+  .ficheiros ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2rem; flex-wrap: wrap;
+    font-size: .94rem; color: var(--lima); }
+  @media (max-width: 860px) {
+    pre, .nota, .ficheiros ul { font-size: .75rem; line-height: 1.2rem; }
+  }
+</style>

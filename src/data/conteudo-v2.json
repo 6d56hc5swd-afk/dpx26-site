@@ -1,0 +1,79 @@
+{
+  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-10T21:48Z. Não editar à mão: pedir um retrato novo.",
+  "hero": {
+    "titulo": "Rosetta Stone",
+    "legenda": "Features the same text in three scripts: <b>hieroglyphs</b> (top), <b>Demotic</b> (middle), and <b>Ancient Greek</b> (bottom)",
+    "etiquetas": ["Symbolic", "Popular", "Bureaucratic"]
+  },
+  "bio": {
+    "nome": "Nuno Rodrigues",
+    "linha": "1979 | Viseu | PT",
+    "texto": "Editorial and information designer with over 20 years of practice for public institutions, museums and cultural organisations. Based in Portugal, working remotely in English and Portuguese."
+  },
+  "contactos": {
+    "email": "duplex@dpx.com.pt",
+    "telefone": "+351 936 287 152",
+    "local": "Viseu | PT"
+  },
+  "clientes": [
+    { "nome": "Município de Viseu", "descricao": "City of Viseu" },
+    { "nome": "Teatro Viriato", "descricao": "Theatre, Viseu" },
+    { "nome": "Jornal do Centro", "descricao": "Regional weekly newspaper" },
+    { "nome": "CCDR-Norte", "descricao": "Regional development authority, North Portugal" },
+    { "nome": "Cine Clube de Viseu", "descricao": "Film society" },
+    { "nome": "Companhia Paulo Ribeiro", "descricao": "Contemporary dance company" },
+    { "nome": "Comédias do Minho", "descricao": "Theatre company, five municipalities" },
+    { "nome": "Ritual de Domingo", "descricao": "Theatre company" },
+    { "nome": "Carmo'81", "descricao": "Cultural cooperative" },
+    { "nome": "Comum — Rede Cultural", "descricao": "Cultural network, seven municipalities" },
+    { "nome": "Viseu Marca", "descricao": "Organiser of the Feira de São Mateus" },
+    { "nome": "Museu e Bibliotecas do Porto", "descricao": "Porto Museum & Libraries" },
+    { "nome": "Instituto Politécnico de Viseu", "descricao": "Public higher education" },
+    { "nome": "Misericórdia de Viseu", "descricao": "Charitable institution and museum" },
+    { "nome": "Transagri", "descricao": "Nut processor, maker of T*NUTS" }
+  ],
+  "blocos": [
+    {
+      "numero": 1,
+      "especialidade": "Editorial design",
+      "titulo": "Content as craft.",
+      "descricao": "Books, catalogues, reports and academic publications — grid, typographic hierarchy, rhythm and detail, page after page. For authors, universities, institutions and companies that publish long-form documents.",
+      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+    },
+    {
+      "numero": 2,
+      "especialidade": "Information and brand systems",
+      "titulo": "Information as architecture.",
+      "descricao": "Identity systems, editorial templates, grids, components and documented design rules, ready for handover. For organisations that produce at volume and need consistency without a designer on call.",
+      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+    },
+    {
+      "numero": 3,
+      "especialidade": "Exhibitions and spaces",
+      "titulo": "Space as narrative.",
+      "descricao": "Scenography, stage design, exhibition storytelling, signage and environmental graphics — giving a space a script. For museums, galleries, heritage sites, theatres and performance venues.",
+      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+    },
+    {
+      "numero": 4,
+      "especialidade": "Festivals and events",
+      "titulo": "Organisation as mantra.",
+      "descricao": "Festival and event branding, applications, signage, print supports and production pipelines, delivered on immovable deadlines. For venues, festivals and municipalities running recurring programmes.",
+      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+    },
+    {
+      "numero": 5,
+      "especialidade": "E-commerce",
+      "titulo": "Conversion as a game.",
+      "descricao": "Online shop strategy, structure, content and Shopify implementation, plus the operation that keeps it selling. For small producers and brands moving from shelf to direct sales.",
+      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+    },
+    {
+      "numero": 6,
+      "especialidade": "Creative direction and mentoring",
+      "titulo": "The outsider as unblocker.",
+      "descricao": "Creative direction and project mentoring from idea to production, with sensible critique, honest applause. For artists, publishers and small teams too close to their own project.",
+      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+    }
+  ]
+}

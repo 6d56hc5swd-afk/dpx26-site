@@ -28,3 +28,7 @@ pnpm-debug.log*
 
 # pasta de coisas a apagar (o Nuno decide)
 _to_delete/
+
+# testes descartáveis e config local do Claude
+_tmp-*
+.claude/

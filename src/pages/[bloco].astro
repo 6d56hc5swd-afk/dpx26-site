@@ -1,26 +1,50 @@
 ---
-import Frame from '../layouts/Frame.astro';
-import { blocos, projectosDoBloco, type Bloco } from '../lib/conteudo';
+import Base from '../layouts/Base.astro';
+import { blocos, SITE_NOME, type Bloco } from '../lib/conteudo';
 
 export function getStaticPaths() {
   return blocos.map((b) => ({ params: { bloco: b.slug }, props: { b } }));
 }
 const { b } = Astro.props as { b: Bloco };
-const lista = projectosDoBloco(b);
+// Grelha provisória: caixas vazias até haver imagens (como na maquete).
+const caixas = ['a', 'b', 'c', 'd'];
 ---
-<Frame titulo={`${b.nome} — DPX`} pagina={b.slug}>
-  <div slot="z1" class="z1-num">
-    <p class="num">{b.numero}</p>
-    <p class="verde legenda">{b.legenda}</p>
-  </div>
-  <div slot="z2">
-    <h2 class="filosofia">{b.filosofia}</h2>
-    <ul class="lista">{lista.map((n) => <li>{n}</li>)}</ul>
-  </div>
-</Frame>
+<Base titulo={`${b.especialidade} — ${SITE_NOME}`} descricao={`${b.titulo} ${b.descricao}`} md={`/${b.slug}.md`} bloco={b}>
+  <article class="bloco">
+    <h1 class="sr">{b.especialidade}</h1>
+    <p class="intro"><b>{b.titulo.replace(/\.$/, ':')}</b> {b.descricao}</p>
+    <div class="galeria" aria-label="Project images (in preparation)">
+      {caixas.map((k) => <div class={`caixa caixa-${k}`} aria-hidden="true"></div>)}
+      <ul class="lista-movel">{b.projectos.map((p) => <li>{p}</li>)}</ul>
+    </div>
+  </article>
+  <footer class="rodape">
+    <ul class="lista">{b.projectos.map((p) => <li>{p}</li>)}</ul>
+  </footer>
+</Base>
+
 <style>
-  .z1-num { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
-  .num { margin: 0; font-family: Namdhinggo, Georgia, serif; font-weight: 600;
-         font-size: 19cqw; line-height: .9; letter-spacing: 0; }
-  .filosofia { margin: 0 0 2.4cqw; font-weight: 400; font-size: 3.64cqw; line-height: 1.2; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .bloco { min-height: 0; display: grid; grid-template-rows: auto 1fr; }
+  .intro { margin: 0; color: var(--lima); font-size: 1.25rem; line-height: 1.85rem; }
+  .intro b { font-weight: 700; }
+
+  .galeria { min-height: 0; overflow-y: auto; scrollbar-width: none; margin-top: 3.6rem;
+    display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 18rem; gap: 1.7rem;
+    mask-image: linear-gradient(#000 calc(100% - 4rem), transparent); padding-bottom: 3rem; }
+  .caixa { border: 1px solid var(--filete); background: no-repeat center / 100% 100%
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0L100 100M100 0L0 100' stroke='%23DBD9D1' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); }
+  .caixa-b { grid-column: 2; grid-row: 1 / span 2; }
+  .caixa-d { grid-column: 1 / span 2; }
+
+  .lista, .lista-movel { list-style: none; margin: 0; padding: 0; font-size: .94rem; line-height: 1.44rem; }
+  .lista li, .lista-movel li { display: inline; }
+  .lista li + li::before, .lista-movel li + li::before { content: ' | '; }
+  .lista-movel { display: none; }
+
+  @media (max-width: 860px) {
+    .intro { font-size: .9rem; line-height: 1.35rem; }
+    .galeria { margin-top: 1.6rem; grid-auto-rows: 9.5rem; gap: .8rem; }
+    .lista-movel { display: block; grid-column: 1 / span 2; font-size: .8rem; line-height: 1.25rem; padding-top: .8rem; }
+  }
 </style>
