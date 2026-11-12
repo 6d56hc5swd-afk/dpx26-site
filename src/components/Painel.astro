@@ -1,19 +1,16 @@
 ---
 // Coluna direita: igual em todas as páginas e persistente na navegação
 // (não se redesenha ao mudar de bloco). O activo marca-se no cliente.
+// Ícones e "O" do logótipo vêm do Figma (public/icones/), sem retoques.
 import { blocos, bio, clientes, contactos } from '../lib/conteudo';
 ---
 <aside class="direita" transition:persist="painel">
   <div class="topo-dir">
     <header class="cabeca">
-      <a href="/" class="logo" aria-label="DPX Studio — home">DPX STUDI<svg class="o" viewBox="0 0 40 40" aria-hidden="true"><circle cx="19" cy="22" r="14" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="14" cy="20" r="1.8" fill="currentColor"/><circle cx="23" cy="20" r="1.8" fill="currentColor"/><path d="M12.5 25.5q6.5 6 13 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M33 3v9M28.5 7.5h9" stroke="currentColor" stroke-width="2.2"/></svg></a>
+      <a href="/" class="logo" aria-label="DPX Studio — home"><span>DPX STUDI</span><img src="/icones/logo-o.svg" alt="" width="30" height="27" /></a>
       <nav class="vistas" aria-label="Views">
-        <a href="/" data-vista="humana" title="Human view" aria-label="Human view">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6.5c-1.6-2-5.6-2-6.6.8-2.6-.2-4.4 2.4-3.4 4.6-2.4 1-2.6 4.4-.6 5.8-1 2.6 1 5.2 3.6 4.8.6 2.6 4.4 3.4 7 1.6V6.5zm0 0c1.6-2 5.6-2 6.6.8 2.6-.2 4.4 2.4 3.4 4.6 2.4 1 2.6 4.4.6 5.8 1 2.6-1 5.2-3.6 4.8-.6 2.6-4.4 3.4-7 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 12h-4M16 18h3.5" stroke="currentColor" stroke-width="1.6"/></svg>
-        </a>
-        <a href="/machine/" data-vista="maquina" title="Machine view" aria-label="Machine view: content for language models and agents">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="4" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 12h2M19 12h2M11 19h10M5 29h22" stroke="currentColor" stroke-width="1.6"/></svg>
-        </a>
+        <a href="/" class="vista vista-humana" data-vista="humana" title="Human view" aria-label="Human view"></a>
+        <a href="/machine/" class="vista vista-maquina" data-vista="maquina" title="Machine view" aria-label="Machine view: content for language models and agents"></a>
       </nav>
     </header>
 
@@ -23,12 +20,12 @@ import { blocos, bio, clientes, contactos } from '../lib/conteudo';
       </ul>
     </nav>
 
-    <section class="bio" aria-label="About">
+    <section class="bio texto" aria-label="About">
       <p><b class="lima">{bio.nome}</b> {bio.linha}</p>
       <p>{bio.texto}</p>
     </section>
 
-    <section class="clientes" aria-label="Clients">
+    <section class="clientes texto" aria-label="Clients">
       <p><b class="lima">Clients</b> {clientes.map((c, i) => <>{i > 0 && <b> | </b>}<b>{c.nome}</b> {c.descricao}</>)}</p>
     </section>
   </div>
@@ -60,45 +57,59 @@ import { blocos, bio, clientes, contactos } from '../lib/conteudo';
   .topo-dir { min-height: 0; overflow-y: auto; scrollbar-width: none; }
   .lima { color: var(--lima); }
 
-  .cabeca { display: flex; justify-content: space-between; align-items: center; }
-  .logo { color: var(--lima); text-decoration: none; font-weight: 300; font-size: 2.3rem;
-    letter-spacing: .14em; display: inline-flex; align-items: center; line-height: 1; }
-  .logo .o { width: 1.05em; height: 1.05em; margin-left: .02em; }
-  .vistas { display: flex; gap: 1rem; }
-  .vistas a { color: var(--texto); width: 2rem; height: 2rem; display: block; opacity: .85; }
-  .vistas a.activo { color: var(--lima); opacity: 1; }
-  .vistas svg { width: 100%; height: 100%; }
+  /* Logótipo: Azeret Mono ExtraLight 36 / 1.33 / 4.32px, + "O" do Figma */
+  .cabeca { display: flex; justify-content: space-between; align-items: center; margin-top: -.6875rem; }
+  .logo { color: var(--lima); text-decoration: none; font-weight: 200; font-size: 2.25rem;
+    line-height: 1.33; letter-spacing: .12em; display: inline-flex; align-items: center; }
+  .logo img { width: 1.867rem; height: auto; margin-left: -.25rem; }
 
-  .blocos ul { list-style: none; margin: 6.4rem 0 0; padding: 0; }
-  .blocos li { font-size: 1.85rem; line-height: 2.75rem; font-style: italic; }
-  .blocos a { text-decoration: underline wavy; text-decoration-thickness: 1px;
-    text-underline-offset: .32em; text-decoration-color: color-mix(in srgb, var(--texto) 70%, transparent);
-    transition: color .2s; }
-  .blocos a:hover, .blocos a.activo { color: var(--lima); text-decoration-color: var(--lima); }
+  /* Ícones: um só SVG do Figma (71×27), recortado em dois por máscara,
+     para poderem mudar de cor (lima = vista activa). */
+  .vistas { display: flex; gap: 1.0625rem; }
+  .vista { display: block; height: 1.6875rem; background: var(--texto);
+    -webkit-mask: url(/icones/vistas.svg) no-repeat; mask: url(/icones/vistas.svg) no-repeat;
+    -webkit-mask-size: 4.4585rem 1.6875rem; mask-size: 4.4585rem 1.6875rem; }
+  .vista-humana { width: 1.856rem; -webkit-mask-position: 0 0; mask-position: 0 0; }
+  .vista-maquina { width: 1.541rem; -webkit-mask-position: -2.917rem 0; mask-position: -2.917rem 0; }
+  .vista.activo, .vista:hover { background: var(--lima); }
 
-  .bio, .clientes { font-size: .94rem; line-height: 1.44rem; }
-  .bio { margin-top: 3.2rem; }
+  /* Desktop Título Bloco link: Medium Italic 28 / 1.25 / 2%, passo de 44px */
+  .blocos ul { list-style: none; margin: 6.19rem 0 0; padding: 0; }
+  .blocos li { font-size: 1.75rem; line-height: 2.75rem; font-style: italic; font-weight: 500;
+    letter-spacing: .02em; }
+  .blocos a { text-decoration: underline wavy var(--texto); text-decoration-thickness: .07em;
+    text-underline-offset: .2em; transition: color .2s; }
+  .blocos a:hover { color: var(--lima); }
+  .blocos a.activo { color: var(--lima); text-decoration-style: solid; }
+
+  .bio { margin-top: 2.78rem; }
   .bio p, .clientes p { margin: 0; }
-  .bio p + p { margin-top: .1rem; }
-  .clientes { margin-top: 3.4rem; }
+  .bio p:first-child { margin-bottom: .1875rem; }
+  .clientes { margin-top: 3.75rem; }
 
-  .contactos { display: flex; justify-content: space-between; align-items: end; padding-top: 0;
-    padding-bottom: .2rem; color: var(--lima); }
-  .email { font-size: 1.25rem; text-underline-offset: .25em; }
-  .tel { font-size: 1.25rem; text-decoration: none; letter-spacing: .1em; }
+  /* Contactos: Regular 20 / 1.25 / 2%, lima */
+  .contactos { display: flex; justify-content: space-between; align-items: end; color: var(--lima);
+    font-size: 1.25rem; line-height: 1.25; letter-spacing: .02em; }
+  .email { text-underline-position: from-font; text-decoration-skip-ink: none; }
+  .tel { text-decoration: none; position: relative; top: .3125rem; }
 
   @media (max-width: 860px) {
     .direita { overflow: visible; display: block; }
     .topo-dir { overflow: visible; }
-    .logo { font-size: 1.25rem; }
-    .vistas a { width: 1.15rem; height: 1.15rem; }
-    .vistas { gap: .7rem; }
-    .blocos ul { margin-top: 2.6rem; }
-    .blocos li { font-size: .86rem; line-height: 1.75rem; font-weight: 700; }
-    .bio { margin-top: 1.6rem; }
-    .bio, .clientes { font-size: .8rem; line-height: 1.25rem; }
-    .clientes { margin-top: 1.6rem; }
-    .contactos { margin-top: 2rem; padding: 1.2rem 0 2.4rem; flex-direction: column; align-items: start; gap: .6rem; min-height: 0; }
-    .email, .tel { font-size: .95rem; }
+    /* Linha do logótipo a 0,556 da desktop (15px de alto, como no Figma) */
+    .cabeca { margin-top: 0; }
+    .logo { font-size: 1.25rem; line-height: 1; }
+    .logo img { width: 1.04rem; }
+    .vistas { gap: .59rem; }
+    .vista { height: .9375rem; -webkit-mask-size: 2.477rem .9375rem; mask-size: 2.477rem .9375rem; }
+    .vista-humana { width: 1.031rem; }
+    .vista-maquina { width: .856rem; -webkit-mask-position: -1.621rem 0; mask-position: -1.621rem 0; }
+    /* Mobile Título Bloco link: Bold Italic 14 / 1.25 / 1%, passo de 28px */
+    .blocos ul { margin-top: 1.98rem; }
+    .blocos li { font-size: .875rem; line-height: 1.75rem; font-weight: 700; letter-spacing: .01em; }
+    .bio { margin-top: 1.27rem; }
+    .clientes { margin-top: 2.5rem; }
+    .contactos { height: auto; margin-top: 5.3rem; padding: 1.5rem 0 3rem; flex-direction: column;
+      align-items: start; gap: 1.2rem; font-size: .9375rem; line-height: 1.5; letter-spacing: .01em; font-weight: 400; }
   }
 </style>
