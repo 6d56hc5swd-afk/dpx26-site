@@ -28,5 +28,10 @@ export const blocoPorSlug = (slug: string) => blocos.find((b) => b.slug === slug
 export const ehProvisorio = (s: string) => /^Projeto O+/.test(s.trim());
 export const projectosReais = (b: Bloco) => b.projectos.filter((p) => !ehProvisorio(p));
 
+/** Títulos em itálico vêm marcados *assim* (como na Notion). */
+const escapar = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+export const comItalico = (s: string) => escapar(s).replace(/\*([^*]+)\*/g, '<i>$1</i>');
+export const semItalico = (s: string) => s.replace(/\*([^*]+)\*/g, '$1');
+
 /** HTML mínimo da Notion (<b>) para texto simples. */
 export const semHtml = (s: string) => s.replace(/<[^>]+>/g, '');

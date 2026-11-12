@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { blocos, SITE_NOME, type Bloco } from '../lib/conteudo';
+import { blocos, comItalico, SITE_NOME, type Bloco } from '../lib/conteudo';
 
 export function getStaticPaths() {
   return blocos.map((b) => ({ params: { bloco: b.slug }, props: { b } }));
@@ -22,10 +22,10 @@ const caixas = [
     <div class="galeria" aria-label="Project images (in preparation)">
       {caixas.map((c) => <img class={`caixa caixa-${c.k}`} src={c.src} alt="" />)}
     </div>
-    {b.projectos.length > 0 && <ul class="lista lista-movel texto">{b.projectos.map((p) => <li>{p}</li>)}</ul>}
+    {b.projectos.length > 0 && <ul class="lista lista-movel texto">{b.projectos.map((p) => <li set:html={comItalico(p)} />)}</ul>}
   </article>
   <footer class="rodape">
-    {b.projectos.length > 0 && <ul class="lista texto">{b.projectos.map((p) => <li>{p}</li>)}</ul>}
+    {b.projectos.length > 0 && <ul class="lista texto">{b.projectos.map((p) => <li set:html={comItalico(p)} />)}</ul>}
   </footer>
 </Base>
 

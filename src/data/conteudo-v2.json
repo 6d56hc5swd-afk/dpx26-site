@@ -1,5 +1,5 @@
 {
-  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-12T19:04Z. Itálicos da Notion passam a texto simples; uma célula só com «—» fica lista vazia. Não editar à mão: pedir um retrato novo. Secção Machine acrescentada pelo Claude a 2026-11-12T19:20Z.",
+  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-12T19:04Z. Itálicos da Notion marcados com *…* (títulos de projecto); uma célula só com «—» fica lista vazia. Não editar à mão: pedir um retrato novo. Secção Machine acrescentada pelo Claude a 2026-11-12T19:20Z.",
   "estudio": "DPX Studio",
   "hero": {
     "titulo": "Rosetta Stone",
@@ -90,9 +90,9 @@
       "descricao": "Books, catalogues, reports and academic publications — grid, typographic hierarchy, rhythm and detail, page after page. For authors, universities, institutions and companies that publish long-form documents.",
       "projectos": [
         "Norte 2030 publications — CCDR-Norte",
-        "Beira Ilustre, illustrated book — Beira Ilustre",
+        "*Beira Ilustre*, illustrated book — Beira Ilustre",
         "Water supply of Viseu, book — City of Viseu",
-        "Karamázov, book — Ritual de Domingo",
+        "*Karamázov*, book — Ritual de Domingo",
         "MYCOTOX good practice guide — MYCOTOX / IPB"
       ]
     },
@@ -115,11 +115,11 @@
       "titulo": "Space as narrative.",
       "descricao": "Scenography, stage design, exhibition storytelling, signage and environmental graphics — giving a space a script. For museums, galleries, heritage sites, theatres and performance venues.",
       "projectos": [
-        "Revelação, Santa Cruz manuscripts — Porto Museum & Libraries",
-        "CINE—PT / POLA—NT — Cine Clube de Viseu",
-        "Credo — Misericórdia de Viseu",
-        "Paleo Deidades — Museu do Falso",
-        "Cut Copy — Street Art Viseu"
+        "*Revelação*, Santa Cruz manuscripts — Porto Museum & Libraries",
+        "*CINE—PT / POLA—NT* — Cine Clube de Viseu",
+        "*Credo* — Misericórdia de Viseu",
+        "*Paleo Deidades* — Museu do Falso",
+        "*Cut Copy* — Street Art Viseu"
       ]
     },
     {
@@ -129,9 +129,9 @@
       "descricao": "Festival and event branding, applications, signage, print supports and production pipelines, delivered on immovable deadlines. For venues, festivals and municipalities running recurring programmes.",
       "projectos": [
         "Feira de São Mateus — Viseu Marca",
-        "Karma festival — Carmo'81",
+        "*Karma* festival — Carmo'81",
         "WBTB Biennial — Romulus / Intruso",
-        "Solitude — Mochos no Telhado",
+        "*Solitude* — Mochos no Telhado",
         "Christmas in Viseu — City of Viseu"
       ]
     },
@@ -150,8 +150,8 @@
       "projectos": [
         "Museu do Falso, 2021–24 — Memória Comum",
         "Brand and programming — Maria Xica",
-        "Rituais para o Futuro — Ritual de Domingo",
-        "A História das Coisas — Mochos no Telhado",
+        "*Rituais para o Futuro* — Ritual de Domingo",
+        "*A História das Coisas* — Mochos no Telhado",
         "Pousada de Viseu — Cava Galeria"
       ]
     }
