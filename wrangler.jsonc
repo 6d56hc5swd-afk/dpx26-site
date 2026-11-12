@@ -1,0 +1,10 @@
+// Configuração do Worker no Cloudflare: o site é estático, por isso o
+// Worker só serve a pasta dist/ que o `astro build` gera.
+{
+  "name": "dpx26-site",
+  "compatibility_date": "2026-11-10",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
