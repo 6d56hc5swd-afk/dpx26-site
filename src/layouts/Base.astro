@@ -83,8 +83,10 @@ const ld = JSON.stringify(jsonLd(site, bloco));
     .texto { font-size: .75rem; line-height: 1.25; }
     .pagina { height: auto; display: block; padding: 0 3.125rem; }
     .divisor { display: none; }
-    .esquerda { height: 65svh; grid-template-rows: 1fr; }
-    main.esquerda .rodape { display: none; }
+    .esquerda { height: 65.7svh; grid-template-rows: 1fr auto; }  /* filete a 574 de 874 */
+    /* Nos blocos a lista de projectos vai dentro do scroll; na Home a
+       legenda da pedra fica, com o seu filete (Figma 713:5752, 12.11). */
+    main.esquerda .rodape:not(.legenda) { display: none; }
     .direita { border-top: 2px solid var(--filete); padding-top: 1.75rem; }
   }
 </style>
