@@ -21,8 +21,10 @@ const texto = mdCompleto(site);
   .nota { margin: 0 0 1.6rem; color: var(--lima); font-size: .94rem; line-height: 1.44rem; }
   pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit;
     font-size: .94rem; line-height: 1.44rem; color: var(--texto); }
+  /* Assente no fundo, à mesma linha e no mesmo corpo do email à direita */
+  .ficheiros { display: flex; align-items: end; }
   .ficheiros ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2rem; flex-wrap: wrap;
-    font-size: .94rem; color: var(--lima); }
+    font-size: 1.25rem; line-height: 1.25; letter-spacing: .02em; color: var(--lima); }
   @media (max-width: 860px) {
     pre, .nota, .ficheiros ul { font-size: .75rem; line-height: 1.2rem; }
   }
