@@ -3,7 +3,7 @@
 // para máquinas saem ambas daqui, para que cada facto viva num sítio só.
 import c from '../data/conteudo-v2.json';
 
-export const SITE_NOME = 'DPX Studio';
+export const SITE_NOME = c.estudio;
 
 export const slugify = (s: string) =>
   s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')

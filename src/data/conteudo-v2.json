@@ -1,9 +1,14 @@
 {
-  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-10T21:48Z. Não editar à mão: pedir um retrato novo.",
+  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-12T19:04Z. Itálicos da Notion passam a texto simples; uma célula só com «—» fica lista vazia. Não editar à mão: pedir um retrato novo.",
+  "estudio": "DPX Studio",
   "hero": {
     "titulo": "Rosetta Stone",
-    "legenda": "Features the same text in three scripts: <b>hieroglyphs</b> (top), <b>Demotic</b> (middle), and <b>Ancient Greek</b> (bottom)",
-    "etiquetas": ["Symbolic", "Popular", "Bureaucratic"]
+    "legenda": "One decree, written three times: for the priests, for the people, for the administration. Same content, three readers.",
+    "etiquetas": [
+      "Symbolic",
+      "Popular",
+      "Bureaucratic"
+    ]
   },
   "bio": {
     "nome": "Nuno Rodrigues",
@@ -16,21 +21,66 @@
     "local": "Viseu | PT"
   },
   "clientes": [
-    { "nome": "Município de Viseu", "descricao": "City of Viseu" },
-    { "nome": "Teatro Viriato", "descricao": "Theatre, Viseu" },
-    { "nome": "Jornal do Centro", "descricao": "Regional weekly newspaper" },
-    { "nome": "CCDR-Norte", "descricao": "Regional development authority, North Portugal" },
-    { "nome": "Cine Clube de Viseu", "descricao": "Film society" },
-    { "nome": "Companhia Paulo Ribeiro", "descricao": "Contemporary dance company" },
-    { "nome": "Comédias do Minho", "descricao": "Theatre company, five municipalities" },
-    { "nome": "Ritual de Domingo", "descricao": "Theatre company" },
-    { "nome": "Carmo'81", "descricao": "Cultural cooperative" },
-    { "nome": "Comum — Rede Cultural", "descricao": "Cultural network, seven municipalities" },
-    { "nome": "Viseu Marca", "descricao": "Organiser of the Feira de São Mateus" },
-    { "nome": "Museu e Bibliotecas do Porto", "descricao": "Porto Museum & Libraries" },
-    { "nome": "Instituto Politécnico de Viseu", "descricao": "Public higher education" },
-    { "nome": "Misericórdia de Viseu", "descricao": "Charitable institution and museum" },
-    { "nome": "Transagri", "descricao": "Nut processor, maker of T*NUTS" }
+    {
+      "nome": "Município de Viseu",
+      "descricao": "City of Viseu"
+    },
+    {
+      "nome": "Teatro Viriato",
+      "descricao": "Theatre, Viseu"
+    },
+    {
+      "nome": "Jornal do Centro",
+      "descricao": "Regional weekly newspaper"
+    },
+    {
+      "nome": "CCDR-Norte",
+      "descricao": "Regional development authority, North Portugal"
+    },
+    {
+      "nome": "Cine Clube de Viseu",
+      "descricao": "Film society"
+    },
+    {
+      "nome": "Companhia Paulo Ribeiro",
+      "descricao": "Contemporary dance company"
+    },
+    {
+      "nome": "Comédias do Minho",
+      "descricao": "Theatre company, five municipalities"
+    },
+    {
+      "nome": "Ritual de Domingo",
+      "descricao": "Theatre company"
+    },
+    {
+      "nome": "Carmo'81",
+      "descricao": "Cultural cooperative"
+    },
+    {
+      "nome": "Comum — Rede Cultural",
+      "descricao": "Cultural network, seven municipalities"
+    },
+    {
+      "nome": "Viseu Marca",
+      "descricao": "Organiser of the Feira de São Mateus"
+    },
+    {
+      "nome": "Museu e Bibliotecas do Porto",
+      "descricao": "Porto Museum & Libraries"
+    },
+    {
+      "nome": "Instituto Politécnico de Viseu",
+      "descricao": "Public higher education"
+    },
+    {
+      "nome": "Misericórdia de Viseu",
+      "descricao": "Charitable institution and museum"
+    },
+    {
+      "nome": "Transagri",
+      "descricao": "Nut processor, maker of T*NUTS"
+    }
   ],
   "blocos": [
     {
@@ -38,42 +88,72 @@
       "especialidade": "Editorial design",
       "titulo": "Content as craft.",
       "descricao": "Books, catalogues, reports and academic publications — grid, typographic hierarchy, rhythm and detail, page after page. For authors, universities, institutions and companies that publish long-form documents.",
-      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+      "projectos": [
+        "Norte 2030 publications — CCDR-Norte",
+        "Beira Ilustre, illustrated book — Beira Ilustre",
+        "Water supply of Viseu, book — City of Viseu",
+        "Karamázov, book — Ritual de Domingo",
+        "MYCOTOX good practice guide — MYCOTOX / IPB"
+      ]
     },
     {
       "numero": 2,
       "especialidade": "Information and brand systems",
       "titulo": "Information as architecture.",
       "descricao": "Identity systems, editorial templates, grids, components and documented design rules, ready for handover. For organisations that produce at volume and need consistency without a designer on call.",
-      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+      "projectos": [
+        "Rebrand — Instituto Politécnico de Viseu",
+        "Rebrand and packaging — Cafés Negrão",
+        "Brand and manual — ALVA",
+        "Rebrand — Carmo'81",
+        "Brand system and formats — City of Viseu"
+      ]
     },
     {
       "numero": 3,
       "especialidade": "Exhibitions and spaces",
       "titulo": "Space as narrative.",
       "descricao": "Scenography, stage design, exhibition storytelling, signage and environmental graphics — giving a space a script. For museums, galleries, heritage sites, theatres and performance venues.",
-      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+      "projectos": [
+        "Revelação, Santa Cruz manuscripts — Porto Museum & Libraries",
+        "CINE—PT / POLA—NT — Cine Clube de Viseu",
+        "Credo — Misericórdia de Viseu",
+        "Paleo Deidades — Museu do Falso",
+        "Cut Copy — Street Art Viseu"
+      ]
     },
     {
       "numero": 4,
       "especialidade": "Festivals and events",
       "titulo": "Organisation as mantra.",
       "descricao": "Festival and event branding, applications, signage, print supports and production pipelines, delivered on immovable deadlines. For venues, festivals and municipalities running recurring programmes.",
-      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+      "projectos": [
+        "Feira de São Mateus — Viseu Marca",
+        "Karma festival — Carmo'81",
+        "WBTB Biennial — Romulus / Intruso",
+        "Solitude — Mochos no Telhado",
+        "Christmas in Viseu — City of Viseu"
+      ]
     },
     {
       "numero": 5,
       "especialidade": "E-commerce",
       "titulo": "Conversion as a game.",
       "descricao": "Online shop strategy, structure, content and Shopify implementation, plus the operation that keeps it selling. For small producers and brands moving from shelf to direct sales.",
-      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+      "projectos": []
     },
     {
       "numero": 6,
       "especialidade": "Creative direction and mentoring",
       "titulo": "The outsider as unblocker.",
       "descricao": "Creative direction and project mentoring from idea to production, with sensible critique, honest applause. For artists, publishers and small teams too close to their own project.",
-      "projectos": ["Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo", "Projeto Oooooo Oo Ooooo"]
+      "projectos": [
+        "Museu do Falso, 2021–24 — Memória Comum",
+        "Brand and programming — Maria Xica",
+        "Rituais para o Futuro — Ritual de Domingo",
+        "A História das Coisas — Mochos no Telhado",
+        "Pousada de Viseu — Cava Galeria"
+      ]
     }
   ]
 }

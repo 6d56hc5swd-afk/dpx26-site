@@ -70,7 +70,7 @@ ${mdClientes()}
 ${mdContacto()}
 
 ## About the home image
-${hero.titulo}: ${semHtml(hero.legenda)}. Labels on the site: ${hero.etiquetas.join(', ')}.
+${hero.titulo}: ${semHtml(hero.legenda).replace(/\.$/, "")}. Labels on the site: ${hero.etiquetas.join(', ')}.
 
 ## Machine-readable files
 ${FICHEIROS.map((f) => `- ${url(site, f.href)} — ${f.o}`).join('\n')}
