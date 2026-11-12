@@ -52,7 +52,7 @@ const caixas = [
   .lista li + li::before { content: ' | '; }
   .lista-movel { display: none; }
 
-  @media (max-width: 860px) {
+  @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     .bloco { padding-top: 4.625rem;
       mask-image: linear-gradient(transparent 4rem, #000 4.625rem, #000 calc(100% - 2.6rem), transparent);
       -webkit-mask-image: linear-gradient(transparent 4rem, #000 4.625rem, #000 calc(100% - 2.6rem), transparent); }

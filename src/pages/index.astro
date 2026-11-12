@@ -18,7 +18,7 @@ import { bio, hero, SITE_NOME } from '../lib/conteudo';
   .legenda p { margin: 0 0 -.3rem; }
   .lima { color: var(--lima); }
   /* Mobile: filete a 472px, legenda 13px abaixo, a 12px (Mobile texto) */
-  @media (max-width: 860px) {
+  @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     .legenda { align-items: start; padding-top: .8125rem; }
     .legenda p { margin: 0; }
   }

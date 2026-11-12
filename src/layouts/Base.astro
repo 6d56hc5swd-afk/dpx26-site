@@ -77,7 +77,7 @@ const ld = JSON.stringify(jsonLd(site, bloco));
   .rodape { border-top: 1px solid var(--filete); height: 6.375rem; }
 
   /* ── Mobile ─────────────────────────────────────────────── */
-  @media (max-width: 860px) {
+  @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     :root { font-size: calc(100vw / 25.125); }
     body { font-weight: 200; }               /* Mobile texto: ExtraLight */
     .texto { font-size: .75rem; line-height: 1.25; }

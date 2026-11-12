@@ -93,7 +93,10 @@ const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ..
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
       const t = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
       // a pedra ocupa ~80% da altura e deixa espaço às etiquetas nos lados
-      const dH = (caixa.y / 0.88) / 2 / t;   // a pedra ocupa ~88% da altura, como no Figma
+      // ~88% da altura no desktop (Figma); em coluna única fica espaço
+      // por cima para a etiqueta Symbolic não sair do quadro
+      const umaColuna = matchMedia('(max-width: 860px), (max-aspect-ratio: 1/1)').matches;
+      const dH = (caixa.y / (umaColuna ? 0.74 : 0.88)) / 2 / t;
       // as etiquetas sobrepõem-se à pedra (como no Figma): só limita a largura
       const larguraUtil = W * 0.86;
       const dW = (caixa.x * W / larguraUtil) / 2 / t / camera.aspect;
@@ -129,7 +132,8 @@ const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ..
       escritas.forEach((e: any, i: number) => {
         ancoras[i].getWorldPosition(v).project(camera);
         const x = (v.x * 0.5 + 0.5) * W, y = (-v.y * 0.5 + 0.5) * H;
-        const k = W < 600 ? 0.55 : 1;   // no telemóvel os traços encolhem
+        // em coluna única (telemóvel ou janela alta) os traços encolhem
+        const k = matchMedia('(max-width: 860px), (max-aspect-ratio: 1/1)').matches ? 0.55 : 1;
         const sx = x + e.dx * rem * k, sy = y + e.dy * rem * k;
         const l = linhas[i];
         l.setAttribute('x1', String(sx)); l.setAttribute('y1', String(sy));
@@ -159,7 +163,7 @@ const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ..
     color: var(--texto); opacity: 0; transition: opacity .6s; }
   .pedra.pronta .etiqueta { opacity: 1; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-  @media (max-width: 860px) {
+  @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     .etiqueta { font-size: 1.2rem; }
     .tracos :global(line) { stroke-width: 2; }
   }

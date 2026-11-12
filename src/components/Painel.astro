@@ -93,7 +93,7 @@ import { blocos, bio, clientes, contactos } from '../lib/conteudo';
   .email { text-underline-position: from-font; text-decoration-skip-ink: none; }
   .tel { text-decoration: none; position: relative; top: .3125rem; }
 
-  @media (max-width: 860px) {
+  @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     .direita { overflow: visible; display: block; }
     .topo-dir { overflow: visible; }
     /* Linha do logótipo a 0,556 da desktop (15px de alto, como no Figma) */
