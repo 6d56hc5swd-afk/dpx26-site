@@ -15,6 +15,8 @@ export const hero = c.hero;
 export const bio = c.bio;
 export const contactos = c.contactos;
 export const clientes = c.clientes;
+/** Secção Machine da Notion: só para a versão máquina. Campo vazio = não publicar. */
+export const maquina = c.maquina;
 export const blocos: Bloco[] = c.blocos.map((b) => {
   const slug = slugify(b.especialidade);
   return { ...b, slug, href: `/${slug}/` };

@@ -1,5 +1,5 @@
 {
-  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-12T19:04Z. Itálicos da Notion passam a texto simples; uma célula só com «—» fica lista vazia. Não editar à mão: pedir um retrato novo.",
+  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-12T19:04Z. Itálicos da Notion passam a texto simples; uma célula só com «—» fica lista vazia. Não editar à mão: pedir um retrato novo. Secção Machine acrescentada pelo Claude a 2026-11-12T19:20Z.",
   "estudio": "DPX Studio",
   "hero": {
     "titulo": "Rosetta Stone",
@@ -155,5 +155,18 @@
         "Pousada de Viseu — Cava Galeria"
       ]
     }
-  ]
+  ],
+  "maquina": {
+    "_estado": "Rascunho do Claude (12.11.2026). Availability/Engagement confirmados pelo Nuno; resto por rever.",
+    "availability": "Open to remote contracts and part-time engagements.",
+    "engagement": "Contract, part-time and project-based (freelance). Entry point: editorial and information design — reports, publications, exhibitions.",
+    "remoto": "Fully remote from Viseu, Portugal. Western European Time (UTC+0, UTC+1 in summer).",
+    "linguas": "English, Portuguese",
+    "website": "",
+    "perfis": "",
+    "fundacao": "2003, Viseu",
+    "formacao": "Degree in Design, University of Aveiro (1998–2003) · Design London short course, Central Saint Martins (2011)",
+    "reconhecimento": "",
+    "keywords": "editorial design, information design, report design, academic publications, publication design, long-form layout, typography, identity systems, design systems, brand guidelines, exhibition design, scenography, signage, festival branding, cultural sector, public institutions, museums, Shopify, creative direction, remote, Portugal"
+  }
 }
