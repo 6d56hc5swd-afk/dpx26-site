@@ -1,53 +1,16 @@
-# DPX26 — site de portfólio
+# NUNO — site de portfólio (V2)
 
-> **⚠️ Regras da V1 — 09.11.2026.** O Nuno fechou a V1; a **V2 é a fonte de
-> verdade** (Notion *Portfolio V2*, Figma `DPX-MIX` página *Portfolio develop*,
-> node 440-2) e nasce por cima deste repositório. O que está abaixo descreve a
-> V1, guardada na etiqueta git **`v1`**. **Nenhuma regra de desenho daqui vale
-> para a V2 sem decisão dele** — frame 9:16, Zonas, sublinhados, paleta, mapa
-> de 10 páginas. Mantém-se só o que é do ambiente: §5 (arranque de sessão e
-> armadilhas). Os documentos da V1 (roadmap, mapa, tracker, handover) estão em
-> `WORK/Reposicionamento/Portfolio-V1-arquivo/docs/`; as referências a
-> `DPX26 Portfolio/` abaixo apontam para lá, excepto `the-rosetta-stone/`, que
-> ficou em `DPX26 Portfolio Assets/`. Contas e acessos: `ACESSOS.md` no
-> projecto Claude WORK.
+Portfólio do Nuno Rodrigues (DPX Studio, Viseu). No ar desde 21.11.2026.
+Conteúdos em **EN-EU**.
 
-Portfólio do Nuno Rodrigues (DPX, Viseu). Substitui o Adobe Portfolio.
-Conteúdos em **EN-EU**. Maquete no Figma `DPX-MIX`, ficheiro
-`x7DPCAV9NeSz8wqlLCPz0E`.
+**Este ficheiro guarda o COMO** (regras de construção). As decisões com
+data, os pendentes e o histórico vivem em `../estado-portfolio-v2.md`; a
+estrutura do projecto em `../contexto_portfolio_dpx.md`. Se divergirem
+sobre uma decisão, ganha o estado. `CLAUDE.md` é um link simbólico para
+aqui: editar sempre `AGENTS.md`.
 
-**Este ficheiro guarda o COMO.** O porquê, as fases e o histórico vivem em
-`WORK/Reposicionamento/DPX26 Portfolio/01_Roadmap-Web.md`. Se os dois
-divergirem sobre uma decisão, ganha o roadmap; sobre uma regra de construção,
-ganha este. `CLAUDE.md` é um link simbólico para aqui — um ficheiro, dois
-nomes. Editar sempre este.
-
----
-
-## 0 · Vocabulário — ler antes de tudo
-
-**Zona 1 · Zona 2 · Zona 3** — os três painéis dentro do frame. As Zonas 1 e 2
-são o par de cima; a Zona 3 é a base, fixa em todos os estados, e contém o
-Hero mais o parágrafo dos blocos temáticos.
-
-As Zonas 1 e 2 **não têm tipo fixo** — não são "a da imagem" e "a do texto".
-O conteúdo troca conforme o estado da página:
-
-| Estado | Zona 1 | Zona 2 |
-|---|---|---|
-| Home | imagem/animação | contactos + tagline |
-| bloco temático | Nº + Legenda | Filosofia + lista de projectos |
-| Nuno | bio | foto |
-
-**Blocos temáticos** — coisa diferente: os 6 territórios de trabalho
-(`FILES FESTIVAL` · `SYSTEM MINDED` · `SPACE WISE` · `EDITORIAL ATTENTION` ·
-`E-SALES` · `CRUEL ADVISER`), que aparecem como um parágrafo corrido na Zona 3,
-separados por `|`, com os nomes sublinhados a servir de navegação — não há
-barra de menu. Sublinhado vermelho = por visitar · verde = activo/visitado.
-
-⚠️ **Nunca chamar "bloco" a uma zona.** Era o termo antigo e foi abandonado a
-12.09.2026 exactamente por se confundir com os blocos temáticos. Se aparecer
-`Bloco 1/2/3` em documentação antiga ou na base Notion, é isto.
+A V1 (frame 9:16, Zonas, 10 páginas) está na etiqueta git **`v1`**. Nada
+dela vale aqui sem decisão do Nuno.
 
 ---
 
@@ -55,207 +18,151 @@ barra de menu. Sublinhado vermelho = por visitar · verde = activo/visitado.
 
 | | |
 |---|---|
-| Código | `~/Documents/WORK/Reposicionamento/DPX26-site/` |
-| Repositório | `github.com/6d56hc5swd-afk/dpx26-site` (privado) |
-| Online | `https://dpx26-site.gazellecripple.workers.dev` |
-| Publicação | automática a cada push para `main` — build no Cloudflare |
-| Stack | Astro 7 · saída estática · Node fixado em 22.12 pelo `.nvmrc` |
+| Código | esta pasta (`Projects/Portfolio DPX/site/`), ramo `main` |
+| Repositório | `github.com/6d56hc5swd-afk/dpx26-site` (**público**, ver estado) |
+| Online | `https://dpx26-site.gazellecripple.workers.dev` (domínio novo por escolher) |
+| Publicação | automática a cada push para `main`: Cloudflare Workers Builds (`npm run build`), ~1 min |
+| Stack | Astro 7 · saída estática · three.js (pedra) · Node 24 (`.nvmrc`) |
+
+**Fontes de verdade:** conteúdos na Notion *Portfolio V2*; desenho no Figma
+`DPX-MIX` (`x7DPCAV9NeSz8wqlLCPz0E`, página *Portfolio develop*, `440:2`).
+O site segue os dois; não inventa.
 
 ---
 
-## 2 · A regra de layout — não negociável
+## 2 · Estrutura
 
-O site corre todo dentro de **um frame central vertical de 9:16**. Cresce até
-bater no primeiro limite — **altura** em desktop, **largura** em mobile —
-fica sempre centrado, e **nunca corta nada**.
+| Rota | O que é |
+|---|---|
+| `/` | Home: pedra de Roseta 3D + legenda |
+| `/<bloco>/` | 6 blocos, slug do nome (`/editorial-design/`, …) |
+| `/machine/` | versão para máquinas, mostrada a pessoas |
+| `/llms.txt` · `/llms-full.txt` · `/<bloco>.md` · `/index.md` · `/resume.json` · `/sitemap.xml` · `/robots.txt` | camada para máquinas, gerada no build |
 
-Uma linha de CSS decide o tamanho:
+Ficheiros que importam:
 
-```css
-width: min(100svw - var(--margem)*2, (100svh - var(--margem)*2) * 0.5625);
-aspect-ratio: 9 / 16;
-container-type: inline-size;
+- `src/data/conteudo-v2.json` — retrato da Notion. **Não editar à mão**:
+  pedir um retrato novo. Títulos de projecto em itálico marcados `*assim*`.
+- `src/lib/conteudo.ts` — o **único** ficheiro que lê o retrato.
+  `SITE_NOME` = estúdio (DPX Studio, da Notion); `MARCA` = nome do
+  portfólio (NUNO, do Figma).
+- `src/lib/maquina.ts` — tudo o que as máquinas lêem: Markdown, llms,
+  JSON-LD (schema.org), JSON Resume. Campos vazios na secção *Machine* da
+  Notion não se publicam.
+- `src/layouts/Base.astro` — tokens, tipo, grelha de duas colunas,
+  sorteio da cor de contraste.
+- `src/components/Painel.astro` — coluna direita (logótipo, vistas,
+  blocos, bio, clientes, contactos). Persiste entre páginas
+  (`transition:persist`); o bloco activo marca-se no cliente.
+- `src/components/Pedra.astro` — pedra 3D e etiquetas.
+- `public/icones/` — SVG tirados do Figma, **sem retoques** (vistas, "O"
+  do logótipo, caixas da galeria). `public/modelos/pedra.glb` — 0,9 MB.
+
+**Um facto vive num sítio só:** a versão para pessoas e a para máquinas
+saem do mesmo ficheiro de conteúdos. Nunca escrever um texto da Notion
+directamente numa página.
+
+---
+
+## 3 · Layout
+
+- **Desktop:** duas colunas separadas por um filete de 2px. A esquerda
+  muda (pedra ou bloco); a direita é fixa. Os filetes de baixo das duas
+  colunas alinham à mesma altura.
+- **Escala:** `1rem` = 16px num ecrã de 1728×1117 (o frame do Figma);
+  `font-size: min(100vw/108, 100svh/69.8)`. Tudo em `rem`, para escalar
+  inteiro sem JavaScript.
+- **Mobile** (`max-width: 860px` **ou** janela mais alta que larga):
+  uma coluna; o conteúdo da esquerda ocupa 65,7% da altura e a coluna
+  direita começa no último terço (filete a 574 de 874, como no Figma).
+  `1rem` = 16px a 402 de largura.
+- **Medidas vêm do Figma** (`get_design_context`), não a olho. Conferir
+  no browser a 1728×1117 e 402×874 e comparar com o Figma ao píxel.
+
+---
+
+## 4 · Tokens
+
+Estilos de pintura do Figma (desde 21.11.2026). Nomes a manter.
+
+```
+--fundo   Site Dark     #23231F
+--texto   Site Light    #E8EAF2
+--filete  Site Light    #E8EAF2
+--cor3    Site Color 3  #8484FD   contraste
 ```
 
-E **tudo lá dentro mede-se em `cqw`** — percentagem da largura do frame. Tipo,
-espaçamentos, raios, tudo. Assim o conjunto escala proporcional sem uma única
-linha de JavaScript.
+Na Home a `--cor3` é sorteada entre Color 3 `#8484FD`, Color 5 `#84FDE7`
+e Color 6 `#FDD184` (script inline em `Base.astro`, antes de pintar) e
+mantém-se ao navegar.
 
-**Proibido: usar JavaScript para medir a janela e calcular escala.**
-`innerWidth` mente no iOS — foi exactamente assim que a primeira versão do
-teste falhou no telemóvel. O dimensionamento é do motor de layout, sempre.
-
-Conversão, a partir do frame de referência de **495 px** de largura:
-`valor_cqw = px ÷ 4.95`. Exemplo: 14 px → `2.83cqw`.
-
-Validado em `../DPX26 Portfolio/_tmp-teste-crop.html` (descartável).
-
----
-
-## 3 · Tokens
-
-Vêm das variáveis do Figma. Nomes a manter.
+Tipo: **Azeret Mono**, alojada no site (`@fontsource-variable/azeret-mono`,
+WOFF2 variável). Sem Google Fonts. Estilos do Figma:
 
 ```
-Site Light   #F2F1E8      Site Dark    #333330
-Site Gray    #858585
-Site Color 1 #F64724      (sublinhado por visitar)
-Site Color 2 #31E192      (sublinhado activo/visitado)
-
-Blocos temáticos — identidade dos 6 territórios        Light    / Dark
-Site Files Festival        H 329              #E09CDC / #8F4B8C
-Site System Minded         H 257              #88BAFF / #3569AF
-Site Space Wise            H 293              #BAA9FA / #6D59AA
-Site Editorial Attention   H  85              #D9B15B / #846305
-Site E-Sales               H 221              #53C8EB / #02758F
-Site Cruel Adviser         neutro             #BCB7AC / #6D6860
-
-   Light = o tom claro, usa-se SOBRE Site Dark
-   Dark  = o tom escuro, usa-se SOBRE Site Light
-
-Site Hero       Namdhinggo SemiBold 26 / 1.1
-Site txt bloco  Inter Regular 14 / 1.33 / +1
-Site Lista      Inter Regular 12 / 1.45 / +1
+Desktop texto              Regular 15 / 1.5 / 1%
+Desktop Bloco destaque     Regular 20 / 1.5 / 1%
+Desktop Título Bloco link  Medium Italic 28 / 1.25 / 2%   (passo 44px)
+Logótipo                   ExtraLight 36 / 1.33 / 12%, maiúsculas
+Etiquetas da pedra         Italic 36 / 1.33 / 1%
+Mobile texto               ExtraLight 12 / 1.25 / 1%
+Mobile Título Bloco link   Bold Italic 14 / 1.25 / 1%    (passo 28px)
 ```
 
-**Regra da cor dos blocos.** O vermelho e o verde são **estado de navegação**
-(por visitar / visitado) e não pertencem a nenhum bloco. Por isso nenhuma cor
-de bloco se aproxima da matiz do `Site Color 1` (33) nem do `Site Color 2`
-(158), e todas têm croma mais baixa do que os dois acentos: a identidade do
-território é mais silenciosa do que o estado do link. Cada bloco tem **duas
-versões da mesma matiz**, ambas acima de 4,5:1 sobre o seu fundo. O sufixo
-nomeia o **tom da própria cor**, como em `Site Dark` e `Site Light` — não o
-fundo onde assenta. Por isso `Site Files Festival Light` é o rosa claro, e é
-esse que vai sobre fundo escuro. Trocar as duas não é um defeito subtil: a
-clara sobre fundo claro desaparece.
-
-Swatches e descrições no Figma, frame `DPX portfolio Brand system`
-(`498:563`), e como estilos de cor soltos com prefixo `Site`.
-
-Espaçamentos e tamanhos por ecrã ainda não estão fechados no Figma. Até
-estarem, **não inventar nomes novos** — usar os valores medidos e assinalar.
-Os estilos de texto vão ser afinados com conteúdos reais.
+Os SVG que mudam de cor (vistas, "O") pintam-se por **máscara CSS** com a
+cor do tema, para não editar o ficheiro do Figma.
 
 ---
 
-## 4 · Navegação e conteúdo
+## 5 · A pedra
 
-**Não é página única.** Home + páginas próprias para cada bloco temático,
-Clients, Projects e Nuno. Cada uma com o seu endereço — partilhável e
-indexável.
-
-**Mapa fechado a 28.09** em `../DPX26 Portfolio/02_Mapa-Site.md` — ler antes
-de criar rotas. Resumo: 10 páginas, **sem páginas de projecto**; listas da
-Zona 2 não clicáveis, com scroll interno se não couberem; verde de visitado
-guardado no browser para sempre; fundo de cada página = placeholder de media.
-
-Os 6 blocos: `FILES FESTIVAL` · `SYSTEM MINDED` · `SPACE WISE` ·
-`EDITORIAL ATTENTION` · `E-SALES` · `CRUEL ADVISER`.
-
-A **imagem/animação só existe na Home** (Zona 1). É onde entra a pedra 3D (modelo em
-`../DPX26 Portfolio/the-rosetta-stone/`, `.obj` de 48 MB — converter para
-`.glb` comprimido, alvo < 2 MB, antes de tocar na web).
-
-**Fase 2 (28.09):** os conteúdos vêm de `src/data/notion-snapshot.json`,
-um retrato da Notion tirado pelo Claude via MCP — provisório até existir token
-da API. Só `src/lib/conteudo.ts` lê o snapshot; quando houver token, muda-se
-esse ficheiro e mais nenhum. Para actualizar entretanto: pedir ao Claude um
-snapshot novo, nunca editar o JSON à mão.
-
-**Armadilha do cqw:** unidades `cqw` num elemento medem o contentor *acima*
-dele, não ele próprio. Por isso o `.frame` é o contentor e a grelha das zonas
-vive num `.grelha` lá dentro — com a grelha no próprio frame, tudo media a
-janela e o desktop rebentava.
-
-**A Notion é a fonte de verdade dos conteúdos** — textos, projectos, clientes.
-O site lê a Notion no build. O Nuno muda lá, publica-se, aparece. Não duplicar
-conteúdo no repositório, nem alterar a estrutura das páginas Notion.
+- Modelo convertido do `.obj` de 48 MB (`../Assets/the-rosetta-stone/`)
+  para `.glb` de 0,9 MB: 48 mil triângulos, textura 2048, meshopt. Teste
+  e originais em `_tmp-pedra/` (fora do git).
+- A orientação (de pé, face escrita à frente) está fixa em `CENTRO` e
+  `ROT` no componente. A digitalização vem de costas.
+- Segue o rato (~14°). Sem cursor: balanço lento; parada com
+  `prefers-reduced-motion`.
+- Etiquetas presas às três escritas (hieróglifos, demótico, grego),
+  com traço na `--cor3`. Pontos e deslocamentos medidos no Figma.
 
 ---
 
-## 5 · Armadilhas deste ambiente
+## 6 · Fluxo de conteúdos
 
-A pasta do Nuno chega até aqui por uma ponte que **não permite apagar
-ficheiros**. Consequências, todas reais:
+O Nuno edita na Notion e pede a actualização. O Claude lê a página pelo
+MCP, escreve `conteudo-v2.json` e **mostra o que mudou antes de
+publicar**. Não há token da API da Notion. O Figma sincroniza-se a pedido
+(textos via `use_figma`, preservando estilos; ligar cores aos estilos
+`Site …`, nunca hex soltos).
 
-- O `.git` vive **fora** da pasta, em `~/repos/dpx26.git`; cá dentro há só um
-  ficheiro `.git` com o ponteiro.
-  **A casa da sessão é apagada quando a sessão acaba** — o `.git` de fora
-  perde-se sempre. Arranque de cada sessão (desde 28.09):
+---
+
+## 7 · Ambiente
+
+- Git normal nesta pasta. Push com a deploy key:
   ```bash
-  # 1. confirmar como se chama a pasta montada NESTA sessao — muda!
-  ls $HOME/mnt/          # ja foi "WORK", em 11.2026 e "Documents"
-  cd "$HOME/mnt/<pasta>/WORK/Reposicionamento/DPX26-site"
-
-  # 2. a chave tem de estar fora do mount, com permissoes 600
-  mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
-  cp ../.dpx26-deploy/id_ed25519 "$HOME/.ssh/dpx26" && chmod 600 "$HOME/.ssh/dpx26"
-  export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/dpx26 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
-
-  # 3. recriar o gitdir
-  git clone --bare -q git@github.com:6d56hc5swd-afk/dpx26-site.git ~/repos/dpx26.git
-  git --git-dir ~/repos/dpx26.git config core.bare false
-  git --git-dir ~/repos/dpx26.git config core.worktree "$PWD"
-  echo "gitdir: $HOME/repos/dpx26.git" > .git
-
-  # 4. o indice vem vazio do clone bare e o git le tudo como apagado.
-  #    `git reset` (sem --hard) refaz o indice sem tocar nos ficheiros.
-  git reset -q && git status --short     # so deve listar alteracoes reais
+  export GIT_SSH_COMMAND="ssh -i $HOME/Documents/WORK/Reposicionamento/.dpx26-deploy/id_ed25519 -o IdentitiesOnly=yes"
   ```
-
-  ⚠️ **Nao fixar o caminho da pasta montada** — o nome depende do que o Nuno
-  ligou a sessao, e um caminho fixo aqui foi a causa de o arranque falhar em
-  09.11.2026.
-  A chave é uma *deploy key* só deste repositório, em
-  `Reposicionamento/.dpx26-deploy/` (fora do repo). Revoga-se no GitHub em
-  Settings → Deploy keys. Sem isto o segundo commit falha, porque o
-  git não consegue remover os seus ficheiros de bloqueio.
-- A referência real do histórico é o **GitHub**. Se o ambiente for reciclado,
-  recupera-se com `git clone`.
-- **Falham:** `git checkout <ficheiro>`, `reset --hard`, `pull`, mudar de
-  branch — tudo o que substitua ficheiros no disco.
-  **Alternativa que funciona:** `git show <rev>:<ficheiro> > <ficheiro>`.
-- Escrever por cima com `>` e editar com `sed -i` funcionam.
-- Nada se apaga. O que sobra vai para `_to_delete/`, e é o Nuno que decide.
-- **Atenção aos links simbólicos:** escrever num link escreve no alvo. Foi
-  assim que a primeira versão deste ficheiro se perdeu.
-
-Se um dia a permissão de apagar for concedida, isto tudo desaparece e o `.git`
-volta para dentro do projecto.
+- Servidor de desenvolvimento: `.claude/launch.json` (`site` = astro dev
+  na 4321; `site-dist` = serve o `dist/` na 4430, útil quando outra
+  sessão já tem o dev server a correr).
+- **Armadilhas já pagas:**
+  - O Astro exige Node ≥ 22.23.4: o Cloudflare lê o `.nvmrc` (24).
+  - Sem `wrangler.jsonc` a publicação falha ("Missing entry-point"): é
+    ele que diz que o site é a pasta `dist/`.
+  - A pedra não desenha se a área tiver tamanho zero (separador
+    escondido): evita traços com NaN.
 
 ---
 
-## 6 · Convenções
+## 8 · Convenções
 
-- Ficheiros temporários e testes levam prefixo **`_tmp-`**. Sem o prefixo, o
-  resíduo fica indistinguível de trabalho e sobrevive.
-- Commits em português, com o contexto da decisão no corpo — não só o que
-  mudou, o porquê.
-- Não escrever código antes da decisão estar tomada. Código escrito cedo é
-  código para deitar fora, e foi acordado assim.
-- O Nuno faz webdesign, não implementação. Explicar consequências em termos de
-  desenho e de comportamento, não de sintaxe.
-
----
-
-## 7 · Por arrumar
-
-- O Cloudflare publicou isto como **Worker** e não como Pages, por isso o
-  `wrangler` corre `astro add cloudflare` a cada build em vez de o adaptador
-  estar no repositório. Funciona, mas duplica o build. Sem urgência.
-- Proporção exacta do frame: o *White Frame* do Figma está a 460×850 (0,541) e
-  as *Guides* a 500×890 (0,562 ≈ 9:16). Confirmar qual manda antes de travar.
-
----
-
-## 8 · Astro
-
-Servidor de desenvolvimento em segundo plano:
-
-```
-astro dev --background
-```
-
-Gerir com `astro dev stop`, `astro dev status`, `astro dev logs`.
-Documentação: https://docs.astro.build — rotas, componentes, content
-collections e estilos.
+- Commits em português, com o porquê no corpo.
+- Temporários com prefixo `_tmp-` (ignorados pelo git).
+- Nada se apaga: o que sai vai para `~/Documents/Purgatorio/`, registado
+  no `contexto_purgatorio.md`.
+- Decisões primeiro, código depois. O Nuno faz o desenho; explicar
+  consequências em termos de desenho e comportamento, não de sintaxe.
+- No fim de cada sessão que mude alguma coisa, actualizar o
+  `../estado-portfolio-v2.md`.
