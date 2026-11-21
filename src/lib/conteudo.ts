@@ -3,7 +3,10 @@
 // para máquinas saem ambas daqui, para que cada facto viva num sítio só.
 import c from '../data/conteudo-v2.json';
 
+/** Nome do estúdio (Notion, BIO): usado na versão máquina. */
 export const SITE_NOME = c.estudio;
+/** Nome do portfólio, como no logótipo do Figma (decisão do Nuno, 21.11.2026). */
+export const MARCA = 'NUNO';
 
 export const slugify = (s: string) =>
   s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')

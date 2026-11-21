@@ -2,11 +2,11 @@
 // Vista máquina: mostra às pessoas exactamente o texto que as máquinas lêem.
 import Base from '../layouts/Base.astro';
 import { FICHEIROS, mdCompleto } from '../lib/maquina';
-import { bio, SITE_NOME } from '../lib/conteudo';
+import { bio, MARCA, SITE_NOME } from '../lib/conteudo';
 const site = Astro.site ?? new URL(Astro.url.origin);
 const texto = mdCompleto(site);
 ---
-<Base titulo={`Machine view — ${bio.nome}, ${SITE_NOME}`} descricao={`Plain-text version of ${SITE_NOME} for language models, agents and search engines.`} md="/llms-full.txt">
+<Base titulo={`Machine view — ${MARCA}, ${bio.nome}`} descricao={`Plain-text version of ${SITE_NOME} for language models, agents and search engines.`} md="/llms-full.txt">
   <article class="maquina">
     <p class="nota">// machine view — this is what language models and agents read. Same content as the human view, without the design.</p>
     <pre>{texto}</pre>
@@ -18,13 +18,13 @@ const texto = mdCompleto(site);
 
 <style>
   .maquina { min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--filete) transparent; }
-  .nota { margin: 0 0 1.6rem; color: var(--lima); font-size: .94rem; line-height: 1.44rem; }
+  .nota { margin: 0 0 1.6rem; color: var(--cor3); font-size: .94rem; line-height: 1.44rem; }
   pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit;
     font-size: .94rem; line-height: 1.44rem; color: var(--texto); }
   /* Assente no fundo, à mesma linha e no mesmo corpo do email à direita */
   .ficheiros { display: flex; align-items: end; }
   .ficheiros ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2rem; flex-wrap: wrap;
-    font-size: 1.25rem; line-height: 1.25; letter-spacing: .02em; color: var(--lima); }
+    font-size: 1.25rem; line-height: 1.25; letter-spacing: .02em; color: var(--cor3); }
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     pre, .nota, .ficheiros ul { font-size: .75rem; line-height: 1.2rem; }
   }

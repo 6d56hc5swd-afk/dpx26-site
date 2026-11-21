@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { blocos, comItalico, SITE_NOME, type Bloco } from '../lib/conteudo';
+import { blocos, comItalico, MARCA, type Bloco } from '../lib/conteudo';
 
 export function getStaticPaths() {
   return blocos.map((b) => ({ params: { bloco: b.slug }, props: { b } }));
@@ -15,7 +15,7 @@ const caixas = [
   { k: 'larga', src: '/icones/caixa-larga.svg' },
 ];
 ---
-<Base titulo={`${b.especialidade} — ${SITE_NOME}`} descricao={`${b.titulo} ${b.descricao}`} md={`/${b.slug}.md`} bloco={b}>
+<Base titulo={`${b.especialidade} — ${MARCA}`} descricao={`${b.titulo} ${b.descricao}`} md={`/${b.slug}.md`} bloco={b}>
   <article class="bloco">
     <h1 class="sr">{b.especialidade}</h1>
     <p class="intro"><b>{b.titulo.replace(/\.$/, ':')}</b> {b.descricao}</p>
@@ -37,8 +37,8 @@ const caixas = [
     mask-image: linear-gradient(transparent, #000 .5rem, #000 calc(100% - 2.5rem), transparent);
     -webkit-mask-image: linear-gradient(transparent, #000 .5rem, #000 calc(100% - 2.5rem), transparent); }
 
-  /* Desktop Bloco destaque: Regular 20 / 1.5 / 1%, lima */
-  .intro { margin: 0; color: var(--lima); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
+  /* Desktop Bloco destaque: Regular 20 / 1.5 / 1%, Color 3 */
+  .intro { margin: 0; color: var(--cor3); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
 
   /* Caixas 343,8 × 292,8 — colunas a 26,5px, linhas a 34,6px */
   .galeria { margin-top: 3.94rem; padding-bottom: 3rem; display: grid;
