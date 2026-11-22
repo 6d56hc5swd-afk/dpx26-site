@@ -2,7 +2,7 @@
 // Coluna direita: igual em todas as páginas e persistente na navegação
 // (não se redesenha ao mudar de bloco). O activo marca-se no cliente.
 // Ícones e "O" do logótipo vêm do Figma (public/icones/), sem retoques.
-import { blocos, bio, clientes, contactos } from '../lib/conteudo';
+import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
 ---
 <aside class="direita" transition:persist="painel">
   <div class="topo-dir">
@@ -30,9 +30,11 @@ import { blocos, bio, clientes, contactos } from '../lib/conteudo';
     </section>
   </div>
 
-  <footer class="rodape contactos">
-    <a href={`mailto:${contactos.email}`} class="email">{contactos.email}</a>
-    <a href={`tel:${contactos.telefone.replace(/\s/g, '')}`} class="tel">{contactos.telefone}</a>
+  <footer class="rodape contactos texto">
+    <p><a href={`mailto:${contactos.email}`}>{contactos.email}</a><span class="sep-tel"> · </span><a class="tel" href={`tel:${contactos.telefone.replace(/\s/g, '')}`}>{contactos.telefone}</a></p>
+    {[links.redes, links.cv].map((grupo) => (
+      <p>{grupo.map((l, i) => <>{i > 0 && ' · '}{l.url ? <a href={l.url} rel="me noopener" target={l.url.endsWith('.pdf') ? undefined : '_blank'}>{l.nome}</a> : <span class="por-ligar" title="Link in preparation">{l.nome}</span>}</>)}</p>
+    ))}
   </footer>
 </aside>
 
@@ -89,11 +91,12 @@ import { blocos, bio, clientes, contactos } from '../lib/conteudo';
   .bio p:first-child { margin-bottom: .1875rem; }
   .clientes { margin-top: 3.75rem; }
 
-  /* Contactos: Regular 20 / 1.25 / 2%, Color 3 */
-  .contactos { display: flex; justify-content: space-between; align-items: end; color: var(--cor3);
-    font-size: 1.25rem; line-height: 1.25; letter-spacing: .02em; }
-  .email { text-underline-position: from-font; text-decoration-skip-ink: none; }
-  .tel { text-decoration: none; position: relative; top: .3125rem; }
+  /* Contactos, redes e CV: texto corrido em três linhas, Desktop texto
+     (15 / 1.5 / 1%) na cor de contraste, 39px abaixo do filete (Figma 787:208) */
+  .contactos { color: var(--cor3); padding-top: 2.44rem; }
+  .contactos p { margin: 0; }
+  .contactos a { text-decoration: none; }
+  .contactos a:hover { text-decoration: underline; text-underline-offset: .2em; }
 
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     .direita { overflow: visible; display: block; }
@@ -111,7 +114,10 @@ import { blocos, bio, clientes, contactos } from '../lib/conteudo';
     .blocos li { font-size: .875rem; line-height: 1.75rem; font-weight: 700; letter-spacing: .01em; }
     .bio { margin-top: 1.27rem; }
     .clientes { margin-top: 2.5rem; }
-    .contactos { height: auto; margin-top: 5.3rem; padding: 1.5rem 0 3rem; flex-direction: column;
-      align-items: start; gap: 1.2rem; font-size: .9375rem; line-height: 1.5; letter-spacing: .01em; font-weight: 400; }
+    .contactos { height: auto; margin-top: 5.3rem; padding: 1.5rem 0 3rem;
+      font-size: .9375rem; line-height: 1.5; letter-spacing: .01em; font-weight: 400; }
+    /* email e telefone não cabem juntos a 302px: telefone na linha de baixo */
+    .sep-tel { display: none; }
+    .contactos .tel { display: block; }
   }
 </style>

@@ -168,5 +168,32 @@
     "formacao": "Degree in Design, University of Aveiro (1998–2003) · Design London short course, Central Saint Martins (2011)",
     "reconhecimento": "",
     "keywords": "editorial design, information design, report design, academic publications, publication design, long-form layout, typography, identity systems, design systems, brand guidelines, exhibition design, scenography, signage, festival branding, cultural sector, public institutions, museums, Shopify, creative direction, remote, Portugal"
+  },
+  "links": {
+    "_nota": "Notion V2: 'Social links' (Instagram, LinkedIn, Behance) e 'CV: PDF EN + PT', sem endereços nem ficheiros a 22.11.2026. Ordem e rótulos do Figma (712:5702). url vazio = placeholder sem ligação.",
+    "redes": [
+      {
+        "nome": "Instagram",
+        "url": ""
+      },
+      {
+        "nome": "Behance",
+        "url": ""
+      },
+      {
+        "nome": "LinkedIn",
+        "url": ""
+      }
+    ],
+    "cv": [
+      {
+        "nome": "CV-EN",
+        "url": ""
+      },
+      {
+        "nome": "CV-PT",
+        "url": ""
+      }
+    ]
   }
 }
