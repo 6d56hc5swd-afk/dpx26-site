@@ -31,10 +31,17 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
   </div>
 
   <footer class="rodape contactos texto">
-    <p><a href={`mailto:${contactos.email}`}>{contactos.email}</a><span class="sep-tel"> · </span><a class="tel" href={`tel:${contactos.telefone.replace(/\s/g, '')}`}>{contactos.telefone}</a></p>
-    {[links.redes, links.cv].map((grupo) => (
-      <p>{grupo.map((l, i) => <>{i > 0 && ' · '}{l.url ? <a href={l.url} rel="me noopener" target={l.url.endsWith('.pdf') ? undefined : '_blank'}>{l.nome}</a> : <span class="por-ligar" title="Link in preparation">{l.nome}</span>}</>)}</p>
-    ))}
+    <div class="pe">
+      <ul class="icones">{links.redes.map((l) => (
+        <li>{l.url
+          ? <a href={l.url} rel="me noopener" target="_blank" aria-label={l.nome} title={l.nome}><img src={`/icones/${l.icone}.svg`} alt="" /></a>
+          : <span class="por-ligar" title={`${l.nome} — link in preparation`}><img src={`/icones/${l.icone}.svg`} alt={l.nome} /></span>}</li>))}
+      </ul>
+      <div class="textos">
+        <p><a href={`mailto:${contactos.email}`}>{contactos.email}</a><span class="sep-tel"> · </span><a class="tel" href={`tel:${contactos.telefone.replace(/\s/g, '')}`}>{contactos.telefone}</a></p>
+        <p>{[...links.cv, links.redes[links.redes.length - 1]].map((l, i) => <>{i > 0 && ' · '}{l.url ? <a href={l.url} rel="me noopener" target={l.url.endsWith('.pdf') ? undefined : '_blank'}>{l.nome}</a> : <span class="por-ligar" title="Link in preparation">{l.nome}</span>}</>)}</p>
+      </div>
+    </div>
   </footer>
 </aside>
 
@@ -114,6 +121,14 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
   .contactos p { margin: 0; }
   .contactos a { text-decoration: none; }
   .contactos a:hover { text-decoration: underline; text-underline-offset: calc(.2em + .1875rem); }
+  /* Figma Desktop Home (22.11): ícones à esquerda (30px, SVG do Nuno, cores
+     de origem), texto alinhado à direita; as duas bases assentam juntas. */
+  .pe { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+  .icones { display: flex; gap: 1.125rem; list-style: none; margin: 0; padding: 0; }
+  .icones li { line-height: 0; }
+  .icones img { width: 1.875rem; height: 1.875rem; display: block; }
+  .icones a { transition: opacity .2s; } .icones a:hover { opacity: .7; }
+  .textos { text-align: right; }
 
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     .direita { overflow: visible; display: block; }
@@ -136,5 +151,7 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
     /* email e telefone não cabem juntos a 302px: telefone na linha de baixo */
     .sep-tel { display: none; }
     .contactos .tel { display: block; }
+    .pe { flex-direction: column-reverse; align-items: flex-start; gap: 1.25rem; }
+    .textos { text-align: left; }
   }
 </style>
