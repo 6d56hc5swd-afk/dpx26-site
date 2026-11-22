@@ -34,8 +34,14 @@ export const ehProvisorio = (s: string) => /^Projeto O+/.test(s.trim());
 export const projectosReais = (b: Bloco) => b.projectos.filter((p) => !ehProvisorio(p));
 
 /** Títulos em itálico vêm marcados *assim* (como na Notion). */
-const escapar = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+export const escapar = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 export const comItalico = (s: string) => escapar(s).replace(/\*([^*]+)\*/g, '<i>$1</i>');
+/** "Nome (descrição)" → nome a bold + descrição regular, sem parênteses, como
+ *  os clientes (Nuno, 22.11). O texto continua na Notion com parênteses. */
+export const projectoHtml = (p: string) => {
+  const m = p.match(/^(.*?)\s*\(([^()]*)\)\s*$/);
+  return m ? `<b>${comItalico(m[1])}</b> ${comItalico(m[2])}` : `<b>${comItalico(p)}</b>`;
+};
 export const semItalico = (s: string) => s.replace(/\*([^*]+)\*/g, '$1');
 
 /** HTML mínimo da Notion (<b>) para texto simples. */

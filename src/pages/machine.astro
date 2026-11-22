@@ -2,14 +2,17 @@
 // Vista máquina: mostra às pessoas exactamente o texto que as máquinas lêem.
 import Base from '../layouts/Base.astro';
 import { FICHEIROS, mdCompleto } from '../lib/maquina';
-import { bio, MARCA, SITE_NOME } from '../lib/conteudo';
+import { bio, escapar, MARCA, SITE_NOME } from '../lib/conteudo';
 const site = Astro.site ?? new URL(Astro.url.origin);
 const texto = mdCompleto(site);
+// Para quem lê a página: as linhas de título (#, ##, ###) na cor de
+// contraste (Nuno, 22.11). O texto servido às máquinas não muda.
+const comTitulos = escapar(texto).replace(/^(#{1,6} .*)$/gm, '<span class="titulo">$1</span>');
 ---
 <Base titulo={`Machine view — ${MARCA}, ${bio.nome}`} descricao={`Plain-text version of ${SITE_NOME} for language models, agents and search engines.`} md="/llms-full.txt">
   <article class="maquina">
     <p class="nota">// machine view — this is what language models and agents read. Same content as the human view, without the design.</p>
-    <pre>{texto}</pre>
+    <pre set:html={comTitulos} />
   </article>
   <footer class="rodape ficheiros">
     <ul>{FICHEIROS.slice(0, 3).map((f) => <li><a href={f.href}>{f.href}</a></li>)}</ul>
@@ -17,6 +20,7 @@ const texto = mdCompleto(site);
 </Base>
 
 <style>
+  pre :global(.titulo) { color: var(--cor3); }
   .maquina { min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--filete) transparent; }
   .nota { margin: 0 0 1.6rem; color: var(--cor3); font-size: .94rem; line-height: 1.44rem; }
   pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit;
