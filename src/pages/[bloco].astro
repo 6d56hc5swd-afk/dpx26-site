@@ -28,6 +28,17 @@ const { b } = Astro.props as { b: Bloco };
     mask-image: linear-gradient(transparent, #000 .5rem, #000 calc(100% - 2.5rem), transparent);
     -webkit-mask-image: linear-gradient(transparent, #000 .5rem, #000 calc(100% - 2.5rem), transparent); }
 
+  /* Desktop: o motivo cabe inteiro entre a descrição e o filete (revisão do
+     Nuno, 22.11). Sem scroll nem desvanecimento: a coluna é descrição + motivo,
+     e o motivo ocupa a altura que sobra. O formato 4:5 do componente dava
+     ~890px de alto e empurrava o desenho para baixo do filete. */
+  @media (min-width: 861px) and (min-aspect-ratio: 1/1) {
+    .bloco { display: flex; flex-direction: column; overflow: hidden;
+      mask-image: none; -webkit-mask-image: none; }
+    .bloco :global(.motivo) { flex: 1; min-height: 0; padding-bottom: 2.5rem; }
+    .bloco :global(.motivo canvas) { height: 100%; aspect-ratio: auto; }
+  }
+
   /* Desktop Bloco destaque: Regular 20 / 1.5 / 1%, Color 3 */
   .intro { margin: 0; color: var(--cor3); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
 
