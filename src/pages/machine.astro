@@ -20,6 +20,7 @@ const comTitulos = escapar(texto).replace(/^(#{1,6} .*)$/gm, '<span class="titul
 </Base>
 
 <style>
+  .ficheiros a { text-underline-offset: calc(.2em + .1875rem); }
   pre :global(.titulo) { color: var(--cor3); }
   .maquina { min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--filete) transparent; }
   .nota { margin: 0 0 1.6rem; color: var(--cor3); font-size: .94rem; line-height: 1.44rem; }

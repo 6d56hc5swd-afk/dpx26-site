@@ -95,9 +95,11 @@ Estilos de pintura do Figma (desde 21.11.2026). Nomes a manter.
 --cor3    Site Color 3  #8484FD   contraste
 ```
 
-Na Home a `--cor3` é sorteada entre Color 3 `#8484FD`, Color 5 `#84FDE7`
-e Color 6 `#FDD184` (script inline em `Base.astro`, antes de pintar) e
-mantém-se ao navegar.
+`--cor3` é fixa (Site Color 3 `#8484FD`); o sorteio entre três cores
+acabou a 22.11.2026. Links dos blocos, como revisão de provas: por
+visitar, ondulado `--revisao` `#F64724`; visitados, linha recta `--visto`
+`#84FDE7` (guardados no browser, `localStorage` "nuno-visitados").
+Sublinhados a 4% do corpo (mín. 1px), afastados `.2em + 3px` do texto.
 
 Tipo: **Azeret Mono**, alojada no site (`@fontsource-variable/azeret-mono`,
 WOFF2 variável). Sem Google Fonts. Estilos do Figma:

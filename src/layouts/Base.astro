@@ -32,24 +32,8 @@ const ld = JSON.stringify(jsonLd(site, bloco));
   <meta property="og:site_name" content={MARCA} />
   <script type="application/ld+json" set:html={ld} />
   <ClientRouter fallback="swap" />
-  <!-- Cor de contraste sorteada sempre que a Home carrega (Site Color 3, 5 e 6
-       do Figma). Corre antes de pintar, para não haver salto de cor; a cor
-       escolhida mantém-se ao navegar para os blocos. -->
-  <script is:inline>
-    (function () {
-      var CORES = ['#8484FD', '#84FDE7', '#FDD184'];
-      var actual = null;
-      function aplicar() {
-        if (location.pathname === '/') {
-          var outras = CORES.filter(function (c) { return c !== actual; });
-          actual = outras[Math.floor(Math.random() * outras.length)];
-        }
-        if (actual) document.documentElement.style.setProperty('--cor3', actual);
-      }
-      aplicar();
-      document.addEventListener('astro:after-swap', aplicar);
-    })();
-  </script>
+  <!-- Sem sorteio desde 22.11 (decisão do Nuno): o contraste é sempre o
+       Site Color 3; o vermelho e o verde marcam os links por ver e vistos. -->
 </head>
 <body>
   <div class="pagina">
@@ -70,7 +54,8 @@ const ld = JSON.stringify(jsonLd(site, bloco));
     --fundo: #23231F;    /* Site Dark */
     --texto: #E8EAF2;    /* Site Light */
     --revisao: #F64724;  /* vermelho de revisão: link por visitar (decidido pelo Nuno, 22.11) */
-    --cor3: #8484FD;     /* Site Color 3 — contraste (na Home é sorteada: 3, 5 ou 6) */
+    --cor3: #8484FD;     /* Site Color 3 — contraste, fixo */
+    --visto: #84FDE7;    /* verde: link já visitado, "corrigido" (Nuno, 22.11) */
     --filete: #E8EAF2;
     font-size: min(calc(100vw / 108), calc(100svh / 69.8));
   }
