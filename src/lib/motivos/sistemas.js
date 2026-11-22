@@ -11,7 +11,7 @@ const NIVEIS_TIPO = ['DISPLAY', 'H1', 'H2', 'H3', 'BODY', 'CAPTION'];
 // ───────────────────────────────────────────────────────────────
 
 const P = {
-  camadas: 6, separacao: 75, recuo: 22, colunas: 6, escalaTipo: 1.33,
+  camadas: 6, separacao: 35, recuo: 0, colunas: 6, escalaTipo: 1.4,   // afinados pelo Nuno, 22.11.2026
   construcao: true, rotulos: true, ligacoes: true, cotas: true,
 };
 // cada linha pertence a um nível do estilo comum (ver motor.js · NIVEIS)
@@ -269,6 +269,12 @@ function animar(P, t) {
 // a cena: as bancadas (_tmp-motivos/) e o site (components/Motivo.astro) usam este mesmo objecto
 export default {
   id: 'sistemas', titulo: 'Sistema', P, ESTILOS, montar, animar,
+  // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
+  SITE: { pos: [352.2, 300.9, 495.2], alvo: [-28, 100.6, -3.8], aspecto: 713 / 662, animacao: 'montar' },
+  // estilo próprio: o DPX com contornos e conteúdos mais finos (Nuno, 22.11.2026)
+  ESTILO: { nome: 'Sistemas', espessura: 1, rotulo: 15.5, reforco: 1.5, niveis: {
+    principal: { w: .5, op: 1 }, conteudo: { w: .55, op: .9 }, secundaria: { w: .6, op: .34 },
+    cota: { w: 1, op: .31 }, imaterial: { w: .7, op: .32 }, fundo: { w: .3, op: .1 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [560, 470, 680], alvo: [0, 175, -55] },
     alcado:      { nome: 'Alçado',      pos: [-30, 190, 1150], alvo: [0, 175, -55] },

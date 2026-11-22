@@ -162,6 +162,12 @@ function animar(P, t) {
 // a cena: as bancadas (_tmp-motivos/) e o site (components/Motivo.astro) usam este mesmo objecto
 export default {
   id: 'festivais-nos', titulo: 'Produção', P, ESTILOS, montar, animar, aspectoMin: 1.1,
+  // no site: planta vista de cima, com a animação Produzir (Nuno, 22.11.2026), enquadrada na moldura "site desktop"
+  SITE: { pos: [50, 1700, 41.3], alvo: [50, 0, 40], aspecto: 713 / 662, animacao: 'produzir', inclina: false },   // planta direita: sem inclinação
+  // estilo próprio: o DPX com reforço do contraste 1,3 (Nuno, 22.11.2026)
+  ESTILO: { nome: 'Festivais', espessura: 1, rotulo: 15.5, reforco: 1.3, niveis: {
+    principal: { w: 1, op: 1 }, conteudo: { w: .5, op: .9 }, secundaria: { w: .6, op: .34 },
+    cota: { w: 1, op: .31 }, imaterial: { w: .7, op: .32 }, fundo: { w: .3, op: .1 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [1050, 560, 420], alvo: [40, 0, 30] },
     planta:      { nome: 'Planta',      pos: [50, 1300, 41],   alvo: [50, 0, 40] },

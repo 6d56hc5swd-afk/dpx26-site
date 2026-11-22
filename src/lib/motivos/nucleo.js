@@ -66,10 +66,10 @@ export const NIVEIS = {
   fundo:      'Fundo · grelhas finas, furos',
 };
 export const PREDEF = {
-  // escolhido pelo Nuno a 21.11.2026: traço muito fino, hierarquia sobretudo pela opacidade
-  dpx: { nome: 'DPX', espessura: 0.4, rotulo: 15.5, reforco: 2, niveis: {
-    principal: { w: .65, op: 1 }, conteudo: { w: .85, op: .9 }, secundaria: { w: .7, op: .45 },
-    cota: { w: .7, op: .65 }, imaterial: { w: .6, op: .32 }, fundo: { w: .6, op: .15 } } },
+  // escolhido pelo Nuno a 22.11.2026 para os seis blocos (substitui o de 21.11)
+  dpx: { nome: 'DPX', espessura: 1, rotulo: 15.5, reforco: 1.5, niveis: {
+    principal: { w: 1, op: 1 }, conteudo: { w: .5, op: .9 }, secundaria: { w: .6, op: .34 },
+    cota: { w: 1, op: .31 }, imaterial: { w: .7, op: .32 }, fundo: { w: .3, op: .1 } } },
   tecnico: { nome: 'Técnico', espessura: 1.1, rotulo: 12, niveis: {
     principal: { w: 1, op: 1 }, conteudo: { w: .85, op: .9 }, secundaria: { w: .7, op: .45 },
     cota: { w: .7, op: .65 }, imaterial: { w: .6, op: .32 }, fundo: { w: .6, op: .15 } } },

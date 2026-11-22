@@ -10,8 +10,8 @@ const T = 0.07;            // meia-espessura das paredes, em células
 // ───────────────────────────────────────────────────────────────
 
 const P = {
-  celulas: 12, altura: 0.6, semente: 4,
-  solucao: true, becos: true, notas: true, observador: true, figuras: true, cotas: true, grelha: true,
+  celulas: 12, altura: 0.4, semente: 4,   // afinados pelo Nuno, 22.11.2026
+  solucao: true, becos: true, notas: false, observador: true, figuras: false, cotas: true, grelha: true,
 };
 // cada linha pertence a um nível do estilo comum (ver motor.js · NIVEIS)
 const ESTILOS = {
@@ -22,7 +22,7 @@ const ESTILOS = {
   beco: { n: 'secundaria' },
   nota: { n: 'conteudo' },
   olhar: { n: 'imaterial', dash: [4, 4] },
-  estrutura: { n: 'conteudo' },
+  estrutura: { n: 'conteudo', destaque: true },   // o observador e a torre, em contraste (Nuno, 22.11.2026)
   figura: { n: 'cota' },
   cota: { n: 'cota' },
 };
@@ -76,10 +76,10 @@ function montar(P, { q = 1, fh = 1, alvo = null } = {}) {
     const pts = []; for (let i = 0; i <= n; i++) { const a = i / n * Math.PI * 2, c = Math.cos(a) * rr, s = Math.sin(a) * rr; pts.push(eixo === 'y' ? [cx + c, cy, cz + s] : [cx + c, cy + s, cz]); }
     lin(est, ...pts);
   };
-  const figura = (x, y0, z, rot, esc) => {
+  const figura = (x, y0, z, rot, esc, est = 'figura') => {
     const c = Math.cos(rot), s = Math.sin(rot), P3 = ([a, b]) => [x + a * c * esc, y0 + b * esc, z + a * s * esc];
-    lin('figura', ...[...FORMA, FORMA[0]].map(P3));
-    circ('figura', P3([0, 1.58]), 0.12 * esc, 'z', 14);
+    lin(est, ...[...FORMA, FORMA[0]].map(P3));
+    circ(est, P3([0, 1.58]), 0.12 * esc, 'z', 14);
     const cab = new THREE.Shape(); cab.absarc(0, 1.58, 0.12, 0, Math.PI * 2);
     for (const sh of [new THREE.Shape(FORMA.map(([a, b]) => new THREE.Vector2(a, b))), cab]) {
       const g = new THREE.ShapeGeometry(sh), pos = g.attributes.position;
@@ -93,18 +93,45 @@ function montar(P, { q = 1, fh = 1, alvo = null } = {}) {
   plano(lote, 'chao', [V(-0.6, 0, -0.6), V(C + 0.6, 0, -0.6), V(C + 0.6, 0, R + 0.6), V(-0.6, 0, R + 0.6)]);
   if (P.grelha) { for (let i = 1; i < C; i++) lin('grelha', [i, 0, 0], [i, 0, R]); for (let j = 1; j < R; j++) lin('grelha', [0, 0, j], [C, 0, j]); }
 
-  // paredes (troços contínuos juntos numa só caixa)
+  // paredes (Nuno, 22.11.2026): desenha-se só o contorno do conjunto, sem as arestas onde as paredes se cruzam.
+  // A planta das paredes é rasterizada em células de 1/14 de módulo (a espessura de meia parede); o contorno
+  // sai das fronteiras entre células cheias e vazias, no topo e na base, com uma aresta vertical em cada canto.
   if (H > 0.005) {
+    const N = 14, NX = C * N + 2, NZ = R * N + 2, cheio = new Uint8Array(NX * NZ);
+    const enche = (x0, x1, z0, z1) => { for (let z = z0; z <= z1; z++) for (let x = x0; x <= x1; x++) cheio[z * NX + x] = 1; };
+    const solido = (x, z) => x >= 0 && z >= 0 && x < NX && z < NZ && cheio[z * NX + x] === 1;
+    const caixaFundo = (x0, z0, x1, z1) => {             // superfície que esconde, sem arestas
+      const g = new THREE.BoxGeometry((x1 - x0) * S, H * S, (z1 - z0) * S);
+      g.translate(((x0 + x1) / 2 - C / 2) * S, H / 2 * S, ((z0 + z1) / 2 - R / 2) * S); fundo(lote, g);
+    };
     for (let j = 0; j <= R; j++) for (let i = 0; i < C;) {
       if (!h[j][i]) { i++; continue; }
       let k = i; while (k < C && h[j][k]) k++;
-      caixa(lote, 'parede', V(i - T, 0, j - T), V(k + T, H, j + T)); i = k;
+      enche(i * N, k * N + 1, j * N, j * N + 1); caixaFundo(i - T, j - T, k + T, j + T); i = k;
     }
     for (let i = 0; i <= C; i++) for (let j = 0; j < R;) {
       if (!v[j][i]) { j++; continue; }
       let k = j; while (k < R && v[k][i]) k++;
-      caixa(lote, 'parede', V(i - T, 0, j - T), V(i + T, H, k + T)); j = k;
+      enche(i * N, i * N + 1, j * N, k * N + 1); caixaFundo(i - T, j - T, i + T, k + T); j = k;
     }
+    const X = n => (n - 1) / N;                          // linha de fronteira n → coordenada em módulos
+    const cantos = new Set();
+    const traco = (a, b) => { for (const y of [0, H]) lin('parede', [a[0], y, a[1]], [b[0], y, b[1]]); cantos.add(a.join()); cantos.add(b.join()); };
+    for (let z = 0; z <= NZ; z++) for (let x = 0; x < NX;) {   // fronteiras horizontais
+      const muda = xx => solido(xx, z - 1) !== solido(xx, z);
+      if (!muda(x)) { x++; continue; }
+      const cima = solido(x, z - 1); let k = x;
+      while (k < NX && muda(k) && solido(k, z - 1) === cima) k++;
+      traco([X(x), X(z)], [X(k), X(z)]); x = k;
+    }
+    for (let x = 0; x <= NX; x++) for (let z = 0; z < NZ;) {   // fronteiras verticais
+      const muda = zz => solido(x - 1, zz) !== solido(x, zz);
+      if (!muda(z)) { z++; continue; }
+      const esq = solido(x - 1, z); let k = z;
+      while (k < NZ && muda(k) && solido(x - 1, k) === esq) k++;
+      traco([X(x), X(z)], [X(x), X(k)]); z = k;
+    }
+    for (const c of cantos) { const [x, z] = c.split(',').map(Number); lin('parede', [x, 0, z], [x, H, z]); }
   }
 
   // o caminho, da ideia à produção
@@ -145,7 +172,7 @@ function montar(P, { q = 1, fh = 1, alvo = null } = {}) {
     const ex = tx + lado + 0.35;
     for (const dz of [-0.2, 0.2]) lin('estrutura', [ex + 0.6, 0, tz + dz], [ex, ht, tz + dz]);
     for (let k = 1; k < 10; k++) { const t = k / 10; lin('estrutura', [ex + 0.6 * (1 - t), ht * t, tz - 0.2], [ex + 0.6 * (1 - t), ht * t, tz + 0.2]); }
-    figura(tx, ht, tz, -0.7, esc);
+    figura(tx, ht, tz, -0.7, esc, 'estrutura');
     const olho = [tx, ht + 1.5 * esc, tz];
     if (alvo == null) {                               // linhas de vista para os quatro cantos
       for (const [x, z] of [[0, 0], [C, 0], [C, R], [0, R]]) lin('olhar', olho, [x, H, z]);
@@ -173,9 +200,9 @@ function montar(P, { q = 1, fh = 1, alvo = null } = {}) {
 }
 
 function animar(P, t) {
-  if (P.animacao === 'desbloquear') {
-    const tt = t % 9, q = THREE.MathUtils.clamp((tt - 0.6) / 5.5, 0, 1), e = q * q * (3 - 2 * q);
-    return { estatico: montar(P, { q: e, fh: 1 - 0.8 * e }) };
+  if (P.animacao === 'percurso') {                   // só o caminho se desenha; as paredes ficam (Nuno, 22.11.2026)
+    const tt = t % 9, q = THREE.MathUtils.clamp((tt - 0.6) / 5.5, 0, 1);
+    return { estatico: montar(P, { q: q * q * (3 - 2 * q) }) };
   }
   if (P.animacao === 'olhar') return { estatico: montar(P, { alvo: (t * 0.08) % 1 }) };
 }
@@ -183,14 +210,20 @@ function animar(P, t) {
 // a cena: as bancadas (_tmp-motivos/) e o site (components/Motivo.astro) usam este mesmo objecto
 export default {
   id: 'direccao', titulo: 'Labirinto', P, ESTILOS, montar, animar,
+  // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
+  SITE: { pos: [652.8, 834.5, 308.6], alvo: [-30.2, -46.2, 3.9], aspecto: 713 / 662, animacao: 'percurso' },
+  // estilo próprio (Nuno, 22.11.2026): traço geral 0,5, principais 0,75, secundárias 0,95, cotas 0,23
+  ESTILO: { nome: 'Direcção', espessura: 0.5, rotulo: 15.5, reforco: 1.5, niveis: {
+    principal: { w: .75, op: 1 }, conteudo: { w: .6, op: .9 }, secundaria: { w: .95, op: .34 },
+    cota: { w: 1, op: .23 }, imaterial: { w: .7, op: .32 }, fundo: { w: .6, op: .1 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [400, 600, 760], alvo: [-70, 20, 50] },
     planta:      { nome: 'Planta',      pos: [0, 1300, 31],   alvo: [0, 0, 30] },
     observador:  { nome: 'Do observador', fixa: true, pos: [-440, 250, 380], alvo: [20, 0, -20] },
     rasante:     { nome: 'Rasante',     pos: [-80, 70, 760],  alvo: [-40, 20, 0] },
   },
-  ANIMACOES: [['desbloquear', 'Desbloquear'], ['olhar', 'Olhar']],
-  CICLOS: { desbloquear: 9, olhar: 12.5 },     // duração de um ciclo (s): o vídeo fecha em loop
+  ANIMACOES: [['percurso', 'Percurso'], ['olhar', 'Olhar']],
+  CICLOS: { percurso: 9, olhar: 12.5 },     // duração de um ciclo (s): o vídeo fecha em loop
   REGS: [
     ['celulas', 'Células por lado', 6, 24, 1],
     ['altura', 'Altura das paredes', 0.2, 2, 0.05],

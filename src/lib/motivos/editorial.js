@@ -9,7 +9,7 @@ const BASE = 4.5;                                // linha de base
 const FOLIOS = ['12', '13'];
 
 const P = {
-  abertura: 160, curva: 0.5, folhas: 10, colunas: 6, medianiz: 5,
+  abertura: 169, curva: 0.8, folhas: 10, colunas: 6, medianiz: 5,   // afinados pelo Nuno, 22.11.2026
   linhaBase: true, maquete: true, cotas: true, semente: 7,
 };
 // cada linha pertence a um nível do estilo comum (ver motor.js · NIVEIS)
@@ -179,6 +179,8 @@ function animar(P, t) {
 // a cena: as bancadas (_tmp-motivos/) e o site (components/Motivo.astro) usam este mesmo objecto
 export default {
   id: 'editorial', titulo: 'Livro', P, ESTILOS, montar, animar,
+  // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
+  SITE: { pos: [355, 442.3, 566.2], alvo: [10, 0, 0], aspecto: 713 / 662, animacao: 'respirar' },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [400, 500, 640], alvo: [10, 0, 0] },
     planta:      { nome: 'Planta',      pos: [0, 900, 1],     alvo: [10, 0, 0] },
