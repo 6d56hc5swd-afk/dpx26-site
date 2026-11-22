@@ -199,7 +199,8 @@ export const resume = (site: URL) => ({
   skills: blocos.map((b) => ({ name: b.especialidade, level: b.titulo, keywords: partes(b).oQue.replace(/\.$/, '').split(/,\s*| — |\s+and\s+|\s+plus\s+/).map((k) => k.trim()).filter((k) => k && k.length < 40) })),
   ...(m.keywords ? { interests: [{ name: 'Search keywords', keywords: lista(m.keywords) }] } : {}),
   education: formacao().map((f) => ({ institution: f.inst, studyType: f.curso, ...(f.ini ? { startDate: f.ini } : {}), ...(f.fim ? { endDate: f.fim } : {}) })),
-  ...(m.reconhecimento ? { awards: lista(m.reconhecimento).map((t) => ({ title: t })) } : {}),
+  // Recognition fica só no texto (Facts): "From peers, clients and public." não é um prémio,
+  // e o campo awards do JSON Resume levaria os leitores a tratá-lo como tal.
   languages: lista(m.linguas || 'English, Portuguese').map((l) => ({ language: l })),
   meta: { canonical: url(site, '/resume.json'), version: 'v1.0.0' },
 });
