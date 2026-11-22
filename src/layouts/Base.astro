@@ -95,6 +95,12 @@ const ld = JSON.stringify(jsonLd(site, bloco));
   /* Esquerda e direita partilham a base: filete à mesma altura (965px). */
   .esquerda, .direita { min-height: 0; display: grid; grid-template-rows: 1fr auto; }
   .rodape { border-top: 1px solid var(--filete); height: 6.375rem; }
+  /* Desktop: o conteúdo dos rodapés assenta no fundo, à mesma linha nas duas
+     colunas (Nuno, 22.11). Se não couber (lista longa), começa no filete. */
+  @media (min-width: 861px) and (min-aspect-ratio: 1/1) {
+    .rodape { display: flex; flex-direction: column; justify-content: flex-end;
+      justify-content: safe flex-end; padding-top: .8rem; }
+  }
 
   /* ── Mobile ─────────────────────────────────────────────── */
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {

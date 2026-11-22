@@ -21,12 +21,12 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
     </nav>
 
     <section class="bio texto" aria-label="About">
-      <p><b class="cor3">{bio.nome}</b> {bio.linha}</p>
+      <p><b class="cor3">{bio.nome}</b> {bio.linha.replace(/\s*\|\s*/g, ' · ')}</p>
       <p>{bio.texto}</p>
     </section>
 
     <section class="clientes texto" aria-label="Clients">
-      <p><b class="cor3">Clients</b> {clientes.map((c, i) => <>{i > 0 && <b> | </b>}<b>{c.nome}</b> {c.descricao}</>)}</p>
+      <p><b class="cor3">Clients</b> {clientes.map((c, i) => <>{i > 0 && ' · '}<b>{c.nome}</b> {c.descricao}</>)}</p>
     </section>
   </div>
 
@@ -64,7 +64,9 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
   .logo { color: var(--cor3); text-decoration: none; font-weight: 200; font-size: 2.25rem;
     line-height: 1.33; letter-spacing: .12em; display: inline-flex; align-items: center; }
   /* "O" sorridente do Figma, por máscara, para ter a cor do logótipo */
-  .logo .o { display: inline-block; margin-left: -.3rem; width: 1.867rem; height: 1.704rem; background: currentColor;
+  /* O "O" fica à mesma distância que as letras entre si: medido, o espaço
+     de tinta N–N é 9,9px a 36px e N–O era 2,3px (Nuno, 22.11). */
+  .logo .o { display: inline-block; margin-left: .078em; width: 1.867rem; height: 1.704rem; background: currentColor;
     -webkit-mask: url(/icones/logo-o.svg) no-repeat center / contain; mask: url(/icones/logo-o.svg) no-repeat center / contain; }
 
   /* Ícones: um só SVG do Figma (71×27), recortado em dois por máscara,
@@ -93,7 +95,7 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
 
   /* Contactos, redes e CV: texto corrido em três linhas, Desktop texto
      (15 / 1.5 / 1%) na cor de contraste, 39px abaixo do filete (Figma 787:208) */
-  .contactos { color: var(--cor3); padding-top: 2.44rem; }
+  .contactos { color: var(--cor3); }
   .contactos p { margin: 0; }
   .contactos a { text-decoration: none; }
   .contactos a:hover { text-decoration: underline; text-underline-offset: .2em; }
@@ -104,7 +106,7 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
     /* Linha do logótipo a 0,556 da desktop (15px de alto, como no Figma) */
     .cabeca { margin-top: 0; }
     .logo { font-size: 1.25rem; line-height: 1; }
-    .logo .o { margin-left: -.17rem; width: 1.04rem; height: .95rem; }
+    .logo .o { width: 1.04rem; height: .95rem; }
     .vistas { gap: .59rem; }
     .vista { height: .9375rem; -webkit-mask-size: 2.477rem .9375rem; mask-size: 2.477rem .9375rem; }
     .vista-humana { width: 1.031rem; }

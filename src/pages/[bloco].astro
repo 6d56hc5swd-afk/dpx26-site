@@ -46,12 +46,14 @@ const MOTIVO: Record<string, number> = {
   }
 
   /* Desktop Bloco destaque: Regular 20 / 1.5 / 1%, Color 3 */
-  .intro { margin: 0; color: var(--cor3); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
+  /* cor de contraste só no título; o texto no tom claro (Figma, 22.11) */
+  .intro { margin: 0; color: var(--texto); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
+  .intro b { color: var(--cor3); }
 
 
-  .lista { list-style: none; margin: 0; padding: .8rem 0 0; }
+  .lista { list-style: none; margin: 0; padding: 0; }
   .lista li { display: inline; }
-  .lista li + li::before { content: ' | '; }
+  .lista li + li::before { content: ' · '; }   /* separadores: bullets, como na Notion */
   .lista-movel { display: none; }
 
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
@@ -61,5 +63,9 @@ const MOTIVO: Record<string, number> = {
     /* Mobile: Regular 14 / 1.5 / 1% */
     .intro { font-size: .875rem; font-weight: 400; }
     .lista-movel { display: block; padding: 0 0 3rem; }
+    /* O desenho fica ao centro do quadro do motivo; com o 4:5 do componente
+       sobrava um vazio grande por cima. Quadro mais baixo = desenho logo por
+       baixo da descrição (Nuno, 22.11). */
+    .bloco :global(.motivo canvas) { aspect-ratio: 5 / 4; }
   }
 </style>

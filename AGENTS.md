@@ -112,6 +112,9 @@ Mobile texto               ExtraLight 12 / 1.25 / 1%
 Mobile Título Bloco link   Bold Italic 14 / 1.25 / 1%    (passo 28px)
 ```
 
+**Separadores: bullets (`·`), como na Notion**, nunca `|` (regra do Nuno,
+22.11.2026): listas de projectos, clientes, a linha da bio, o rodapé.
+
 Os SVG que mudam de cor (vistas, "O") pintam-se por **máscara CSS** com a
 cor do tema, para não editar o ficheiro do Figma.
 
