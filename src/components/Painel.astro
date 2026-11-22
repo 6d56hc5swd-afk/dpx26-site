@@ -40,10 +40,20 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
 
 <script>
   // Marca o bloco activo e a vista (humana/máquina) a cada mudança de página.
+  // Blocos visitados ficam guardados neste browser (o :visited do CSS não
+  // deixa mudar o estilo do sublinhado, só a cor).
+  const CHAVE = 'nuno-visitados';
+  const lidos = (): string[] => { try { return JSON.parse(localStorage.getItem(CHAVE) || '[]'); } catch { return []; } };
   const marcar = () => {
     const p = location.pathname;
+    const vistos = new Set(lidos());
+    if (document.querySelector(`.blocos a[href="${p}"]`) && !vistos.has(p)) {
+      vistos.add(p);
+      try { localStorage.setItem(CHAVE, JSON.stringify([...vistos])); } catch {}
+    }
     document.querySelectorAll<HTMLAnchorElement>('.blocos a').forEach((a) => {
       const on = p === a.getAttribute('href');
+      a.classList.toggle('visitado', vistos.has(a.getAttribute('href')!));
       a.classList.toggle('activo', on);
       if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
@@ -85,8 +95,13 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
     letter-spacing: .02em; }
   .blocos a { text-decoration: underline wavy var(--texto); text-decoration-thickness: .07em;
     text-underline-offset: .2em; transition: color .2s; }
+  /* Como numa revisão de provas: o bloco por ver tem o ondulado vermelho de
+     um erro por corrigir; depois de visitado fica "corrigido", em linha recta
+     no tom claro (Nuno, 22.11, em experiência). */
+  .blocos a:not(.visitado):not(.activo) { text-decoration-color: var(--revisao); }
+  .blocos a.visitado, .blocos a.activo { text-decoration-style: solid; }
   .blocos a:hover { color: var(--cor3); }
-  .blocos a.activo { color: var(--cor3); text-decoration-style: solid; }
+  .blocos a.activo { color: var(--cor3); }
 
   .bio { margin-top: 2.78rem; }
   .bio p, .clientes p { margin: 0; }
