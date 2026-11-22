@@ -56,7 +56,10 @@ Ficheiros que importam:
   (`transition:persist`); o bloco activo marca-se no cliente.
 - `src/components/Pedra.astro` — pedra 3D e etiquetas.
 - `public/icones/` — SVG tirados do Figma, **sem retoques** (vistas, "O"
-  do logótipo, caixas da galeria). `public/modelos/pedra.glb` — 0,9 MB.
+  do logótipo). `public/modelos/pedra.glb` — 0,9 MB.
+- `src/lib/motivos/`, `src/components/Motivo.astro`, `_tmp-motivos/` —
+  motivos 3D dos blocos. **Têm dono:** só a sessão "design · motivos" os
+  edita; as outras lêem e usam.
 
 **Um facto vive num sítio só:** a versão para pessoas e a para máquinas
 saem do mesmo ficheiro de conteúdos. Nunca escrever um texto da Notion
@@ -157,6 +160,12 @@ publicar**. Não há token da API da Notion. O Figma sincroniza-se a pedido
 ---
 
 ## 8 · Convenções
+
+- **Várias sessões partilham esta pasta** (regras completas em
+  `../contexto_portfolio_dpx.md`, "Sessões em paralelo"): trabalha-se no
+  `main`, sem mudar de ramo nem fazer pull/merge/reset sem o Nuno pedir;
+  commit só dos próprios ficheiros com `git commit -- <caminhos>` (nunca
+  `add -A` ou `commit -a`); **push para o `main` publica, só a pedido**.
 
 - Commits em português, com o porquê no corpo.
 - Temporários com prefixo `_tmp-` (ignorados pelo git).
