@@ -45,9 +45,10 @@ const MOTIVO: Record<string, number> = {
     .bloco :global(.motivo canvas) { height: 100%; aspect-ratio: auto; }
   }
 
-  /* Desktop Bloco destaque: Regular 20 / 1.5 / 1%, Color 3 */
-  /* cor de contraste só no título; o texto no tom claro (Figma, 22.11) */
-  .intro { margin: 0; color: var(--texto); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
+  /* Descrição no corpo do menu dos blocos (28px, Nuno 22.11), em Regular;
+     o motivo cede a altura que o texto precisar.
+     Cor de contraste só no título; o texto no tom claro (Figma, 22.11) */
+  .intro { margin: 0; color: var(--texto); font-size: 1.75rem; line-height: 1.4; letter-spacing: .01em; }
   .intro b { color: var(--cor3); }
 
 
