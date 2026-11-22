@@ -17,7 +17,7 @@ const MOTIVO: Record<string, number> = {
 <Base titulo={`${b.especialidade} — ${MARCA}`} descricao={`${b.titulo} ${b.descricao.replace(/\n/g, ' ')}`} md={`/${b.slug}.md`} bloco={b}>
   <article class="bloco">
     <h1 class="sr">{b.especialidade}</h1>
-    <p class="intro"><b>{b.titulo.replace(/\.$/, ':')}</b> {b.descricao.split('\n').map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
+    <p class="intro"><b>{b.titulo.replace(/\.$/, '')}<span class="ponto-d">.</span><span class="ponto-m">:</span></b> {b.descricao.split('\n').map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
     <Motivo numero={MOTIVO[b.slug]} />
     {b.projectos.length > 0 && <ul class="lista lista-movel texto">{b.projectos.map((p) => <li set:html={projectoHtml(p)} />)}</ul>}
   </article>
@@ -47,8 +47,11 @@ const MOTIVO: Record<string, number> = {
        logótipo; a descrição começa na linha do primeiro bloco do menu
        (linhas de base alinhadas). A caixa do título tem altura fixa para
        a descrição não saltar entre blocos. */
-    .bloco .intro { font-size: 1.5rem; line-height: 1.5; max-width: 44ch; }  /* medida da composição */
-    .bloco .intro b { display: block; max-width: 17ch; height: 8.84rem; }
+    /* Figma Bloco 1 (22.11): título numa linha, com ponto final; título e
+       descrição a 20px e à largura da coluna. */
+    .bloco .intro { font-size: 1.25rem; line-height: 1.5; }
+    .bloco .intro b { display: block; height: 9.09rem; }
+    .bloco .ponto-m { display: none; } .bloco .ponto-d { display: inline; }
   }
 
   /* Descrição em Regular; o motivo cede a altura que o texto precisar.
@@ -61,6 +64,7 @@ const MOTIVO: Record<string, number> = {
   .lista li { display: inline; }
   .lista li + li::before { content: ' · '; }   /* separadores: bullets, como na Notion */
   .lista-movel { display: none; }
+  .ponto-d { display: none; }
 
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
     .bloco { padding-top: 4.625rem;
