@@ -3,11 +3,15 @@
 // (não se redesenha ao mudar de bloco). O activo marca-se no cliente.
 // Ícones e "O" do logótipo vêm do Figma (public/icones/), sem retoques.
 import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
+// Logótipo "☺ Nuno" (SVG do Nuno) desenhado dentro da página, na cor do
+// texto: a máscara CSS ficava cortada e com a cor errada no Safari.
+import logoSvg from '../../public/icones/logo-nuno.svg?raw';
+const logo = logoSvg.replace(/fill="#8484FD"/g, 'fill="currentColor"').replace(/ width="139" height="30"/, ' aria-hidden="true"');
 ---
 <aside class="direita" transition:persist="painel">
   <div class="topo-dir">
     <header class="cabeca">
-      <a href="/" class="logo" aria-label="Nuno — home"></a>
+      <a href="/" class="logo" aria-label="Nuno — home" set:html={logo} />
       <nav class="vistas" aria-label="Views">
         <a href="/" class="vista vista-humana" data-vista="humana" title="Human view" aria-label="Human view"></a>
         <a href="/machine/" class="vista vista-maquina" data-vista="maquina" title="Machine view" aria-label="Machine view: content for language models and agents"></a>
@@ -79,10 +83,9 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
   /* Linha do logótipo e das vistas, ao centro uma da outra */
   .cabeca { display: flex; justify-content: space-between; align-items: center; }
   /* Logótipo "☺ Nuno" do Figma (22.11), SVG do Nuno sem retoques (139×30),
-     pintado por máscara na cor de contraste. */
-  .logo { display: block; width: 8.6875rem; height: 1.875rem; background: var(--cor3);
-    -webkit-mask: url(/icones/logo-nuno.svg) no-repeat left center / contain;
-    mask: url(/icones/logo-nuno.svg) no-repeat left center / contain; }
+     na cor de contraste. */
+  .logo { display: block; width: 8.6875rem; height: 1.875rem; color: var(--cor3); }
+  .logo :global(svg) { display: block; width: 100%; height: 100%; overflow: visible; }
 
   /* Ícones: um só SVG do Figma (71×27), recortado em dois por máscara,
      para poderem mudar de cor (Color 3 = vista activa). */
