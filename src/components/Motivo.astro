@@ -21,7 +21,7 @@ const DESCRICAO: Record<number, string> = {
 
 <script>
   import * as THREE from 'three';
-  import { Desenho, PREDEF, deHex } from '../lib/motivos/nucleo.js';
+  import { Desenho, PREDEF, deHex, enquadrar as encher } from '../lib/motivos/nucleo.js';
 
   const CENAS: Record<string, () => Promise<any>> = {
     1: () => import('../lib/motivos/editorial.js'),
@@ -36,6 +36,8 @@ const DESCRICAO: Record<number, string> = {
   const INCLINA_Y = 0.2, INCLINA_X = 0.08;        // radianos, no máximo
   const BALANCO_SEG = 16, BALANCO_AMP = 0.6;      // sem cursor (toque), balança devagar
   const FONTE = 'Azeret Mono Variable';
+  // reserva à volta do desenho, dentro do quadro (combinado com a sessão da maquete, 23.11.2026: 1–2rem)
+  const RESERVA_REM = 1.5;
 
   let parar: (() => void) | null = null;
 
@@ -61,9 +63,8 @@ const DESCRICAO: Record<number, string> = {
     const vista = cena.SITE ?? cena.VISTAS.axonometria;
     // a cena inclina em torno do alvo da vista
     const pivo = new THREE.Group(), dentro = new THREE.Group();
-    pivo.position.set(...(vista.alvo as [number, number, number]));
-    dentro.position.set(-vista.alvo[0], -vista.alvo[1], -vista.alvo[2]);
     dentro.add(d.grupoE, d.grupoM); pivo.add(dentro); scene.add(pivo);
+    const completo = cena.montar(P, {});              // o desenho inteiro, para medir o enquadramento
 
     let W = 0, H = 0;
     const enquadrar = () => {
@@ -72,11 +73,14 @@ const DESCRICAO: Record<number, string> = {
       const dpr = Math.min(devicePixelRatio, 2);
       renderer.setPixelRatio(dpr); renderer.setSize(W, H, false);
       cam.aspect = W / H; cam.updateProjectionMatrix();
-      // como nas bancadas: em formatos estreitos a câmara afasta-se para a cena caber
-      // com SITE a câmara fica onde o Nuno a pôs e só recua se o quadro for mais estreito do que o da moldura
-      const k = Math.max(1, (cena.SITE?.aspecto ?? cena.aspectoMin ?? 1.1) / cam.aspect);
-      cam.position.set(...(vista.pos.map((p: number, i: number) => vista.alvo[i] + (p - vista.alvo[i]) * k) as [number, number, number]));
-      cam.lookAt(new THREE.Vector3(...vista.alvo));
+      // o desenho enche o quadro (Nuno, 22.11.2026): mantém o ângulo da câmara escolhida e ajusta
+      // a distância e o centro a este quadro, seja desktop ou mobile; a inclinação roda em torno do novo centro
+      const res = RESERVA_REM * parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const f = encher(completo, vista.pos, vista.alvo, cam.aspect, { margem: { x: Math.max(.5, 1 - 2 * res / W), y: Math.max(.5, 1 - 2 * res / H) } });
+      cam.position.set(...(f.pos as [number, number, number]));
+      cam.lookAt(new THREE.Vector3(...f.alvo));
+      pivo.position.set(...(f.alvo as [number, number, number]));
+      dentro.position.set(-f.alvo[0], -f.alvo[1], -f.alvo[2]);
       d.acerta(W, H, dpr);
       d.escalaRotulos(cam);
       if (quieta) desenhar(0);
@@ -85,7 +89,7 @@ const DESCRICAO: Record<number, string> = {
     const quieta = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const semCursor = matchMedia('(hover: none)').matches;
     // sem movimento: a cena completa, parada (o estado final de cada animação)
-    d.poe(d.grupoE, cena.montar(P, {}), cam);
+    d.poe(d.grupoE, completo, cam);
 
     const desenhar = (t: number) => {
       if (!quieta && cena.animar) {
