@@ -98,8 +98,8 @@ Estilos de pintura do Figma (desde 21.11.2026). Nomes a manter.
 
 `--cor3` é fixa (Site Color 3 `#8484FD`); o sorteio entre três cores
 acabou a 22.11.2026. Links dos blocos, como revisão de provas: por
-visitar, ondulado `--revisao` `#F64724`; visitados, linha recta `--visto`
-`#84FDE7` (guardados no browser, `localStorage` "nuno-visitados").
+visitar, ondulado `--revisao` `#F64724`; visitados, sem sublinhado (desde 22.11; `--visto`
+`#84FDE7` fica por usar) (guardados no browser, `localStorage` "nuno-visitados").
 Sublinhados a 4% do corpo (mín. 1px), afastados `.2em + 3px` do texto.
 
 Tipo: **Azeret Mono**, alojada no site (`@fontsource-variable/azeret-mono`,
