@@ -107,7 +107,8 @@ const logo = logoSvg.replace(/fill="#8484FD"/g, 'fill="currentColor"').replace(/
      um erro por corrigir; depois de visitado fica "corrigido", em linha recta
      no tom claro (Nuno, 22.11, em experiência). */
   .blocos a:not(.visitado):not(.activo) { text-decoration-color: var(--revisao); }
-  .blocos a.visitado, .blocos a.activo { text-decoration-style: solid; text-decoration-color: var(--visto); }
+  /* Visto = corrigido: o sublinhado desaparece (Nuno, 22.11; antes linha recta verde) */
+  .blocos a.visitado, .blocos a.activo { text-decoration: none; }
   .blocos a:hover { color: var(--cor3); }
   .blocos a.activo { color: var(--cor3); }
 
