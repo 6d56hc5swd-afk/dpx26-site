@@ -1,27 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+import Motivo from '../components/Motivo.astro';
 import { blocos, comItalico, MARCA, type Bloco } from '../lib/conteudo';
 
 export function getStaticPaths() {
   return blocos.map((b) => ({ params: { bloco: b.slug }, props: { b } }));
 }
 const { b } = Astro.props as { b: Bloco };
-// Grelha provisória: as caixas do Figma (public/icones/caixa-*.svg) até
-// haver imagens dos projectos.
-const caixas = [
-  { k: 'q1', src: '/icones/caixa-quadrada.svg' },
-  { k: 'alta', src: '/icones/caixa-alta.svg' },
-  { k: 'q2', src: '/icones/caixa-quadrada-2.svg' },
-  { k: 'larga', src: '/icones/caixa-larga.svg' },
-];
 ---
 <Base titulo={`${b.especialidade} — ${MARCA}`} descricao={`${b.titulo} ${b.descricao}`} md={`/${b.slug}.md`} bloco={b}>
   <article class="bloco">
     <h1 class="sr">{b.especialidade}</h1>
     <p class="intro"><b>{b.titulo.replace(/\.$/, ':')}</b> {b.descricao}</p>
-    <div class="galeria" aria-label="Project images (in preparation)">
-      {caixas.map((c) => <img class={`caixa caixa-${c.k}`} src={c.src} alt="" />)}
-    </div>
+    <Motivo numero={b.numero} />
     {b.projectos.length > 0 && <ul class="lista lista-movel texto">{b.projectos.map((p) => <li set:html={comItalico(p)} />)}</ul>}
   </article>
   <footer class="rodape">
@@ -40,12 +31,6 @@ const caixas = [
   /* Desktop Bloco destaque: Regular 20 / 1.5 / 1%, Color 3 */
   .intro { margin: 0; color: var(--cor3); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
 
-  /* Caixas 343,8 × 292,8 — colunas a 26,5px, linhas a 34,6px */
-  .galeria { margin-top: 3.94rem; padding-bottom: 3rem; display: grid;
-    grid-template-columns: 1fr 1fr; grid-auto-rows: 18.3rem; column-gap: 1.656rem; row-gap: 2.162rem; }
-  .caixa { display: block; width: 100%; height: 100%; }
-  .caixa-alta { grid-column: 2; grid-row: 1 / span 2; }
-  .caixa-larga { grid-column: 1 / span 2; }
 
   .lista { list-style: none; margin: 0; padding: .8rem 0 0; }
   .lista li { display: inline; }
@@ -58,9 +43,6 @@ const caixas = [
       -webkit-mask-image: linear-gradient(transparent 4rem, #000 4.625rem, #000 calc(100% - 2.6rem), transparent); }
     /* Mobile: Regular 14 / 1.5 / 1% */
     .intro { font-size: .875rem; font-weight: 400; }
-    /* Caixas 143,5 × 159,5 — colunas a 11px, linhas a 19px */
-    .galeria { margin-top: 2.75rem; padding-bottom: 1rem; grid-auto-rows: 9.97rem;
-      column-gap: .69rem; row-gap: 1.2rem; }
     .lista-movel { display: block; padding: 0 0 3rem; }
   }
 </style>
