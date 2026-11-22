@@ -55,8 +55,9 @@ Ficheiros que importam:
   blocos, bio, clientes, contactos). Persiste entre páginas
   (`transition:persist`); o bloco activo marca-se no cliente.
 - `src/components/Pedra.astro` — pedra 3D e etiquetas.
-- `public/icones/` — SVG tirados do Figma, **sem retoques** (vistas, "O"
-  do logótipo). `public/modelos/pedra.glb` — 0,9 MB.
+- `public/icones/` — SVG tirados do Figma, **sem retoques** (vistas; logótipo
+  "☺ Nuno" `logo-nuno.svg`; ícones do rodapé, da pasta *DPX26 Portfolio
+  Assets*). `public/modelos/pedra.glb` — 0,9 MB.
 - `src/lib/motivos/`, `src/components/Motivo.astro`, `_tmp-motivos/` —
   motivos 3D dos blocos. **Têm dono:** só a sessão "design · motivos" os
   edita; as outras lêem e usam.
@@ -108,7 +109,7 @@ WOFF2 variável). Sem Google Fonts. Estilos do Figma:
 Desktop texto              Regular 15 / 1.5 / 1%
 Desktop Bloco destaque     Regular 20 / 1.5 / 1%
 Desktop Título Bloco link  Medium Italic 28 / 1.25 / 2%   (passo 44px)
-Logótipo                   ExtraLight 36 / 1.33 / 12%, maiúsculas
+Logótipo                   SVG "☺ Nuno" (139×30), desde 22.11
 Etiquetas da pedra         Italic 36 / 1.33 / 1%
 Mobile texto               ExtraLight 12 / 1.25 / 1%
 Mobile Título Bloco link   Bold Italic 14 / 1.25 / 1%    (passo 28px)
@@ -117,7 +118,7 @@ Mobile Título Bloco link   Bold Italic 14 / 1.25 / 1%    (passo 28px)
 **Separadores: bullets (`·`), como na Notion**, nunca `|` (regra do Nuno,
 22.11.2026): listas de projectos, clientes, a linha da bio, o rodapé.
 
-Os SVG que mudam de cor (vistas, "O") pintam-se por **máscara CSS** com a
+Os SVG que mudam de cor (vistas, logótipo) pintam-se por **máscara CSS** com a
 cor do tema, para não editar o ficheiro do Figma.
 
 ---

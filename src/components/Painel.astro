@@ -7,7 +7,7 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
 <aside class="direita" transition:persist="painel">
   <div class="topo-dir">
     <header class="cabeca">
-      <a href="/" class="logo" aria-label="NUNO — home"><span>NUN</span><span class="o" aria-hidden="true"></span></a>
+      <a href="/" class="logo" aria-label="Nuno — home"></a>
       <nav class="vistas" aria-label="Views">
         <a href="/" class="vista vista-humana" data-vista="humana" title="Human view" aria-label="Human view"></a>
         <a href="/machine/" class="vista vista-maquina" data-vista="maquina" title="Machine view" aria-label="Machine view: content for language models and agents"></a>
@@ -76,15 +76,13 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
   .topo-dir { min-height: 0; overflow-y: auto; scrollbar-width: none; }
   .cor3 { color: var(--cor3); }
 
-  /* Logótipo: Azeret Mono ExtraLight 36 / 1.33 / 4.32px, + "O" do Figma */
-  .cabeca { display: flex; justify-content: space-between; align-items: center; margin-top: -.6875rem; }
-  .logo { color: var(--cor3); text-decoration: none; font-weight: 200; font-size: 2.25rem;
-    line-height: 1.33; letter-spacing: .12em; display: inline-flex; align-items: center; }
-  /* "O" sorridente do Figma, por máscara, para ter a cor do logótipo */
-  /* O "O" fica à mesma distância que as letras entre si: medido, o espaço
-     de tinta N–N é 9,9px a 36px e N–O era 2,3px (Nuno, 22.11). */
-  .logo .o { display: inline-block; margin-left: .078em; width: 1.867rem; height: 1.704rem; background: currentColor;
-    -webkit-mask: url(/icones/logo-o.svg) no-repeat center / contain; mask: url(/icones/logo-o.svg) no-repeat center / contain; }
+  /* Linha do logótipo e das vistas, ao centro uma da outra */
+  .cabeca { display: flex; justify-content: space-between; align-items: center; }
+  /* Logótipo "☺ Nuno" do Figma (22.11), SVG do Nuno sem retoques (139×30),
+     pintado por máscara na cor de contraste. */
+  .logo { display: block; width: 8.6875rem; height: 1.875rem; background: var(--cor3);
+    -webkit-mask: url(/icones/logo-nuno.svg) no-repeat left center / contain;
+    mask: url(/icones/logo-nuno.svg) no-repeat left center / contain; }
 
   /* Ícones: um só SVG do Figma (71×27), recortado em dois por máscara,
      para poderem mudar de cor (Color 3 = vista activa). */
@@ -97,7 +95,7 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
   .vista.activo, .vista:hover { background: var(--cor3); }
 
   /* Desktop Título Bloco link: Medium Italic 28 / 1.25 / 2%, passo de 44px */
-  .blocos ul { list-style: none; margin: 6.19rem 0 0; padding: 0; }
+  .blocos ul { list-style: none; margin: 6.62rem 0 0; padding: 0; }   /* menu no sítio de antes do logótipo novo */
   .blocos li { font-size: 1.75rem; line-height: 2.75rem; font-style: italic; font-weight: 500;
     letter-spacing: .02em; }
   .blocos a { text-decoration: underline wavy var(--texto); text-decoration-thickness: max(1px, .04em);  /* mais fino que os 7% do Figma (Nuno, 22.11) */
@@ -135,8 +133,7 @@ import { blocos, bio, clientes, contactos, links } from '../lib/conteudo';
     .topo-dir { overflow: visible; }
     /* Linha do logótipo a 0,556 da desktop (15px de alto, como no Figma) */
     .cabeca { margin-top: 0; }
-    .logo { font-size: 1.25rem; line-height: 1; }
-    .logo .o { width: 1.04rem; height: .95rem; }
+    .logo { width: 4.344rem; height: .9375rem; }
     .vistas { gap: .59rem; }
     .vista { height: .9375rem; -webkit-mask-size: 2.477rem .9375rem; mask-size: 2.477rem .9375rem; }
     .vista-humana { width: 1.031rem; }
