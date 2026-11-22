@@ -1,4 +1,4 @@
-# NUNO — site de portfólio (V2)
+# Nuno — site de portfólio (V2)
 
 Portfólio do Nuno Rodrigues (DPX Studio, Viseu). No ar desde 21.11.2026.
 Conteúdos em **EN-EU**.
@@ -45,7 +45,7 @@ Ficheiros que importam:
   pedir um retrato novo. Títulos de projecto em itálico marcados `*assim*`.
 - `src/lib/conteudo.ts` — o **único** ficheiro que lê o retrato.
   `SITE_NOME` = estúdio (DPX Studio, da Notion); `MARCA` = nome do
-  portfólio (NUNO, do Figma).
+  portfólio (Nuno, como o logótipo).
 - `src/lib/maquina.ts` — tudo o que as máquinas lêem: Markdown, llms,
   JSON-LD (schema.org), JSON Resume. Campos vazios na secção *Machine* da
   Notion não se publicam.
