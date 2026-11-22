@@ -7,12 +7,18 @@ export function getStaticPaths() {
   return blocos.map((b) => ({ params: { bloco: b.slug }, props: { b } }));
 }
 const { b } = Astro.props as { b: Bloco };
+// O motivo escolhe-se pelo bloco, não pela posição: a ordem dos blocos muda
+// na Notion (22.11), mas Motivo.astro numera as cenas pela ordem antiga.
+const MOTIVO: Record<string, number> = {
+  'editorial-design': 1, 'information-and-brand-systems': 2, 'exhibitions-and-spaces': 3,
+  'festivals-and-events': 4, 'e-commerce': 5, 'creative-direction-and-mentoring': 6,
+};
 ---
 <Base titulo={`${b.especialidade} — ${MARCA}`} descricao={`${b.titulo} ${b.descricao}`} md={`/${b.slug}.md`} bloco={b}>
   <article class="bloco">
     <h1 class="sr">{b.especialidade}</h1>
     <p class="intro"><b>{b.titulo.replace(/\.$/, ':')}</b> {b.descricao}</p>
-    <Motivo numero={b.numero} />
+    <Motivo numero={MOTIVO[b.slug]} />
     {b.projectos.length > 0 && <ul class="lista lista-movel texto">{b.projectos.map((p) => <li set:html={comItalico(p)} />)}</ul>}
   </article>
   <footer class="rodape">
