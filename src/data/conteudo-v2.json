@@ -1,5 +1,5 @@
 {
-  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-12T19:04Z. Itálicos da Notion marcados com *…* (títulos de projecto); uma célula só com «—» fica lista vazia. Não editar à mão: pedir um retrato novo. Secção Machine acrescentada pelo Claude a 2026-11-12T19:20Z. Ordem dos blocos actualizada pela Notion a 2026-11-22T15:26Z (BLOCO 1–6).",
+  "_origem": "Notion, página Portfolio V2 (408b67e80ba8801baa8fcaff1329380a). Retrato tirado pelo Claude via MCP a 2026-11-12T19:04Z. Itálicos da Notion marcados com *…* (títulos de projecto); uma célula só com «—» fica lista vazia. Não editar à mão: pedir um retrato novo. Secção Machine acrescentada pelo Claude a 2026-11-12T19:20Z. Ordem dos blocos actualizada pela Notion a 2026-11-22T15:26Z (BLOCO 1–6). Descrições (com quebra antes de «For…») e projectos dos blocos actualizados pela Notion de 2026-11-22T15:26Z.",
   "estudio": "DPX Studio",
   "hero": {
     "titulo": "Rosetta Stone",
@@ -87,73 +87,84 @@
       "numero": 1,
       "especialidade": "Creative direction and mentoring",
       "titulo": "The outsider as unblocker.",
-      "descricao": "Creative direction and project mentoring from idea to production, with sensible critique, honest applause. For artists, publishers and small teams too close to their own project.",
+      "descricao": "Creative direction and project mentoring from idea to production, with sensible critique, honest applause.\nFor artists, publishers and small teams too close to their own project.",
       "projectos": [
-        "Museu do Falso, 2021–24 — Memória Comum",
-        "Brand and programming — Maria Xica",
-        "*Rituais para o Futuro* — Ritual de Domingo",
-        "*A História das Coisas* — Mochos no Telhado",
-        "Pousada de Viseu — Cava Galeria"
+        "Jornal do Centro (art direction)",
+        "Carmo’81 (creative direction)",
+        "Cine Clube (direction, mentoring)",
+        "Ritual de Domingo (direction)",
+        "Maria Xica (brand and programme)",
+        "Feira de São Mateus (direction)",
+        "Museu do Falso (mentoring)"
       ]
     },
     {
       "numero": 2,
       "especialidade": "Information and brand systems",
       "titulo": "Information as architecture.",
-      "descricao": "Identity systems, editorial templates, grids, components and documented design rules, ready for handover. For organisations that produce at volume and need consistency without a designer on call.",
+      "descricao": "Identity systems, editorial templates, grids, components and documented design rules, ready for handover.\nFor organisations that produce at volume and need consistency without a designer on call.",
       "projectos": [
-        "Rebrand — Instituto Politécnico de Viseu",
-        "Rebrand and packaging — Cafés Negrão",
-        "Brand and manual — ALVA",
-        "Rebrand — Carmo'81",
-        "Brand system and formats — City of Viseu"
+        "IPV (brand brief)",
+        "Jornal do Centro (page system)",
+        "Feira de São Mateus (identity)",
+        "T*NUTS (brand and packaging)"
       ]
     },
     {
       "numero": 3,
       "especialidade": "Editorial design",
       "titulo": "Content as craft.",
-      "descricao": "Books, catalogues, reports and academic publications — grid, typographic hierarchy, rhythm and detail, page after page. For authors, universities, institutions and companies that publish long-form documents.",
+      "descricao": "Books, catalogues, reports and academic publications — grid, typographic hierarchy, rhythm and detail, page after page.\nFor authors, universities, institutions and companies that publish long-form documents.",
       "projectos": [
-        "Norte 2030 publications — CCDR-Norte",
-        "*Beira Ilustre*, illustrated book — Beira Ilustre",
-        "Water supply of Viseu, book — City of Viseu",
-        "*Karamázov*, book — Ritual de Domingo",
-        "MYCOTOX good practice guide — MYCOTOX / IPB"
+        "Jornal do Centro (newspaper)",
+        "*Argumento* (Cine Clube magazine)",
+        "Viseu (municipal magazine)",
+        "Viseu (heritage book series)",
+        "CCDR-Norte (reports)",
+        "Catalogues (exhibitions)",
+        "Programmes (cultural venues)",
+        "*Beira Ilustre* (illustrated book)",
+        "*Revelação* (exhibition book)",
+        "Fanzines (small press)"
       ]
     },
     {
       "numero": 4,
       "especialidade": "Exhibitions and spaces",
       "titulo": "Space as narrative.",
-      "descricao": "Scenography, stage design, exhibition storytelling, signage and environmental graphics — giving a space a script. For museums, galleries, heritage sites, theatres and performance venues.",
+      "descricao": "Scenography, stage design, exhibition storytelling, signage and environmental graphics — giving a space a script.\nFor museums, galleries, heritage sites, theatres and performance venues.",
       "projectos": [
-        "*Revelação*, Santa Cruz manuscripts — Porto Museum & Libraries",
-        "*CINE—PT / POLA—NT* — Cine Clube de Viseu",
-        "*Credo* — Misericórdia de Viseu",
-        "*Paleo Deidades* — Museu do Falso",
-        "*Cut Copy* — Street Art Viseu"
+        "Viseu museums (municipal)",
+        "Cine Clube Viseu (exhibitions)",
+        "*Revelação* (Porto Museum)",
+        "Exhibitions (emerging artists)"
       ]
     },
     {
       "numero": 5,
       "especialidade": "Festivals and events",
       "titulo": "Organisation as mantra.",
-      "descricao": "Festival and event branding, applications, signage, print supports and production pipelines, delivered on immovable deadlines. For venues, festivals and municipalities running recurring programmes.",
+      "descricao": "Festival and event branding, applications, signage, print supports and production pipelines, delivered on immovable deadlines.\nFor venues, festivals and organisations running recurring programmes.",
       "projectos": [
-        "Feira de São Mateus — Viseu Marca",
-        "*Karma* festival — Carmo'81",
-        "WBTB Biennial — Romulus / Intruso",
-        "*Solitude* — Mochos no Telhado",
-        "Christmas in Viseu — City of Viseu"
+        "Feira de São Mateus (Viseu Marca)",
+        "*Solos & Solidão* (Carmo’81)",
+        "*Karma* (Carmo’81)",
+        "*Vistacurta* (Cine Clube de Viseu)",
+        "*Jardins Efémeros* (Pausa Possível)",
+        "Season programmes (6 venues)"
       ]
     },
     {
       "numero": 6,
       "especialidade": "E-commerce",
       "titulo": "Conversion as a game.",
-      "descricao": "Online shop strategy, structure, content and Shopify implementation, plus the operation that keeps it selling. For small producers and brands moving from shelf to direct sales.",
-      "projectos": []
+      "descricao": "Online shop strategy, structure, content and Shopify implementation, plus the operation that keeps it selling.\nFor small producers and brands moving from shelf to direct sales.",
+      "projectos": [
+        "T*NUTS (brand and Shopify store)",
+        "T*NUTS (art direction, systems)",
+        "Transagri (sales restructuring)",
+        "Transagri (store operation)"
+      ]
     }
   ],
   "maquina": {

@@ -25,10 +25,12 @@ export const FICHEIROS = [
 
 /** "X. For Y." → { oQue: X, paraQuem: Y } */
 export const partes = (b: Bloco) => {
-  const i = b.descricao.indexOf('. For ');
+  // Desde 22.11 a Notion separa as duas frases com uma quebra de linha.
+  const d = b.descricao.replace(/\s*\n\s*/g, ' ');
+  const i = d.indexOf('. For ');
   return i < 0
-    ? { oQue: b.descricao, paraQuem: '' }
-    : { oQue: b.descricao.slice(0, i + 1), paraQuem: b.descricao.slice(i + 2) };
+    ? { oQue: d, paraQuem: '' }
+    : { oQue: d.slice(0, i + 1), paraQuem: d.slice(i + 2) };
 };
 
 const url = (site: URL, p: string) => new URL(p, site).href;
@@ -116,7 +118,7 @@ export const jsonLd = (site: URL, bloco?: Bloco) => {
     '@id': url(site, `${b.href}#service`),
     name: b.especialidade,
     slogan: b.titulo,
-    description: b.descricao,
+    description: b.descricao.replace(/\s*\n\s*/g, ' '),
     audience: { '@type': 'Audience', audienceType: partes(b).paraQuem.replace(/^For /, '').replace(/\.$/, '') },
     provider: { '@id': estudio },
     url: url(site, b.href),

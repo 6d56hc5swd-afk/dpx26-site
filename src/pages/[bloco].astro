@@ -14,10 +14,10 @@ const MOTIVO: Record<string, number> = {
   'festivals-and-events': 4, 'e-commerce': 5, 'creative-direction-and-mentoring': 6,
 };
 ---
-<Base titulo={`${b.especialidade} — ${MARCA}`} descricao={`${b.titulo} ${b.descricao}`} md={`/${b.slug}.md`} bloco={b}>
+<Base titulo={`${b.especialidade} — ${MARCA}`} descricao={`${b.titulo} ${b.descricao.replace(/\n/g, ' ')}`} md={`/${b.slug}.md`} bloco={b}>
   <article class="bloco">
     <h1 class="sr">{b.especialidade}</h1>
-    <p class="intro"><b>{b.titulo.replace(/\.$/, ':')}</b> {b.descricao}</p>
+    <p class="intro"><b>{b.titulo.replace(/\.$/, ':')}</b> {b.descricao.split('\n').map((l, i) => <>{i > 0 && <br />}{l}</>)}</p>
     <Motivo numero={MOTIVO[b.slug]} />
     {b.projectos.length > 0 && <ul class="lista lista-movel texto">{b.projectos.map((p) => <li set:html={comItalico(p)} />)}</ul>}
   </article>
