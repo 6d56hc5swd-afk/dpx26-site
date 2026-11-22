@@ -43,12 +43,17 @@ const MOTIVO: Record<string, number> = {
       mask-image: none; -webkit-mask-image: none; }
     .bloco :global(.motivo) { flex: 1; min-height: 0; padding-bottom: 2.5rem; }
     .bloco :global(.motivo canvas) { height: 100%; aspect-ratio: auto; }
+    /* Composição do Nuno (22.11): título sozinho no topo, à altura do
+       logótipo; a descrição começa na linha do primeiro bloco do menu
+       (linhas de base alinhadas). A caixa do título tem altura fixa para
+       a descrição não saltar entre blocos. */
+    .bloco .intro { font-size: 1.5rem; line-height: 1.5; max-width: 44ch; }  /* medida da composição */
+    .bloco .intro b { display: block; max-width: 17ch; height: 8.84rem; }
   }
 
-  /* Descrição no corpo do menu dos blocos (28px, Nuno 22.11), em Regular;
-     o motivo cede a altura que o texto precisar.
+  /* Descrição em Regular; o motivo cede a altura que o texto precisar.
      Cor de contraste só no título; o texto no tom claro (Figma, 22.11) */
-  .intro { margin: 0; color: var(--texto); font-size: 1.75rem; line-height: 1.4; letter-spacing: .01em; }
+  .intro { margin: 0; color: var(--texto); font-size: 1.25rem; line-height: 1.5; letter-spacing: .01em; }
   .intro b { color: var(--cor3); }
 
 
