@@ -67,12 +67,15 @@ const MOTIVO: Record<string, number> = {
   .ponto-d { display: none; }
 
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
-    .bloco { padding-top: 4.625rem;
-      mask-image: linear-gradient(transparent 4rem, #000 4.625rem, #000 calc(100% - 2.6rem), transparent);
-      -webkit-mask-image: linear-gradient(transparent 4rem, #000 4.625rem, #000 calc(100% - 2.6rem), transparent); }
+    /* Topo: os 74px do Figma simulavam a barra do telemóvel; o browser já
+       tem a sua. Fica 1,5rem (Nuno, 23.11). */
+    .bloco { padding-top: 1.5rem;
+      mask-image: linear-gradient(transparent .9rem, #000 1.5rem, #000 calc(100% - 2.6rem), transparent);
+      -webkit-mask-image: linear-gradient(transparent .9rem, #000 1.5rem, #000 calc(100% - 2.6rem), transparent); }
     /* Mobile: Regular 14 / 1.5 / 1% */
     .intro { font-size: .875rem; font-weight: 400; }
-    .lista-movel { display: block; padding: 0 0 3rem; }
+    /* filete de 1px a separar os projectos do motivo (Nuno, 23.11) */
+    .lista-movel { display: block; padding: .75rem 0 3rem; border-top: 1px solid var(--filete); }
     /* O desenho fica ao centro do quadro do motivo; com o 4:5 do componente
        sobrava um vazio grande por cima. Quadro mais baixo = desenho logo por
        baixo da descrição (Nuno, 22.11). */

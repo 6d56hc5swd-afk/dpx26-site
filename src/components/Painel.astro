@@ -43,7 +43,9 @@ const logo = logoSvg.replace(/fill="#8484FD"/g, 'fill="currentColor"').replace(/
       </ul>
       <div class="textos">
         <p><a href={`mailto:${contactos.email}`}>{contactos.email}</a><span class="sep-tel"> · </span><a class="tel" href={`tel:${contactos.telefone.replace(/\s/g, '')}`}>{contactos.telefone}</a></p>
-        <p>{[...links.cv, links.redes[links.redes.length - 1]].map((l, i) => <>{i > 0 && ' · '}{l.url ? <a href={l.url} rel="me noopener" target={l.url.endsWith('.pdf') ? undefined : '_blank'}>{l.nome}</a> : <span class="por-ligar" title="Link in preparation">{l.nome}</span>}</>)}</p>
+        {[links.cv, links.outros].map((grupo) => (
+          <p>{grupo.map((l, i) => <>{i > 0 && ' · '}{l.url ? <a href={l.url} rel="me noopener" target={l.url.endsWith('.pdf') ? undefined : '_blank'}>{l.nome}</a> : <span class="por-ligar" title="Link in preparation">{l.nome}</span>}</>)}</p>
+        ))}
       </div>
     </div>
   </footer>
@@ -137,11 +139,12 @@ const logo = logoSvg.replace(/fill="#8484FD"/g, 'fill="currentColor"').replace(/
     .topo-dir { overflow: visible; }
     /* Linha do logótipo a 0,556 da desktop (15px de alto, como no Figma) */
     .cabeca { margin-top: 0; }
-    .logo { width: 4.344rem; height: .9375rem; }
-    .vistas { gap: .59rem; }
-    .vista { height: .9375rem; -webkit-mask-size: 2.477rem .9375rem; mask-size: 2.477rem .9375rem; }
-    .vista-humana { width: 1.031rem; }
-    .vista-maquina { width: .856rem; -webkit-mask-position: -1.621rem 0; mask-position: -1.621rem 0; }
+    /* cabeçalho +10% (Nuno, 23.11): logótipo e vistas */
+    .logo { width: 4.778rem; height: 1.031rem; }
+    .vistas { gap: .649rem; }
+    .vista { height: 1.031rem; -webkit-mask-size: 2.725rem 1.031rem; mask-size: 2.725rem 1.031rem; }
+    .vista-humana { width: 1.134rem; }
+    .vista-maquina { width: .942rem; -webkit-mask-position: -1.783rem 0; mask-position: -1.783rem 0; }
     /* Mobile Título Bloco link: Bold Italic 14 / 1.25 / 1%, passo de 28px */
     .blocos ul { margin-top: 1.98rem; }
     .blocos li { font-size: .875rem; line-height: 1.75rem; font-weight: 700; letter-spacing: .01em; }

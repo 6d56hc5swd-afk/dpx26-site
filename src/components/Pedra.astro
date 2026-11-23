@@ -29,6 +29,7 @@ const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ..
   const CENTRO = new THREE.Vector3(-11.4468, 3.8079, -5.8202);
   const ROT = new THREE.Quaternion(0.051892, -0.057337, 0.993638, 0.081871);
   const INCLINA_MAX = 0.25;
+  const OTICO = 0.2;   // subida da pedra no desktop, em fracção da altura: a perspectiva descaía-a 15px; fica centrada e uns px acima (23.11)
   const BALANCO_SEG = 14, BALANCO_AMP = 0.7;
 
   let parar: (() => void) | null = null;
@@ -96,7 +97,10 @@ const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ..
       // ~88% da altura no desktop (Figma); em coluna única fica espaço
       // por cima para a etiqueta Symbolic não sair do quadro
       const umaColuna = matchMedia('(max-width: 860px), (max-aspect-ratio: 1/1)').matches;
-      const dH = (caixa.y / (umaColuna ? 0.74 : 0.88)) / 2 / t;
+      // desktop: 82% da altura e centrada no olho, um pouco acima do centro
+      // geométrico (a pedra é mais larga em baixo e parecia descaída; Nuno, 23.11)
+      const dH = (caixa.y / (umaColuna ? 0.74 : 0.82)) / 2 / t;
+      pivot.position.y = umaColuna ? 0 : OTICO * caixa.y;
       // as etiquetas sobrepõem-se à pedra (como no Figma): só limita a largura
       const larguraUtil = W * 0.86;
       const dW = (caixa.x * W / larguraUtil) / 2 / t / camera.aspect;

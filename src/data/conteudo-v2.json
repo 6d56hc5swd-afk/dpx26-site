@@ -181,7 +181,7 @@
     "keywords": "editorial design, information design, report design, academic publications, publication design, long-form layout, typography, identity systems, design systems, brand guidelines, exhibition design, scenography, signage, festival branding, cultural sector, public institutions, museums, Shopify, creative direction, remote, Portugal"
   },
   "links": {
-    "_nota": "Notion V2: 'Social links' (Instagram, LinkedIn, Behance) e 'CV: PDF EN + PT', sem endereços nem ficheiros a 22.11.2026. Ordem e rótulos do Figma (712:5702). url vazio = placeholder sem ligação. Desde 22.11 (Figma Desktop Home): redes como ícones (SVG da pasta DPX26 Portfolio Assets) e Cristo-\\-Roto também em texto, a seguir aos CV.",
+    "_nota": "Notion V2: 'Social links' (Instagram, LinkedIn, Behance) e 'CV: PDF EN + PT', sem endereços nem ficheiros a 22.11.2026. Ordem e rótulos do Figma (712:5702). url vazio = placeholder sem ligação. Desde 22.11 (Figma Desktop Home): redes como ícones (SVG da pasta DPX26 Portfolio Assets) e Cristo-\\-Roto também em texto, a seguir aos CV. 23.11: Cristo-\\-Roto sai dos ícones (o ícone azul é do site Cristo Roto) e fica só em texto, numa linha própria ('outros').",
     "redes": [
       {
         "nome": "Instagram",
@@ -197,11 +197,6 @@
         "nome": "Behance",
         "url": "",
         "icone": "behance"
-      },
-      {
-        "nome": "Cristo-\\-Roto",
-        "url": "",
-        "icone": "cristo-roto"
       }
     ],
     "cv": [
@@ -211,6 +206,12 @@
       },
       {
         "nome": "CV-PT",
+        "url": ""
+      }
+    ],
+    "outros": [
+      {
+        "nome": "Cristo-\\-Roto",
         "url": ""
       }
     ]
