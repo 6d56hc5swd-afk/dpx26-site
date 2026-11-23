@@ -19,7 +19,8 @@ export const deHex = s => parseInt(String(s).trim().replace('#', ''), 16);
 export function novoLote() { return { polys: {}, rotulos: [], fundos: [] }; }
 export function poli(lote, est, pts) { (lote.polys[est] ??= []).push(pts); }
 export function seg(lote, est, a, b) { poli(lote, est, [...a, ...b]); }
-export function rotulo(lote, txt, pos, ancora = 0.5, est = 'cota') { lote.rotulos.push({ txt, pos, ancora, est }); }
+// alfa (0–1) multiplica a opacidade do estilo: serve para um rótulo desvanecer numa animação
+export function rotulo(lote, txt, pos, ancora = 0.5, est = 'cota', alfa = 1) { lote.rotulos.push({ txt, pos, ancora, est, alfa }); }
 export function fundo(lote, geo) { lote.fundos.push(geo); }
 export function junta(...lotes) {
   const l = novoLote();
@@ -153,7 +154,9 @@ export class Desenho {
       grupo.add(l);
     }
     for (const r of lote.rotulos) {
-      const e = this.ESTILOS[r.est], sp = new THREE.Sprite(this.matRotulo(r.txt, e.op, this.corDe(e)));
+      const e = this.ESTILOS[r.est], op = Math.round(e.op * (r.alfa ?? 1) * 20) / 20;   // em passos de 5%, para a cache não crescer
+      if (op <= 0) continue;
+      const sp = new THREE.Sprite(this.matRotulo(r.txt, op, this.corDe(e)));
       sp.center.set(r.ancora, 0.5);
       sp.position.set(r.pos[0], r.pos[1] + 0.3, r.pos[2]);
       grupo.add(sp);

@@ -11,8 +11,8 @@ const NIVEIS_TIPO = ['DISPLAY', 'H1', 'H2', 'H3', 'BODY', 'CAPTION'];
 // ───────────────────────────────────────────────────────────────
 
 const P = {
-  camadas: 6, separacao: 35, recuo: 0, colunas: 6, escalaTipo: 1.4,   // afinados pelo Nuno, 22.11.2026
-  construcao: true, rotulos: true, ligacoes: true, cotas: true,
+  camadas: 6, separacao: 36, recuo: 0, colunas: 6, escalaTipo: 1.4,   // afinados pelo Nuno, 22.11.2026
+  construcao: true, rotulos: true, legendas: false, ligacoes: false, cotas: false,   // legendas internas tiradas: sobrepunham-se (Nuno, 23.11.2026)
 };
 // cada linha pertence a um nível do estilo comum (ver motor.js · NIVEIS)
 const ESTILOS = {
@@ -77,9 +77,10 @@ function montar(P, { sep = P.separacao, queda = null } = {}) {
     caixa(lote, 'placa', [-W / 2, y - ESPESSURA, -D / 2 + dz], [W / 2, y, D / 2 + dz]);
     [[0, 0], [W, 0], [W, D], [0, D]].forEach(([a, b], k) => cantos[k].push(f(a, b)));
 
-    if (P.rotulos) {
-      L('cota', f(0, D), f(-16, D));
-      rotulo(lote, `${String(i + 1).padStart(2, '0')} ${CAMADAS[i]}`, f(-18, D), 1, 'cota');
+    if (P.rotulos) {                                  // desvanecem quando a pilha fecha, para não se encavalitarem (Nuno, 23.11.2026)
+      const alfa = THREE.MathUtils.clamp((sep / P.separacao - 0.35) / 0.45, 0, 1);
+      if (alfa > 0.5) L('cota', f(0, D), f(-16, D));
+      rotulo(lote, `${String(i + 1).padStart(2, '0')} ${CAMADAS[i]}`, f(-18, D), 1, 'cota', alfa);
     }
 
     if (i === 0) {                                     // 01 GRID
@@ -106,7 +107,7 @@ function montar(P, { sep = P.separacao, queda = null } = {}) {
         L('guia', fm(-R, -R), fm(R, R)); L('guia', fm(-R, R), fm(R, -R));
         const x = 0.5 * R;                               // área de protecção
         L('guia', fm(-R - x, -R - x), fm(R + x, -R - x), fm(R + x, R + x), fm(-R - x, R + x), fm(-R - x, -R - x));
-        if (P.rotulos) rotulo(lote, 'X', fm(-R - x / 2, R + x / 2), 0.5, 'cota');
+        if (P.legendas) rotulo(lote, 'X', fm(-R - x / 2, R + x / 2), 0.5, 'cota');
       }
       marca(fm, 'conteudo', 0, 0, R);
       [[14, '48'], [9, '32'], [5, 'MIN 16']].forEach(([r, t], k) => {
@@ -129,7 +130,7 @@ function montar(P, { sep = P.separacao, queda = null } = {}) {
         if (P.construcao) { L('guia', f(M, b), f(W - M, b)); L('guia', f(a0, b - s * 0.7), f(W - M, b - s * 0.7)); }
         rect('conteudo', a0, b - s * 0.7, a1, b);
         if (k >= 4) for (let j = 1; j < 3; j++) L('conteudo', f(a0, b + j * s * 1.3), f(a0 + (a1 - a0) * (j === 2 ? 0.6 : 1), b + j * s * 1.3));
-        if (P.rotulos) {                               // chamada que sobe da linha e rótulo no topo, em escada
+        if (P.legendas) {                               // chamada que sobe da linha e rótulo no topo, em escada
           const ax = W - M + 4, alto = 8 + (5 - k) * 7.5;
           const topo = f(ax, meio); topo[1] += alto;
           const fim = f(ax + 5, meio); fim[1] += alto;
@@ -147,7 +148,7 @@ function montar(P, { sep = P.separacao, queda = null } = {}) {
         const a0 = M + k * (lado + esp), b0 = M + 4;
         rect('conteudo', a0, b0, a0 + lado, b0 + lado);
         if (v > 0) tramar(f, a0, b0, a0 + lado, b0 + lado, 1.2 + (100 - v) / 100 * 5, v === 100);
-        if (P.rotulos) rotulo(lote, String(v), f(a0 + lado / 2, b0 + lado + 5), 0.5, 'cota');
+        if (P.legendas) rotulo(lote, String(v), f(a0 + lado / 2, b0 + lado + 5), 0.5, 'cota');
       });
       const b0 = 68, b1 = 88, partes = [[0.6, 80], [0.3, 40], [0.1, 0]];
       let a = M;
@@ -157,11 +158,11 @@ function montar(P, { sep = P.separacao, queda = null } = {}) {
         if (v > 0) tramar(f, a, b0, a1, b1, 1.2 + (100 - v) / 100 * 5);
         a = a1;
       }
-      if (P.rotulos) rotulo(lote, '60 · 30 · 10', f(M, b1 + 6), 0, 'cota');
+      if (P.legendas) rotulo(lote, '60 · 30 · 10', f(M, b1 + 6), 0, 'cota');
       // par de contraste
       rect('conteudo', M, 104, M + 60, D - M); tramar(f, M, 104, M + 60, D - M, 1.2, true);
       rect('conteudo', M + 66, 104, M + 126, D - M);
-      if (P.rotulos) rotulo(lote, 'CONTRAST ≥ 4.5:1', f(M + 132, (104 + D - M) / 2), 0, 'cota');
+      if (P.legendas) rotulo(lote, 'CONTRAST ≥ 4.5:1', f(M + 132, (104 + D - M) / 2), 0, 'cota');
     }
 
     if (i === 4) {                                     // 05 COMPONENTS
@@ -270,11 +271,11 @@ function animar(P, t) {
 export default {
   id: 'sistemas', titulo: 'Sistema', P, ESTILOS, montar, animar,
   // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
-  SITE: { pos: [352.2, 300.9, 495.2], alvo: [-28, 100.6, -3.8], aspecto: 713 / 662, animacao: 'montar' },
-  // estilo próprio: o DPX com contornos e conteúdos mais finos (Nuno, 22.11.2026)
-  ESTILO: { nome: 'Sistemas', espessura: 1, rotulo: 15.5, reforco: 1.5, niveis: {
-    principal: { w: .5, op: 1 }, conteudo: { w: .55, op: .9 }, secundaria: { w: .6, op: .34 },
-    cota: { w: 1, op: .31 }, imaterial: { w: .7, op: .32 }, fundo: { w: .3, op: .1 } } },
+  SITE: { pos: [331.6, 241.4, 523], alvo: [-30.6, 112, -4.8], aspecto: 713 / 662, animacao: 'explodir' },
+  // estilo próprio (Nuno, 23.11.2026): traço geral 1,4, reforço 1,8, cotas quase apagadas (0,16)
+  ESTILO: { nome: 'Sistemas', espessura: 1.4, rotulo: 15.5, reforco: 1.8, niveis: {
+    principal: { w: .5, op: 1 }, conteudo: { w: .65, op: .9 }, secundaria: { w: .6, op: .34 },
+    cota: { w: .55, op: .16 }, imaterial: { w: .55, op: .32 }, fundo: { w: .45, op: .1 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [560, 470, 680], alvo: [0, 175, -55] },
     alcado:      { nome: 'Alçado',      pos: [-30, 190, 1150], alvo: [0, 175, -55] },
@@ -290,5 +291,5 @@ export default {
     ['colunas', 'Colunas da grelha', 2, 12, 1],
     ['escalaTipo', 'Escala tipográfica', 1.1, 1.6, 0.01],
   ],
-  CHKS: [['construcao', 'Linhas de construção'], ['rotulos', 'Rótulos das camadas'], ['ligacoes', 'Ligações entre camadas'], ['cotas', 'Cotas']],
+  CHKS: [['construcao', 'Linhas de construção'], ['rotulos', 'Rótulos das camadas'], ['legendas', 'Legendas dentro das camadas'], ['ligacoes', 'Ligações entre camadas'], ['cotas', 'Cotas']],
 };

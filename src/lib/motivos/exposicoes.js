@@ -265,11 +265,11 @@ function animar(P, t) {
 export default {
   id: 'exposicoes', titulo: 'Espaço', P, ESTILOS, montar, animar,
   // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
-  SITE: { pos: [599.4, 691.6, 829.9], alvo: [0, 0, 0], aspecto: 713 / 662, animacao: 'erguer' },
-  // estilo próprio (Nuno, 22.11.2026): traço geral 0,55, luz e projecção mais apagadas
-  ESTILO: { nome: 'Exposições', espessura: 0.55, rotulo: 15.5, reforco: 1.5, niveis: {
-    principal: { w: 1, op: 1 }, conteudo: { w: .55, op: .9 }, secundaria: { w: .65, op: .34 },
-    cota: { w: .8, op: .31 }, imaterial: { w: .8, op: .19 }, fundo: { w: .75, op: .1 } } },
+  SITE: { pos: [457, 852.5, 655.2], alvo: [0, 0, 0], aspecto: 713 / 662, animacao: 'erguer' },
+  // estilo próprio (Nuno, 23.11.2026): traço geral 1,05, secundárias 1,15, cotas 1,3, luz a 0,19, fundo 0,17
+  ESTILO: { nome: 'Exposições', espessura: 1.05, rotulo: 15.5, reforco: 1.5, niveis: {
+    principal: { w: 1, op: 1 }, conteudo: { w: .55, op: .9 }, secundaria: { w: 1.15, op: .33 },
+    cota: { w: 1.3, op: .31 }, imaterial: { w: 1.05, op: .19 }, fundo: { w: .6, op: .17 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [520, 600, 720], alvo: [0, 0, 0] },
     planta:      { nome: 'Planta',      pos: [0, 1250, 1],    alvo: [0, 0, 0] },

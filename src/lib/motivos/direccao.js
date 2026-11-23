@@ -10,7 +10,7 @@ const T = 0.07;            // meia-espessura das paredes, em células
 // ───────────────────────────────────────────────────────────────
 
 const P = {
-  celulas: 12, altura: 0.4, semente: 4,   // afinados pelo Nuno, 22.11.2026
+  celulas: 10, altura: 0.4, semente: 4,   // afinados pelo Nuno, 22.11.2026
   solucao: true, becos: true, notas: false, observador: true, figuras: false, cotas: true, grelha: true,
 };
 // cada linha pertence a um nível do estilo comum (ver motor.js · NIVEIS)
@@ -211,11 +211,11 @@ function animar(P, t) {
 export default {
   id: 'direccao', titulo: 'Labirinto', P, ESTILOS, montar, animar,
   // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
-  SITE: { pos: [652.8, 834.5, 308.6], alvo: [-30.2, -46.2, 3.9], aspecto: 713 / 662, animacao: 'percurso' },
-  // estilo próprio (Nuno, 22.11.2026): traço geral 0,5, principais 0,75, secundárias 0,95, cotas 0,23
-  ESTILO: { nome: 'Direcção', espessura: 0.5, rotulo: 15.5, reforco: 1.5, niveis: {
-    principal: { w: .75, op: 1 }, conteudo: { w: .6, op: .9 }, secundaria: { w: .95, op: .34 },
-    cota: { w: 1, op: .23 }, imaterial: { w: .7, op: .32 }, fundo: { w: .6, op: .1 } } },
+  SITE: { pos: [626.7, 873, 550.6], alvo: [-36.7, -54.3, 25.9], aspecto: 713 / 662, animacao: 'percurso' },
+  // estilo próprio (Nuno, 23.11.2026): traço geral 0,8, reforço 2,1, secundárias 1,8, luz/olhar a 0,49
+  ESTILO: { nome: 'Direcção', espessura: 0.8, rotulo: 15.5, reforco: 2.1, niveis: {
+    principal: { w: .75, op: 1 }, conteudo: { w: .6, op: .9 }, secundaria: { w: 1.8, op: .37 },
+    cota: { w: 1.15, op: .23 }, imaterial: { w: .9, op: .49 }, fundo: { w: .2, op: .1 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [400, 600, 760], alvo: [-70, 20, 50] },
     planta:      { nome: 'Planta',      pos: [0, 1300, 31],   alvo: [0, 0, 30] },
