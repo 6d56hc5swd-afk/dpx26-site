@@ -29,7 +29,7 @@ const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ..
   const CENTRO = new THREE.Vector3(-11.4468, 3.8079, -5.8202);
   const ROT = new THREE.Quaternion(0.051892, -0.057337, 0.993638, 0.081871);
   const INCLINA_MAX = 0.25;
-  const OTICO = 0.2;   // subida da pedra no desktop, em fracção da altura: a perspectiva descaía-a 15px; fica centrada e uns px acima (23.11)
+  const OTICO = 0.025;   // subida da pedra no desktop, em fracção da altura: a perspectiva descaía-a 15px; fica centrada e uns px acima (23.11)
   const BALANCO_SEG = 14, BALANCO_AMP = 0.7;
 
   let parar: (() => void) | null = null;
