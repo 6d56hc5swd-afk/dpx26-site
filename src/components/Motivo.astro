@@ -76,7 +76,7 @@ const DESCRICAO: Record<number, string> = {
       // o desenho enche o quadro (Nuno, 22.11.2026): mantém o ângulo da câmara escolhida e ajusta
       // a distância e o centro a este quadro, seja desktop ou mobile; a inclinação roda em torno do novo centro
       const res = RESERVA_REM * parseFloat(getComputedStyle(document.documentElement).fontSize);
-      const f = encher(completo, vista.pos, vista.alvo, cam.aspect, { margem: { x: Math.max(.5, 1 - 2 * res / W), y: Math.max(.5, 1 - 2 * res / H) } });
+      const f = encher(completo, vista.pos, vista.alvo, cam.aspect, { margem: { x: Math.max(.5, 1 - 2 * res / W), y: Math.max(.5, 1 - 2 * res / H) }, frac: (cena.ESTILO ?? PREDEF.dpx).rotulo / 1000 });
       cam.position.set(...(f.pos as [number, number, number]));
       cam.lookAt(new THREE.Vector3(...f.alvo));
       pivo.position.set(...(f.alvo as [number, number, number]));

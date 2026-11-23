@@ -37,8 +37,8 @@ const ALT_NO = 3;            // espessura dos cartões
 // ───────────────────────────────────────────────────────────────
 
 const P = {
-  formatos: 8, escala: 1,
-  portas: false, widgets: true, previas: true, canvas: true, totais: true, semente: 6,
+  formatos: 7, escala: 5.3,   // afinados pelo Nuno, 23.11.2026
+  portas: false, widgets: true, previas: true, canvas: true, totais: false, semente: 6,   // quantidades ocultas (Nuno, 23.11.2026)
 };
 // cada linha pertence a um nível do estilo comum (ver motor.js · NIVEIS)
 const ESTILOS = {
@@ -124,6 +124,7 @@ function montar(P, { e = 1 } = {}) {
 
   // pilhas de saída: a altura é o volume
   let total = 0;
+  const etiquetas = [];                               // rótulos das pilhas, arrumados depois numa coluna à direita
   pilhas(P).forEach(({ f, cx, cz }, i) => {
     const [nome, w0, d0, base] = f, w = w0 * PILHAS.k, d = d0 * PILHAS.k, n = base * P.escala, h = (10 + 17 * Math.log10(n)) * e, x0 = cx - w / 2, x1 = cx + w / 2, z0 = cz - d / 2, z1 = cz + d / 2;
     total += n * e;
@@ -134,13 +135,20 @@ function montar(P, { e = 1 } = {}) {
     lin('topo', [x0, h, z0], [x1, h, z0], [x1, h, z1], [x0, h, z1], [x0, h, z0]);
     const m = Math.min(w, d) * 0.12;
     if (w > 6 && d > 6) imagem(x0 + m, z0 + m, x1 - m, z0 + (d - 2 * m) * 0.55 + m, h + 0.1);
-    if (P.totais) {                                  // chamada vertical, alturas desencontradas para os rótulos não chocarem
-      const ya = h + 10 + (i % 3) * 16;
-      lin('cota', [cx, h, cz], [cx, ya - 2, cz]);
-      rotulo(lote, `${fmtN(n * e)} ${nome}`, [cx, ya, cz], 0.5, 'cota');
-    }
+    if (P.totais) etiquetas.push({ txt: `${fmtN(n * e)} ${nome}`, de: [x1, h, cz], cz });
   });
-  if (P.totais) rotulo(lote, `${fmtN(total)} OUTPUTS · ONE SYSTEM`, [PILHAS.x + PILHAS.dx / 2, 0, PILHAS.z + Math.ceil(P.formatos / PILHAS.colunas) * PILHAS.dz + 4], 0.5, 'cota');
+  // coluna à direita das pilhas (Nuno, 23.11.2026): vista de cima, rótulos a alturas diferentes sobrepunham-se.
+  // Cada pilha liga-se por uma chamada em cotovelo à sua linha da coluna, pela ordem do fundo para a frente.
+  if (P.totais) {
+    const xc = PILHAS.x + PILHAS.dx * (PILHAS.colunas - 1) + 42 * PILHAS.k / 1.5 + 30, passo = 15;
+    const z0 = PILHAS.z - 20, ord = etiquetas.sort((a, b) => a.cz - b.cz);
+    ord.forEach((et, k) => {
+      const zc = z0 + k * passo;
+      lin('cota', et.de, [xc - 14, 0.5, et.cz], [xc - 6, 0.5, zc], [xc - 2, 0.5, zc]);
+      rotulo(lote, et.txt, [xc, 0.5, zc], 0, 'cota');
+    });
+    rotulo(lote, `${fmtN(total)} OUTPUTS · ONE SYSTEM`, [xc, 0.5, z0 + ord.length * passo + 8], 0, 'cota');
+  }
   return lote;
 }
 
@@ -163,11 +171,11 @@ function animar(P, t) {
 export default {
   id: 'festivais-nos', titulo: 'Produção', P, ESTILOS, montar, animar, aspectoMin: 1.1,
   // no site: planta vista de cima, com a animação Produzir (Nuno, 22.11.2026), enquadrada na moldura "site desktop"
-  SITE: { pos: [50, 1700, 41.3], alvo: [50, 0, 40], aspecto: 713 / 662, animacao: 'produzir', inclina: false },   // planta direita: sem inclinação
-  // estilo próprio: o DPX com reforço do contraste 1,3 (Nuno, 22.11.2026)
-  ESTILO: { nome: 'Festivais', espessura: 1, rotulo: 15.5, reforco: 1.3, niveis: {
-    principal: { w: 1, op: 1 }, conteudo: { w: .5, op: .9 }, secundaria: { w: .6, op: .34 },
-    cota: { w: 1, op: .31 }, imaterial: { w: .7, op: .32 }, fundo: { w: .3, op: .1 } } },
+  SITE: { pos: [49.4, 1582.9, 40.6], alvo: [49.4, 0, 39.4], aspecto: 713 / 662, animacao: 'produzir', inclina: false },   // planta direita: sem inclinação
+  // estilo próprio (Nuno, 23.11.2026): traço geral 0,8, reforço 1,3, secundárias e cotas mais presentes (0,52 · 0,56)
+  ESTILO: { nome: 'Festivais', espessura: 0.8, rotulo: 15.5, reforco: 1.3, niveis: {
+    principal: { w: 1, op: 1 }, conteudo: { w: .5, op: .9 }, secundaria: { w: .6, op: .52 },
+    cota: { w: 1, op: .56 }, imaterial: { w: .7, op: .32 }, fundo: { w: .3, op: .1 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [1050, 560, 420], alvo: [40, 0, 30] },
     planta:      { nome: 'Planta',      pos: [50, 1300, 41],   alvo: [50, 0, 40] },

@@ -12,40 +12,29 @@ const DIV = [                  // divisórias: x, e vãos (z de/até)
 ];
 const ENTRADA = [1, 2.6], SAIDA = [13.4, 15];   // vãos na parede da frente (x)
 const SALAS = [['A · PROLOGUE', 2.5], ['B · COLLECTION', 8], ['C · EPILOGUE', 13.5]];
-const PERCURSO = [[1.8, 11.4], [1.8, 8.6], [2.5, 7.4], [4.2, 7.25], [5.8, 7.25], [6.0, 6.2], [6.0, 2.3],
-  [10.2, 2.3], [11, 2.75], [12.6, 3.6], [15.2, 4.7], [15.2, 6.8], [14.2, 8.4], [14.2, 11.4]];   // contorna o banco da sala C
-const PARAGENS = [[2.5, 7.4], [6.0, 4.6], [8.2, 2.3], [12.6, 3.6]];
-// O percurso desenhado (Nuno, 22.11.2026): linha contínua, cantos arredondados, interrompida nas paragens.
-const RAIO_CANTO = 0.9, RAIO_PARAGEM = 0.32, FOLGA = 0.07;
-const CAMINHO = (() => {
-  const out = [PERCURSO[0]];
-  for (let i = 1; i < PERCURSO.length - 1; i++) {
-    const a = PERCURSO[i - 1], b = PERCURSO[i], c = PERCURSO[i + 1];
-    const la = Math.hypot(b[0] - a[0], b[1] - a[1]), lc = Math.hypot(c[0] - b[0], c[1] - b[1]), r = Math.min(RAIO_CANTO, la / 2, lc / 2);
-    const p = [b[0] + (a[0] - b[0]) * r / la, b[1] + (a[1] - b[1]) * r / la], q = [b[0] + (c[0] - b[0]) * r / lc, b[1] + (c[1] - b[1]) * r / lc];
-    out.push(p);
-    for (let k = 1; k < 12; k++) { const t = k / 12, u = 1 - t; out.push([u * u * p[0] + 2 * u * t * b[0] + t * t * q[0], u * u * p[1] + 2 * u * t * b[1] + t * t * q[1]]); }
-    out.push(q);
-  }
-  out.push(PERCURSO.at(-1));
-  const d = [out[0]];                                   // pontos de 10 em 10 cm
-  for (let i = 1; i < out.length; i++) {
-    const a = out[i - 1], b = out[i], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.1));
-    for (let k = 1; k <= n; k++) d.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]);
-  }
-  return d;
-})();
-const ACUM = [0]; for (let i = 1; i < CAMINHO.length; i++) ACUM.push(ACUM[i - 1] + Math.hypot(CAMINHO[i][0] - CAMINHO[i - 1][0], CAMINHO[i][1] - CAMINHO[i - 1][1]));
-const COMPRIMENTO = ACUM.at(-1);
-// ponto e direcção a uma distância d do início
-function noCaminho(d) {
-  let i = 1; while (i < ACUM.length - 1 && ACUM[i] < d) i++;
-  const a = CAMINHO[i - 1], b = CAMINHO[i], u = (d - ACUM[i - 1]) / ((ACUM[i] - ACUM[i - 1]) || 1);
+// Percursos (Nuno, 23.11.2026): em vez de um caminho único com paragens, uma rede de percursos
+// possíveis pelo espaço, desenhados como os cabos dos festivais, com impulsos a indicar o sentido.
+// Cada troço é uma linha de pontos no sentido da visita; os troços partilham os pontos onde se cruzam.
+// Um percurso (Nuno, 23.11.2026): fluido, pontilhado, sem setas nem paragens. Atravessa as portas a meio do vão.
+const PERCURSO = [[1.8, 11.4], [1.8, 9.4], [2.0, 6.4], [2.6, 4.7], [3.6, 5.0], [4.2, 6.5], [4.7, 7.25], [5.6, 7.25],
+  [6.2, 6.5], [6.2, 3.8], [7.2, 2.5], [9.3, 2.45], [10.3, 2.75], [11.0, 2.75], [11.8, 2.85], [13.6, 3.3],
+  [15.2, 4.6], [15.1, 6.6], [14.2, 8.6], [14.2, 10.0], [14.2, 11.4]];
+const PASSO_PONTOS = 0.4, RAIO_PONTO = 0.05;          // metros entre pontos e raio de cada ponto
+// curva centrípeta pelos pontos (sem bicos nem laçadas), amostrada de 10 em 10 cm
+function suaviza(poli) {
+  const curva = new THREE.CatmullRomCurve3(poli.map(([x, z]) => new THREE.Vector3(x, 0, z)), false, 'centripetal');
+  const n = Math.max(8, Math.ceil(curva.getLength() / 0.1));
+  const d = curva.getSpacedPoints(n).map(v => [v.x, v.z]);
+  const acum = [0]; for (let i = 1; i < d.length; i++) acum.push(acum[i - 1] + Math.hypot(d[i][0] - d[i - 1][0], d[i][1] - d[i - 1][1]));
+  return { pts: d, acum, comp: acum.at(-1) };
+}
+const CAMINHO = suaviza(PERCURSO);
+// ponto e direcção a uma distância d do início de um troço
+function noTroco(tr, d) {
+  let i = 1; while (i < tr.acum.length - 1 && tr.acum[i] < d) i++;
+  const a = tr.pts[i - 1], b = tr.pts[i], u = (d - tr.acum[i - 1]) / ((tr.acum[i] - tr.acum[i - 1]) || 1);
   return [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, Math.atan2(b[1] - a[1], b[0] - a[0])];
 }
-// cada paragem assenta no ponto mais próximo da linha arredondada
-const PARAGENS_C = PARAGENS.map(([x, z]) => CAMINHO.reduce((m, p) => Math.hypot(p[0] - x, p[1] - z) < Math.hypot(m[0] - x, m[1] - z) ? p : m));
-const foraDasParagens = ([x, z], margem = 0) => PARAGENS_C.every(([cx, cz]) => Math.hypot(x - cx, z - cz) > RAIO_PARAGEM + FOLGA + margem);
 const S = 30;                  // metros → unidades da cena
 // ───────────────────────────────────────────────────────────────
 
@@ -63,12 +52,13 @@ const ESTILOS = {
   vidro: { n: 'secundaria', dash: [3, 2.5] },
   grafico: { n: 'conteudo' },
   percurso: { n: 'principal', destaque: true },
+  pulso:    { n: 'principal', destaque: true },
   luz: { n: 'imaterial', dash: [4, 4] },
   figura: { n: 'cota' },
   cota: { n: 'cota' },
 };
 
-function montar(P, { f = 1 } = {}) {
+function montar(P, { f = 1, fase = 0 } = {}) {
   const lote = novoLote();
   const V = (x, y, z) => [(x - L / 2) * S, y * f * S, (z - F / 2) * S];
   const linha = (est, ...pts) => poli(lote, est, pts.flatMap(p => V(...p)));
@@ -121,10 +111,10 @@ function montar(P, { f = 1 } = {}) {
     }
   };
 
-  // Sala A: parede de título solta, de frente para a entrada
-  caixa(lote, 'parede', V(0.8, 0, 6.15), V(4.2, Math.min(3, hF), 6.35));
+  // Sala A: parede de título solta, de frente para a entrada, a 2/3 do fundo da sala (Nuno, 23.11.2026)
+  caixa(lote, 'parede', V(0.8, 0, 3.2), V(4.2, Math.min(3, hF), 3.4));
   if (P.graficos) {
-    const p = naParede([0.8, 0, 6.36], [1, 0, 0]);
+    const p = naParede([0.8, 0, 3.41], [1, 0, 0]);
     rect('grafico', p, 0.3, 2.15, 3.1, 2.6);
     rect('grafico', p, 0.3, 1.75, 2.0, 2.05);
     texto(p, 0.3, 1.6, 1.5, 0.95); texto(p, 1.8, 3.1, 1.5, 0.95);
@@ -174,28 +164,16 @@ function montar(P, { f = 1 } = {}) {
     for (const [a, b] of [[0, 0.8], [3.8, 0.8], [3.8, Math.min(3.3, hF - 0.3)], [0, Math.min(3.3, hF - 0.3)]]) linha('luz', proj, ecra(a, b));
   }
 
-  // percurso: linha contínua e arredondada no chão, setas e paragens numeradas que a interrompem
+  // percurso: pontos ao longo da curva; fase (0–1) desloca-os, para o Fluxo os fazer avançar
   if (P.percurso) {
     const y = 0.02;
-    let troco = [];
-    for (const p of CAMINHO) {
-      if (foraDasParagens(p)) troco.push([p[0], y, p[1]]);
-      else { if (troco.length > 1) linha('percurso', ...troco); troco = []; }
+    for (let d = fase * PASSO_PONTOS; d <= CAMINHO.comp; d += PASSO_PONTOS) {
+      const [x, z] = noTroco(CAMINHO, d), pts = [];
+      for (let k = 0; k <= 8; k++) { const a = k / 8 * Math.PI * 2; pts.push([x + Math.cos(a) * RAIO_PONTO, y, z + Math.sin(a) * RAIO_PONTO]); }
+      linha('percurso', ...pts);
     }
-    if (troco.length > 1) linha('percurso', ...troco);
-    for (let d = 1.6; d < COMPRIMENTO - 1; d += 3.2) {        // setas ao longo da linha
-      const [mx, mz, ang] = noCaminho(d);
-      if (!foraDasParagens([mx, mz], 0.4)) continue;
-      const ux = Math.cos(ang), uz = Math.sin(ang), s = 0.22;
-      linha('percurso', [mx - ux * s - uz * s, y, mz - uz * s + ux * s], [mx, y, mz], [mx - ux * s + uz * s, y, mz - uz * s - ux * s]);
-    }
-    PARAGENS_C.forEach(([x, z], i) => { circulo('percurso', [x, y, z], RAIO_PARAGEM); rotulo(lote, String(i + 1).padStart(2, '0'), V(x, y, z), 0.5, 'percurso'); });
-    rotulo(lote, 'IN', V(PERCURSO[0][0], y, PERCURSO[0][1] + 0.4), 0.5, 'percurso');
-    rotulo(lote, 'OUT', V(PERCURSO.at(-1)[0], y, PERCURSO.at(-1)[1] + 0.4), 0.5, 'percurso');
-    if (P.luz) {                                       // cone de visão da paragem 03 para os painéis
-      const olho = [8.2, 1.6, 2.3];
-      for (const a of [5.7, 10.5]) for (const b of [0.9, 2.4]) linha('luz', olho, [a, b, 0.01]);
-    }
+    rotulo(lote, 'IN', V((ENTRADA[0] + ENTRADA[1]) / 2, y, F + 1.8), 0.5, 'percurso');
+    rotulo(lote, 'OUT', V((SAIDA[0] + SAIDA[1]) / 2, y, F + 1.8), 0.5, 'percurso');
   }
   SALAS.forEach(([t, x]) => rotulo(lote, t, V(x, 0.02, 9.1), 0.5, 'cota'));
 
@@ -239,35 +217,24 @@ function montar(P, { f = 1 } = {}) {
   return lote;
 }
 
-// figura que percorre o percurso
-function visitante(P, t) {
-  const lote = novoLote(), V = (x, y, z) => [(x - L / 2) * S, y * S, (z - F / 2) * S];
-  const [x, z, ang] = noCaminho((t * 1.1) % COMPRIMENTO), rot = ang + Math.PI / 2;
-  const pc = []; for (let j = 0; j <= 24; j++) { const a = j / 24 * Math.PI * 2; pc.push(...V(x + Math.cos(a) * RAIO_PARAGEM, 0.03, z + Math.sin(a) * RAIO_PARAGEM)); }
-  poli(lote, 'percurso', pc);                                   // círculo da posição do visitante
-  const c = Math.cos(rot), s = Math.sin(rot);
-  const forma = [[-0.2, 1.42], [0.2, 1.42], [0.25, 0.85], [0.13, 0.85], [0.12, 0], [-0.12, 0], [-0.13, 0.85], [-0.25, 0.85], [-0.2, 1.42]];
-  poli(lote, 'percurso', forma.flatMap(([a, b]) => V(x + a * c, b, z + a * s)));
-  const cab = []; for (let j = 0; j <= 20; j++) { const a = j / 20 * Math.PI * 2; cab.push(...V(x + Math.cos(a) * 0.12 * c, 1.58 + Math.sin(a) * 0.12, z + Math.cos(a) * 0.12 * s)); }
-  poli(lote, 'percurso', cab);
-  return lote;
-}
+// Fluxo: os pontos avançam pelo percurso; 9 passos por ciclo de 6 s (0,6 m/s), para o vídeo fechar em loop
+const CICLO_FLUXO = 6, PASSOS_CICLO = 9;
 
 function animar(P, t) {
   if (P.animacao === 'erguer') {
     const tt = t % 6, e0 = THREE.MathUtils.clamp(tt < 3 ? (tt - 0.5) / 2 : 1 - (tt - 4) / 1.5, 0, 1);
     return { estatico: montar(P, { f: Math.max(0.001, e0 * e0 * (3 - 2 * e0)) }) };
   }
-  if (P.animacao === 'visita') return { movel: visitante(P, t) };
+  if (P.animacao === 'fluxo') return { estatico: montar(P, { fase: ((t / CICLO_FLUXO) * PASSOS_CICLO) % 1 }) };
 }
 
 // a cena: as bancadas (_tmp-motivos/) e o site (components/Motivo.astro) usam este mesmo objecto
 export default {
   id: 'exposicoes', titulo: 'Espaço', P, ESTILOS, montar, animar,
   // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
-  SITE: { pos: [457, 852.5, 655.2], alvo: [0, 0, 0], aspecto: 713 / 662, animacao: 'erguer' },
-  // estilo próprio (Nuno, 23.11.2026): traço geral 1,05, secundárias 1,15, cotas 1,3, luz a 0,19, fundo 0,17
-  ESTILO: { nome: 'Exposições', espessura: 1.05, rotulo: 15.5, reforco: 1.5, niveis: {
+  SITE: { pos: [476.3, 897.7, 695.2], alvo: [-5.3, -0.7, 4.6], aspecto: 713 / 662, animacao: 'erguer' },
+  // estilo próprio (Nuno, 23.11.2026): traço geral 0,95, sem reforço do contraste (1), cotas 1,3, luz a 0,19
+  ESTILO: { nome: 'Exposições', espessura: 0.95, rotulo: 15.5, reforco: 1, niveis: {
     principal: { w: 1, op: 1 }, conteudo: { w: .55, op: .9 }, secundaria: { w: 1.15, op: .33 },
     cota: { w: 1.3, op: .31 }, imaterial: { w: 1.05, op: .19 }, fundo: { w: .6, op: .17 } } },
   VISTAS: {
@@ -276,14 +243,14 @@ export default {
     alcado:      { nome: 'Alçado',      pos: [-120, 160, 980], alvo: [0, 50, 0] },
     interior:    { nome: 'Interior', fixa: true,    pos: [0, 50, 110],    alvo: [0, 40, -150] },
   },
-  ANIMACOES: [['erguer', 'Erguer'], ['visita', 'Visita']],
-  CICLOS: { erguer: 6, visita: COMPRIMENTO / 1.1 },     // duração de um ciclo (s): o vídeo fecha em loop
+  ANIMACOES: [['erguer', 'Erguer'], ['fluxo', 'Fluxo']],
+  CICLOS: { erguer: 6, fluxo: CICLO_FLUXO },     // duração de um ciclo (s): o vídeo fecha em loop
   REGS: [
     ['alturaFundo', 'Paredes do fundo (m)', 1, 5, 0.1],
     ['alturaFrente', 'Paredes da frente (m)', 0, 4, 0.1],
     ['alturaDivisorias', 'Divisórias (m)', 0.5, 4, 0.1],
     ['vitrines', 'Vitrines', 1, 5, 1],
   ],
-  CHKS: [['percurso', 'Percurso e paragens'], ['graficos', 'Gráficos (títulos, painéis)'], ['luz', 'Luz, projecção e visão'],
+  CHKS: [['percurso', 'Percurso'], ['graficos', 'Gráficos (títulos, painéis)'], ['luz', 'Luz, projecção e visão'],
     ['figuras', 'Figuras à escala'], ['cotas', 'Cotas'], ['grelhaChao', 'Grelha do chão']],
 };

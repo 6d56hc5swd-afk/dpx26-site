@@ -17,7 +17,7 @@ const CAIXA = { x0: 138, x1: 196, y: 46, z0: -18, z1: 26 };
 // ───────────────────────────────────────────────────────────────
 
 const P = {
-  taxa: 0.35, visitas: 30,
+  taxa: 0.46, visitas: 54,
   furos: true, rotulos: true, produtos: true, fluxo: true, cotas: true, semente: 27,   // semente escolhida pelo Nuno, 22.11.2026
 };
 // cada linha pertence a um nível do estilo comum (ver motor.js · NIVEIS)
@@ -203,11 +203,11 @@ function animar(P, t) {
 export default {
   id: 'ecommerce', titulo: 'Funil', P, ESTILOS, montar, animar,
   // no site: câmara e animação escolhidas pelo Nuno na bancada (22.11.2026), enquadradas na moldura "site desktop"
-  SITE: { pos: [448.5, 386.9, 845.8], alvo: [-19.5, 169.8, -10.8], aspecto: 713 / 662, animacao: 'jogo' },
-  // estilo próprio (Nuno, 22.11.2026, segunda versão): traço geral 0,4, principais a 1,65, reforço 1,8, cotas a 0,17
-  ESTILO: { nome: 'E-commerce', espessura: 0.4, rotulo: 15.5, reforco: 1.8, niveis: {
-    principal: { w: 1.65, op: 1 }, conteudo: { w: .8, op: .9 }, secundaria: { w: 1, op: .34 },
-    cota: { w: 1, op: .17 }, imaterial: { w: .75, op: .32 }, fundo: { w: .3, op: .1 } } },
+  SITE: { pos: [279.4, 538.2, 743.2], alvo: [-22.9, 150.4, -4.1], aspecto: 713 / 662, animacao: 'jogo' },
+  // estilo próprio (Nuno, 23.11.2026): traço 0,65, estruturas 1,65, painel e furos mais presentes, fluxo a 0,53
+  ESTILO: { nome: 'E-commerce', espessura: 0.65, rotulo: 15.5, reforco: 1.8, niveis: {
+    principal: { w: 1.65, op: 1 }, conteudo: { w: .9, op: .9 }, secundaria: { w: 1.85, op: .45 },
+    cota: { w: 1.45, op: .22 }, imaterial: { w: .65, op: .53 }, fundo: { w: .8, op: .16 } } },
   VISTAS: {
     axonometria: { nome: 'Axonometria', pos: [480, 420, 640], alvo: [-40, 165, 0] },
     frente:      { nome: 'Frente',      pos: [-40, 170, 1000], alvo: [-40, 170, 0] },

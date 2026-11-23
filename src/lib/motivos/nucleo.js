@@ -176,19 +176,24 @@ export class Desenho {
 // lote ocupar o quadro com uma margem curta (Nuno, 22.11.2026: "o máximo de espaço disponível").
 // lote: o desenho completo · pos/alvo: a câmara escolhida · aspecto: largura/altura do quadro
 // margem: fracção do quadro a ocupar (0,92), ou { x, y } em separado (o site passa uma reserva fixa em px)
-export function enquadrar(lote, pos, alvo, aspecto, { fov = 30, margem = 0.92 } = {}) {
+// frac: altura dos rótulos em fracção da altura do quadro, para contar com a largura do texto
+export function enquadrar(lote, pos, alvo, aspecto, { fov = 30, margem = 0.92, frac = 0.0155 } = {}) {
   const pts = [];
   for (const polys of Object.values(lote.polys)) for (const p of polys) for (let i = 0; i + 2 < p.length; i += 9) pts.push(new THREE.Vector3(p[i], p[i + 1], p[i + 2]));
-  for (const r of lote.rotulos) pts.push(new THREE.Vector3(...r.pos));
+  const rots = lote.rotulos.map(r => ({ p: new THREE.Vector3(...r.pos), w: r.txt.length * 0.62 * 2 * frac / aspecto, a: r.ancora }));
   const t = new THREE.Vector3(...alvo), dir = new THREE.Vector3(...pos).sub(t);
   let d = dir.length(); dir.normalize();
-  if (!pts.length) return { pos: [...pos], alvo: [...alvo] };
+  if (!pts.length && !rots.length) return { pos: [...pos], alvo: [...alvo] };
   const cam = new THREE.PerspectiveCamera(fov, aspecto, 1, 1e7), v = new THREE.Vector3();
   const dx = new THREE.Vector3(), dy = new THREE.Vector3(), tanMeio = Math.tan(THREE.MathUtils.degToRad(fov) / 2);
   for (let it = 0; it < 8; it++) {
     cam.position.copy(t).addScaledVector(dir, d); cam.lookAt(t); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
     let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
     for (const p of pts) { v.copy(p).project(cam); if (v.z > 1) continue; x0 = Math.min(x0, v.x); x1 = Math.max(x1, v.x); y0 = Math.min(y0, v.y); y1 = Math.max(y1, v.y); }
+    for (const r of rots) {                             // o texto ocupa largura conforme a âncora
+      v.copy(r.p).project(cam); if (v.z > 1) continue;
+      x0 = Math.min(x0, v.x - r.w * r.a); x1 = Math.max(x1, v.x + r.w * (1 - r.a)); y0 = Math.min(y0, v.y - frac); y1 = Math.max(y1, v.y + frac);
+    }
     const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, ex = (x1 - x0) / 2, ey = (y1 - y0) / 2;
     dx.setFromMatrixColumn(cam.matrixWorld, 0); dy.setFromMatrixColumn(cam.matrixWorld, 1);
     const h = d * tanMeio;                               // meia-altura do quadro à distância do alvo
