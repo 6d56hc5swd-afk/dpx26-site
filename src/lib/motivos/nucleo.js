@@ -186,7 +186,7 @@ export function enquadrar(lote, pos, alvo, aspecto, { fov = 30, margem = 0.92, f
   if (!pts.length && !rots.length) return { pos: [...pos], alvo: [...alvo] };
   const cam = new THREE.PerspectiveCamera(fov, aspecto, 1, 1e7), v = new THREE.Vector3();
   const dx = new THREE.Vector3(), dy = new THREE.Vector3(), tanMeio = Math.tan(THREE.MathUtils.degToRad(fov) / 2);
-  for (let it = 0; it < 8; it++) {
+  const medir = () => {
     cam.position.copy(t).addScaledVector(dir, d); cam.lookAt(t); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
     let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
     for (const p of pts) { v.copy(p).project(cam); if (v.z > 1) continue; x0 = Math.min(x0, v.x); x1 = Math.max(x1, v.x); y0 = Math.min(y0, v.y); y1 = Math.max(y1, v.y); }
@@ -194,6 +194,10 @@ export function enquadrar(lote, pos, alvo, aspecto, { fov = 30, margem = 0.92, f
       v.copy(r.p).project(cam); if (v.z > 1) continue;
       x0 = Math.min(x0, v.x - r.w * r.a); x1 = Math.max(x1, v.x + r.w * (1 - r.a)); y0 = Math.min(y0, v.y - frac); y1 = Math.max(y1, v.y + frac);
     }
+    return { x0, x1, y0, y1 };
+  };
+  for (let it = 0; it < 8; it++) {
+    const { x0, x1, y0, y1 } = medir();
     const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, ex = (x1 - x0) / 2, ey = (y1 - y0) / 2;
     dx.setFromMatrixColumn(cam.matrixWorld, 0); dy.setFromMatrixColumn(cam.matrixWorld, 1);
     const h = d * tanMeio;                               // meia-altura do quadro à distância do alvo
@@ -201,6 +205,8 @@ export function enquadrar(lote, pos, alvo, aspecto, { fov = 30, margem = 0.92, f
     const mx = typeof margem === 'number' ? margem : margem.x, my = typeof margem === 'number' ? margem : margem.y;
     d *= Math.max(ex / mx, ey / my);
   }
+  // limites finais do desenho no quadro (-1 a 1), para o site o poder encostar ao topo
+  const lim = medir();
   const p = t.clone().addScaledVector(dir, d);
-  return { pos: p.toArray(), alvo: t.toArray() };
+  return { pos: p.toArray(), alvo: t.toArray(), topo: lim.y1, base: lim.y0 };
 }

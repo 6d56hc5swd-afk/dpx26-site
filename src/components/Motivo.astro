@@ -81,6 +81,10 @@ const DESCRICAO: Record<number, string> = {
       cam.lookAt(new THREE.Vector3(...f.alvo));
       pivo.position.set(...(f.alvo as [number, number, number]));
       dentro.position.set(-f.alvo[0], -f.alvo[1], -f.alvo[2]);
+      // o desenho encosta ao topo do quadro, à reserva (Nuno, 23.11.2026): a altura que sobra
+      // vai toda para baixo. Desloca só a imagem; o centro da inclinação não muda.
+      const folga = f.topo != null ? Math.max(0, (1 - f.topo) * H / 2 - res) : 0;
+      if (folga > 0.5) cam.setViewOffset(W, H, 0, folga, W, H); else cam.clearViewOffset();
       d.acerta(W, H, dpr);
       d.escalaRotulos(cam);
       if (quieta) desenhar(0);
