@@ -23,13 +23,13 @@ const comTitulos = escapar(texto).replace(/^(#{1,6} .*)$/gm, '<span class="titul
   .ficheiros a { text-underline-offset: calc(.2em + .1875rem); }
   pre :global(.titulo) { color: var(--cor3); }
   .maquina { min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--filete) transparent; }
-  .nota { margin: 0 0 1.6rem; color: var(--cor3); font-size: .94rem; line-height: 1.44rem; }
+  .nota { margin: 0 0 1.6rem; color: var(--cor3); font-size: var(--t-desktop-maquina-corpo); line-height: var(--t-desktop-maquina-entrelinha); }
   pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit;
-    font-size: .94rem; line-height: 1.44rem; color: var(--texto); }
+    font-size: var(--t-desktop-maquina-corpo); line-height: var(--t-desktop-maquina-entrelinha); color: var(--texto); }
   /* Assente no fundo, à mesma linha e no mesmo corpo do email à direita */
   .ficheiros ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2rem; flex-wrap: wrap;
-    font-size: 1.25rem; line-height: 1.25; letter-spacing: .02em; color: var(--cor3); }
+    font-size: var(--t-desktop-ficheiros-corpo); line-height: var(--t-desktop-ficheiros-entrelinha); letter-spacing: var(--t-desktop-ficheiros-espaco); color: var(--cor3); }
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
-    pre, .nota, .ficheiros ul { font-size: .75rem; line-height: 1.2rem; }
+    pre, .nota, .ficheiros ul { font-size: var(--t-mobile-maquina-corpo); line-height: var(--t-mobile-maquina-entrelinha); }
   }
 </style>

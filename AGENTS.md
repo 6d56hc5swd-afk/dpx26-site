@@ -24,9 +24,10 @@ dela vale aqui sem decisão do Nuno.
 | Publicação | automática a cada push para `main`: Cloudflare Workers Builds (`npm run build`), ~1 min |
 | Stack | Astro 7 · saída estática · three.js (pedra) · Node 24 (`.nvmrc`) |
 
-**Fontes de verdade:** conteúdos na Notion *Portfolio V2*; desenho no Figma
-`DPX-MIX` (`x7DPCAV9NeSz8wqlLCPz0E`, página *Portfolio develop*, `440:2`).
-O site segue os dois; não inventa.
+**Fontes de verdade:** conteúdos na Notion *Portfolio V2*; **normas** (cores,
+tipo, escala, espaços, regras) em `../design/normas/` desde 26.11.2026;
+desenho no Figma `DPX-MIX` (`x7DPCAV9NeSz8wqlLCPz0E`, página *Portfolio
+develop*, `440:2`). O site segue os três; não inventa.
 
 ---
 
@@ -49,8 +50,15 @@ Ficheiros que importam:
 - `src/lib/maquina.ts` — tudo o que as máquinas lêem: Markdown, llms,
   JSON-LD (schema.org), JSON Resume. Campos vazios na secção *Machine* da
   Notion não se publicam.
-- `src/layouts/Base.astro` — tokens, tipo, grelha de duas colunas,
-  sorteio da cor de contraste.
+- `src/data/normas.json` — cópia de `../design/normas/normas.json`, feita
+  por `scripts/normas.mjs` (corre antes do `dev` e do `build`; à mão:
+  `npm run normas`). **Não editar a cópia.** Vai no git porque o Cloudflare
+  só vê o repositório.
+- `src/lib/normas.ts` — transforma as normas em variáveis CSS (`--fundo`,
+  `--cor3`, `--familia`, `--t-<estilo>-corpo|entrelinha|espaco|peso|estilo`,
+  `--margem-h`…), injectadas no `<head>` pelo `Base.astro`.
+- `src/layouts/Base.astro` — grelha de duas colunas e estilos globais; só
+  usa as variáveis das normas.
 - `src/components/Painel.astro` — coluna direita (logótipo, vistas,
   blocos, bio, clientes, contactos). Persiste entre páginas
   (`transition:persist`); o bloco activo marca-se no cliente.
@@ -80,46 +88,30 @@ directamente numa página.
   uma coluna; o conteúdo da esquerda ocupa 65,7% da altura e a coluna
   direita começa no último terço (filete a 574 de 874, como no Figma).
   `1rem` = 16px a 402 de largura.
-- **Medidas vêm do Figma** (`get_design_context`), não a olho. Conferir
-  no browser a 1728×1117 e 402×874 e comparar com o Figma ao píxel.
+- **Medidas vêm das normas e do Figma**, não a olho. O MCP do Figma não
+  tem quota (plano Starter): pedir screenshots ao Nuno ou usar o plugin
+  `../design/figma-sync/`. Conferir no browser a 1728×1117 e 402×874.
 
 ---
 
-## 4 · Tokens
+## 4 · Normas (cores, tipo, espaços)
 
-Estilos de pintura do Figma (desde 21.11.2026). Nomes a manter.
+**Os valores não se escrevem aqui nem no CSS.** Vivem em
+`../design/normas/normas.json` (valores) e `normas.md` (regras), desde
+26.11.2026. O disco manda e o Figma é espelho. Para mudar uma cor ou um
+corpo: editar as normas, `npm run normas`, conferir no browser.
 
-```
---fundo   Site Dark     #23231F
---texto   Site Light    #E8EAF2
---filete  Site Light    #E8EAF2
---cor3    Site Color 3  #A5F3FF   contraste (desde 26.11; antes #8484FD, agora Site Color 4)
-```
-
-`--cor3` é fixa (Site Color 3 `#A5F3FF` desde 26.11.2026; o violeta `#8484FD` passou a Site Color 4); o sorteio entre três cores
-acabou a 22.11.2026. Links dos blocos, como revisão de provas: por
-visitar, ondulado `--revisao` `#F64724`; visitados, sem sublinhado (desde 22.11; `--visto`
-`#84FDE7` fica por usar) (guardados no browser, `localStorage` "nuno-visitados").
-Sublinhados a 4% do corpo (mín. 1px), afastados `.2em + 3px` do texto.
-
-Tipo: **Azeret Mono**, alojada no site (`@fontsource-variable/azeret-mono`,
-WOFF2 variável). Sem Google Fonts. Estilos do Figma:
-
-```
-Desktop texto              Regular 15 / 1.5 / 1%
-Desktop Bloco destaque     Regular 20 / 1.5 / 1%
-Desktop Título Bloco link  Medium Italic 28 / 1.25 / 2%   (passo 44px)
-Logótipo                   SVG "☺ Nuno" (139×30), desde 22.11
-Etiquetas da pedra         Italic 36 / 1.33 / 1%
-Mobile texto               ExtraLight 12 / 1.25 / 1%
-Mobile Título Bloco link   Bold Italic 14 / 1.25 / 1%    (passo 28px)
-```
-
-**Separadores: bullets (`·`), como na Notion**, nunca `|` (regra do Nuno,
-22.11.2026): listas de projectos, clientes, a linha da bio, o rodapé.
-
-Os SVG que mudam de cor (vistas, logótipo) pintam-se por **máscara CSS** com a
-cor do tema, para não editar o ficheiro do Figma.
+- No CSS usam-se só as variáveis: cores `var(--fundo|--texto|--filete|--cor3|--revisao)`,
+  família `var(--familia)`, estilos `var(--t-desktop-texto-corpo)` etc.,
+  espaços `var(--margem-v|--margem-h|--intervalo|--divisor|--rodape|…)`.
+- **Pontos de corte** não podem ser variáveis: o texto das media queries
+  tem de ser igual a `pontos_de_corte` das normas. `npm run normas` avisa
+  se divergir.
+- `--cor3` leva `!important` (gerado em `normas.ts`): vence cores antigas
+  presas no browser.
+- Os SVG que mudam de cor (vistas, logótipo) pintam-se por máscara CSS ou
+  `currentColor`, sem editar o ficheiro do Figma.
+- Regras de escrita (separador `·`, itálico, nomes) estão em `normas.md`.
 
 ---
 
@@ -142,8 +134,9 @@ cor do tema, para não editar o ficheiro do Figma.
 O Nuno edita na Notion e pede a actualização. O Claude lê a página pelo
 MCP, escreve `conteudo-v2.json` e **mostra o que mudou antes de
 publicar**. Não há token da API da Notion. O Figma sincroniza-se a pedido
-(textos via `use_figma`, preservando estilos; ligar cores aos estilos
-`Site …`, nunca hex soltos).
+com o plugin `../design/figma-sync/` (o Nuno corre-o no Figma desktop):
+acerta textos e cria a página *Normas*. Cores sempre ligadas aos estilos
+`Site …`, nunca hex soltos.
 
 ---
 

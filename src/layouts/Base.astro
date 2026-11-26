@@ -10,6 +10,8 @@ import '@fontsource-variable/azeret-mono/wght-italic.css';
 import Painel from '../components/Painel.astro';
 import { jsonLd } from '../lib/maquina';
 import { MARCA, type Bloco } from '../lib/conteudo';
+// Cores, tipo, escala e espaços vêm das normas (design/normas/normas.json)
+import { cssNormas } from '../lib/normas';
 
 interface Props { titulo: string; descricao: string; md: string; bloco?: Bloco }
 const { titulo, descricao, md, bloco } = Astro.props;
@@ -31,9 +33,10 @@ const ld = JSON.stringify(jsonLd(site, bloco));
   <meta property="og:description" content={descricao} />
   <meta property="og:site_name" content={MARCA} />
   <script type="application/ld+json" set:html={ld} />
+  <style is:inline set:html={cssNormas}></style>
   <ClientRouter fallback="swap" />
   <!-- Sem sorteio desde 22.11 (decisão do Nuno): o contraste é sempre o
-       Site Color 3; o vermelho e o verde marcam os links por ver e vistos. -->
+       Site Color 3; o vermelho marca os blocos por ver. -->
 </head>
 <body>
   <div class="pagina">
@@ -49,38 +52,31 @@ const ld = JSON.stringify(jsonLd(site, bloco));
 <style is:global>
   /* Medidas tiradas da maquete Figma (DPX-MIX, 712:5702 / 715:6092 / 715:6132).
      Desktop: 1rem = 16px num ecrã de 1728×1117. Mobile: 1rem = 16px a 402. */
-  :root {
-    /* Tema de 21.11.2026 (estilos do Figma DPX-MIX) */
-    --fundo: #23231F;    /* Site Dark */
-    --texto: #E8EAF2;    /* Site Light */
-    --revisao: #F64724;  /* vermelho de revisão: link por visitar (decidido pelo Nuno, 22.11) */
-    --cor3: #A5F3FF !important;  /* Site Color 3 — contraste, fixo (#A5F3FF desde 26.11; o violeta #8484FD passou a Site Color 4); !important vence cores antigas presas na página (sorteio até 22.11) */
-    --visto: #84FDE7;    /* verde: link já visitado, "corrigido" (Nuno, 22.11) */
-    --filete: #E8EAF2;
-    font-size: min(calc(100vw / 108), calc(100svh / 69.8));
-  }
+  /* Valores (cores, tipo, escala, espaços): normas, via cssNormas no <head>.
+     Aqui só se usam as variáveis. */
+  :root { font-size: var(--escala); }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--fundo); color: var(--texto); }
-  body { font-family: 'Azeret Mono Variable', 'Azeret Mono', ui-monospace, monospace; letter-spacing: .01em;
+  body { font-family: var(--familia); letter-spacing: .01em;
     -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
   b, strong { font-weight: 700; }
 
-  /* Desktop texto: 15 / 1.5 / 1% */
-  .texto { font-size: .9375rem; line-height: 1.5; letter-spacing: .01em; }
+  /* Desktop texto */
+  .texto { font-size: var(--t-desktop-texto-corpo); line-height: var(--t-desktop-texto-entrelinha); letter-spacing: var(--t-desktop-texto-espaco); }
 
   .pagina {
     height: 100svh;
     display: grid;
-    grid-template-columns: 1fr 2px 1fr;
-    column-gap: 3.125rem;
-    padding: 3.125rem 6.25rem;
+    grid-template-columns: 1fr var(--divisor) 1fr;
+    column-gap: var(--intervalo);
+    padding: var(--margem-v) var(--margem-h);
   }
   .divisor { background: var(--filete); }
 
   /* Esquerda e direita partilham a base: filete à mesma altura (965px). */
   .esquerda, .direita { min-height: 0; display: grid; grid-template-rows: 1fr auto; }
-  .rodape { border-top: 1px solid var(--filete); height: 6.375rem; }
+  .rodape { border-top: var(--filete-fino) solid var(--filete); height: var(--rodape); }
   /* Desktop: o conteúdo dos rodapés assenta no fundo, à mesma linha nas duas
      colunas (Nuno, 22.11). Se não couber (lista longa), começa no filete. */
   @media (min-width: 861px) and (min-aspect-ratio: 1/1) {
@@ -90,15 +86,15 @@ const ld = JSON.stringify(jsonLd(site, bloco));
 
   /* ── Mobile ─────────────────────────────────────────────── */
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
-    :root { font-size: calc(100vw / 25.125); }
-    body { font-weight: 200; }               /* Mobile texto: ExtraLight */
-    .texto { font-size: .75rem; line-height: 1.25; }
-    .pagina { height: auto; display: block; padding: 0 3.125rem; }
+    :root { font-size: var(--escala-mobile); }
+    body { font-weight: var(--t-mobile-texto-peso); }               /* Mobile texto: ExtraLight */
+    .texto { font-size: var(--t-mobile-texto-corpo); line-height: var(--t-mobile-texto-entrelinha); }
+    .pagina { height: auto; display: block; padding: 0 var(--margem-mobile); }
     .divisor { display: none; }
-    .esquerda { height: 65.7svh; grid-template-rows: 1fr auto; }  /* filete a 574 de 874 */
+    .esquerda { height: var(--esquerda-mobile); grid-template-rows: 1fr auto; }  /* filete a 574 de 874 */
     /* Nos blocos a lista de projectos vai dentro do scroll; na Home a
        legenda da pedra fica, com o seu filete (Figma 713:5752, 12.11). */
     main.esquerda .rodape:not(.legenda) { display: none; }
-    .direita { border-top: 2px solid var(--filete); padding-top: 1.75rem; }
+    .direita { border-top: var(--divisor) solid var(--filete); padding-top: 1.75rem; }
   }
 </style>

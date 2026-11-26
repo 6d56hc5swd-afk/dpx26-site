@@ -1,0 +1,100 @@
+{
+  "_sobre": "Manual de normas do reposicionamento: VALORES. Fonte de verdade (decisão do Nuno, 26.11.2026, opção A: o disco manda, o Figma é espelho). As regras de uso estão em normas.md. Mudanças pedem-se a uma sessão; nunca só no Figma. Depois de mudar: no site, 'npm run normas' (o build também o faz); no Figma, 'node gerar.mjs' em design/figma-sync e correr o plugin.",
+  "versao": "26.11.2026",
+
+  "cores": {
+    "fundo":     { "hex": "#23231F", "figma": "Site Dark",    "css": "--fundo",   "uso": "fundo do site, das bancadas e dos posts" },
+    "texto":     { "hex": "#E8EAF2", "figma": "Site Light",   "css": "--texto",   "uso": "texto, ícones, linha dos motivos" },
+    "filete":    { "hex": "#E8EAF2", "figma": "Site Light",   "css": "--filete",  "uso": "filetes e divisor (= texto)" },
+    "contraste": { "hex": "#A5F3FF", "figma": "Site Color 3", "css": "--cor3",    "uso": "logótipo, títulos dos blocos, bloco activo, contactos, traços da pedra, linhas de destaque dos motivos. Fixa desde 22.11; #A5F3FF desde 26.11" },
+    "revisao":   { "hex": "#F64724", "figma": "Site Color 1", "css": "--revisao", "uso": "ondulado dos blocos por visitar (revisão de provas)" },
+    "violeta":   { "hex": "#8484FD", "figma": "Site Color 4", "css": null,        "uso": "fora de uso: foi o contraste até 26.11" },
+    "verde":     { "hex": "#84FDE7", "figma": "Site Color 5", "css": null,        "uso": "fora de uso: foi o sublinhado dos visitados até 22.11" },
+    "ambar":     { "hex": "#FDD184", "figma": "Site Color 6", "css": null,        "uso": "fora de uso: entrou no sorteio da Home (21–22.11)" }
+  },
+
+  "tipo": {
+    "familia": "Azeret Mono",
+    "css": "--familia",
+    "pilha": "'Azeret Mono Variable', 'Azeret Mono', ui-monospace, monospace",
+    "alojamento": "no site, WOFF2 variável (@fontsource-variable/azeret-mono). Sem Google Fonts nem pedidos externos.",
+    "estilos": {
+      "desktop-texto":     { "figma": "Desktop texto",              "px": 15,   "entrelinha": 1.5,  "espaco": 1, "peso": 400, "italico": false, "uso": "bio, clientes, contactos, legenda da pedra, projectos" },
+      "desktop-destaque":  { "figma": "Desktop Bloco destaque",     "px": 20,   "entrelinha": 1.5,  "espaco": 1, "peso": 400, "italico": false, "uso": "título (negrito, contraste) e descrição do bloco" },
+      "desktop-menu":      { "figma": "Desktop Título Bloco link",  "px": 28,   "entrelinha": "44px", "espaco": 2, "peso": 500, "italico": true, "uso": "menu dos blocos (passo 44px)" },
+      "desktop-etiqueta":  { "figma": "Etiquetas da pedra",         "px": 36,   "entrelinha": 1.33, "espaco": 1, "peso": 400, "italico": true,  "uso": "Symbolic · Popular · Bureaucratic" },
+      "desktop-maquina":   { "figma": null,                         "px": 15.04, "entrelinha": "23.04px", "espaco": 1, "peso": 400, "italico": false, "uso": "texto da vista máquina (.94rem / 1.44rem)" },
+      "desktop-ficheiros": { "figma": null,                         "px": 20,   "entrelinha": 1.25, "espaco": 2, "peso": 400, "italico": false, "uso": "ficheiros no rodapé da vista máquina" },
+      "mobile-texto":      { "figma": "Mobile texto",               "px": 12,   "entrelinha": 1.25, "espaco": 1, "peso": 200, "italico": false, "uso": "corpo no mobile (ExtraLight)" },
+      "mobile-destaque":   { "figma": null,                         "px": 14,   "entrelinha": 1.5,  "espaco": 1, "peso": 400, "italico": false, "uso": "título e descrição do bloco no mobile" },
+      "mobile-menu":       { "figma": "Mobile Título Bloco link",   "px": 14,   "entrelinha": "28px", "espaco": 1, "peso": 700, "italico": true, "uso": "menu dos blocos no mobile (passo 28px)" },
+      "mobile-etiqueta":   { "figma": null,                         "px": 19.2, "entrelinha": 1.33, "espaco": 1, "peso": 400, "italico": true,  "uso": "etiquetas da pedra no mobile" },
+      "mobile-contactos":  { "figma": null,                         "px": 15,   "entrelinha": 1.5,  "espaco": 1, "peso": 400, "italico": false, "uso": "excepção: contactos no mobile ficam no corpo do desktop" },
+      "mobile-maquina":    { "figma": null,                         "px": 12,   "entrelinha": "19.2px", "espaco": 1, "peso": 400, "italico": false, "uso": "vista máquina e ficheiros no mobile" }
+    }
+  },
+
+  "escala": {
+    "_nota": "Tudo em rem. 1rem = 16px nos dois quadros do Figma; o site escala inteiro sem JavaScript.",
+    "rem_px": 16,
+    "desktop": { "quadro": [1728, 1117], "raiz": "min(calc(100vw / 108), calc(100svh / 69.8))", "css": "--escala" },
+    "mobile":  { "quadro": [402, 874],   "raiz": "calc(100vw / 25.125)", "css": "--escala-mobile" }
+  },
+
+  "pontos_de_corte": {
+    "_nota": "As media queries do CSS não aceitam variáveis: o texto abaixo tem de estar igual no código. 'npm run normas' avisa se não estiver.",
+    "coluna_unica": "(max-width: 860px), (max-aspect-ratio: 1/1)",
+    "duas_colunas": "(min-width: 861px) and (min-aspect-ratio: 1/1)",
+    "regra": "janelas mais altas do que largas usam a coluna única, também no computador (12.11)"
+  },
+
+  "espacos": {
+    "margem_vertical":   { "rem": 3.125, "css": "--margem-v",      "uso": "desktop, topo e fundo (50px)" },
+    "margem_horizontal": { "rem": 6.25,  "css": "--margem-h",      "uso": "desktop, lados (100px)" },
+    "intervalo":         { "rem": 3.125, "css": "--intervalo",     "uso": "desktop, entre coluna e divisor (50px)" },
+    "divisor":           { "px": 2,      "css": "--divisor",       "uso": "filete entre colunas; no mobile, filete sobre a coluna direita" },
+    "filete":            { "px": 1,      "css": "--filete-fino",   "uso": "filete dos rodapés e dos projectos no mobile" },
+    "rodape":            { "rem": 6.375, "css": "--rodape",        "uso": "altura dos rodapés no desktop (102px); filetes das duas colunas à mesma altura" },
+    "margem_mobile":     { "rem": 3.125, "css": "--margem-mobile", "uso": "mobile, lados (50px a 402: medida de 302px)" },
+    "esquerda_mobile":   { "svh": 65.7,  "css": "--esquerda-mobile", "uso": "mobile, altura do bloco ou da pedra (filete a 574 de 874)" },
+    "reserva_motivo":    { "rem": 1.5,   "css": null,              "uso": "folga à volta do desenho dos motivos (RESERVA_REM em Motivo.astro, sessão dos motivos)" }
+  },
+
+  "ligacoes": {
+    "_nota": "Blocos do menu como revisão de provas.",
+    "por_visitar": "ondulado na cor revisao",
+    "visitado": "sem sublinhado",
+    "activo": "sem sublinhado, na cor contraste",
+    "hover": "cor contraste",
+    "espessura": "4% do corpo, mínimo 1px",
+    "afastamento": ".2em + 3px",
+    "memoria": "localStorage 'nuno-visitados', no browser de quem visita"
+  },
+
+  "motivos": {
+    "_estado": "POR LIGAR: hoje a fonte efectiva é site/src/lib/motivos/nucleo.js (PREDEF.dpx e CORES), da sessão dos motivos. No site os motivos já recebem as cores do CSS; as bancadas ainda usam CORES do nucleo.js, com contraste #8484FD e linha #F2F1E8 (divergem). Pedido ao Nuno para levar à sessão dos motivos.",
+    "cores": { "fundo": "fundo", "linha": "texto", "contraste": "contraste" },
+    "estilo_dpx": {
+      "_origem": "PREDEF.dpx, escolhido pelo Nuno a 22.11.2026 para os seis blocos",
+      "espessura": 1, "rotulo_px_por_1000": 15.5, "reforco": 1.5,
+      "niveis": {
+        "principal":  { "w": 1,   "op": 1,    "uso": "contornos, estruturas" },
+        "conteudo":   { "w": 0.5, "op": 0.9,  "uso": "objectos, gráficos" },
+        "secundaria": { "w": 0.6, "op": 0.34, "uso": "grelhas, planos" },
+        "cota":       { "w": 1,   "op": 0.31, "uso": "cotas, guias, figuras" },
+        "imaterial":  { "w": 0.7, "op": 0.32, "uso": "luz, olhar, fluxo" },
+        "fundo":      { "w": 0.3, "op": 0.1,  "uso": "grelhas finas, furos" }
+      },
+      "contraste_opacidade_min": 0.9
+    },
+    "estilos_por_bloco": "cada cena pode ter ESTILO e SITE próprios (câmara, animação); vivem no ficheiro da cena"
+  },
+
+  "formatos": {
+    "post":  { "proporcao": "4:5",  "px": [1080, 1350], "redes": ["Instagram", "LinkedIn"] },
+    "reel":  { "proporcao": "9:16", "px": [1080, 1920], "redes": ["Instagram"] },
+    "video": { "codec": "H.264", "contentor": "MP4", "fps": 30, "duracao": "um ciclo exacto da animação, para fechar em loop" },
+    "imagem": { "formato": "PNG", "px": [1080, 1350] },
+    "ecras_figma": { "desktop": [1728, 1117], "mobile": [402, 874] }
+  }
+}

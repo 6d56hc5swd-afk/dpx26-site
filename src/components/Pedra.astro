@@ -163,12 +163,12 @@ const etiquetas = ['Symbolic', 'Popular', 'Bureaucratic'].map((t, i) => ({ t, ..
   .tracos { pointer-events: none; overflow: visible; }
   .tracos :global(line) { stroke: var(--cor3); stroke-width: 4; }
   .etiqueta { position: absolute; left: 0; top: 0; white-space: nowrap; pointer-events: none;
-    font-style: italic; font-weight: 400; font-size: 2.25rem; line-height: 1.33; letter-spacing: .01em;
+    font-size: var(--t-desktop-etiqueta-corpo); line-height: var(--t-desktop-etiqueta-entrelinha); letter-spacing: var(--t-desktop-etiqueta-espaco); font-weight: var(--t-desktop-etiqueta-peso); font-style: var(--t-desktop-etiqueta-estilo);
     color: var(--texto); opacity: 0; transition: opacity .6s; }
   .pedra.pronta .etiqueta { opacity: 1; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   @media (max-width: 860px), (max-aspect-ratio: 1/1) {
-    .etiqueta { font-size: 1.2rem; }
+    .etiqueta { font-size: var(--t-mobile-etiqueta-corpo); }
     .tracos :global(line) { stroke-width: 2; }
   }
 </style>

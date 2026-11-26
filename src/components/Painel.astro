@@ -99,10 +99,9 @@ const logo = logoSvg.replace(/fill="#8484FD"/g, 'fill="currentColor"').replace(/
   .vista-maquina { width: 1.541rem; -webkit-mask-position: -2.917rem 0; mask-position: -2.917rem 0; }
   .vista.activo, .vista:hover { background: var(--cor3); }
 
-  /* Desktop Título Bloco link: Medium Italic 28 / 1.25 / 2%, passo de 44px */
+  /* Desktop Título Bloco link (normas: desktop-menu), passo de 44px */
   .blocos ul { list-style: none; margin: 6.62rem 0 0; padding: 0; }   /* menu no sítio de antes do logótipo novo */
-  .blocos li { font-size: 1.75rem; line-height: 2.75rem; font-style: italic; font-weight: 500;
-    letter-spacing: .02em; }
+  .blocos li { font-size: var(--t-desktop-menu-corpo); line-height: var(--t-desktop-menu-entrelinha); letter-spacing: var(--t-desktop-menu-espaco); font-weight: var(--t-desktop-menu-peso); font-style: var(--t-desktop-menu-estilo); }
   .blocos a { text-decoration: underline wavy var(--texto); text-decoration-thickness: max(1px, .04em);  /* mais fino que os 7% do Figma (Nuno, 22.11) */
     text-underline-offset: calc(.2em + .1875rem); transition: color .2s; }   /* 3px mais abaixo (22.11) */
   /* Como numa revisão de provas: o bloco por ver tem o ondulado vermelho de
@@ -145,13 +144,13 @@ const logo = logoSvg.replace(/fill="#8484FD"/g, 'fill="currentColor"').replace(/
     .vista { height: 1.031rem; -webkit-mask-size: 2.725rem 1.031rem; mask-size: 2.725rem 1.031rem; }
     .vista-humana { width: 1.134rem; }
     .vista-maquina { width: .942rem; -webkit-mask-position: -1.783rem 0; mask-position: -1.783rem 0; }
-    /* Mobile Título Bloco link: Bold Italic 14 / 1.25 / 1%, passo de 28px */
+    /* Mobile Título Bloco link (normas: mobile-menu), passo de 28px */
     .blocos ul { margin-top: 1.98rem; }
-    .blocos li { font-size: .875rem; line-height: 1.75rem; font-weight: 700; letter-spacing: .01em; }
+    .blocos li { font-size: var(--t-mobile-menu-corpo); line-height: var(--t-mobile-menu-entrelinha); letter-spacing: var(--t-mobile-menu-espaco); font-weight: var(--t-mobile-menu-peso); font-style: var(--t-mobile-menu-estilo); }
     .bio { margin-top: 1.27rem; }
     .clientes { margin-top: 2.5rem; }
     .contactos { height: auto; margin-top: 5.3rem; padding: 1.5rem 0 3rem;
-      font-size: .9375rem; line-height: 1.5; letter-spacing: .01em; font-weight: 400; }
+      font-size: var(--t-mobile-contactos-corpo); line-height: var(--t-mobile-contactos-entrelinha); letter-spacing: var(--t-mobile-contactos-espaco); font-weight: var(--t-mobile-contactos-peso); }
     /* email e telefone não cabem juntos a 302px: telefone na linha de baixo */
     .sep-tel { display: none; }
     .contactos .tel { display: block; }
