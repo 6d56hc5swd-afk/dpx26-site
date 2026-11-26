@@ -93,10 +93,10 @@ Estilos de pintura do Figma (desde 21.11.2026). Nomes a manter.
 --fundo   Site Dark     #23231F
 --texto   Site Light    #E8EAF2
 --filete  Site Light    #E8EAF2
---cor3    contraste     #A5F3FF   (desde 26.11; antes Site Color 3 #8484FD)
+--cor3    Site Color 3  #A5F3FF   contraste (desde 26.11; antes #8484FD, agora Site Color 4)
 ```
 
-`--cor3` é fixa (`#A5F3FF` desde 26.11.2026, antes Site Color 3 `#8484FD`); o sorteio entre três cores
+`--cor3` é fixa (Site Color 3 `#A5F3FF` desde 26.11.2026; o violeta `#8484FD` passou a Site Color 4); o sorteio entre três cores
 acabou a 22.11.2026. Links dos blocos, como revisão de provas: por
 visitar, ondulado `--revisao` `#F64724`; visitados, sem sublinhado (desde 22.11; `--visto`
 `#84FDE7` fica por usar) (guardados no browser, `localStorage` "nuno-visitados").
