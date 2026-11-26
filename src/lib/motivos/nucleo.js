@@ -6,13 +6,21 @@ import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
 import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 
+// Valores do manual de normas (decisão do Nuno, 26.11.2026: as normas vivem em design/normas/).
+// Lê-se a cópia do site, src/data/normas.json (a que vai no git e o Cloudflare vê; 'npm run normas'
+// actualiza-a). As bancadas chegam-lhe pela ligação _tmp-motivos/data -> ../src/data.
+import N from '../../data/normas.json' with { type: 'json' };
+
 export { THREE };
 
-// cores da maquete do site (21.11.2026). No site, a linha e o contraste vêm das variáveis CSS
-// (--texto e --cor3, esta sorteada pela Home); nas bancadas usam-se estas.
-export const CORES = { fundo: 0x23231F, linha: 0xF2F1E8, contraste: 0x8484FD };
 export const hex = c => '#' + c.toString(16).padStart(6, '0').toUpperCase();
 export const deHex = s => parseInt(String(s).trim().replace('#', ''), 16);
+
+// cores das normas: linha = texto, contraste = Site Color 3. No site o Motivo.astro passa as
+// variáveis CSS (--texto, --cor3), que vêm das mesmas normas; as bancadas e os vídeos usam estas.
+const corNorma = k => deHex(N.cores[N.motivos.cores[k]].hex);
+export const CORES = { fundo: corNorma('fundo'), linha: corNorma('linha'), contraste: corNorma('contraste') };
+const CONTRASTE_OP_MIN = N.motivos.estilo_dpx.contraste_opacidade_min ?? 0.9;
 
 // ── Lote: o que uma cena devolve ───────────────────────────────
 // polys: linhas por estilo (cada uma é [x,y,z, x,y,z, …]) · fundos: superfícies que escondem · rotulos: texto
@@ -67,10 +75,9 @@ export const NIVEIS = {
   fundo:      'Fundo · grelhas finas, furos',
 };
 export const PREDEF = {
-  // escolhido pelo Nuno a 22.11.2026 para os seis blocos (substitui o de 21.11)
-  dpx: { nome: 'DPX', espessura: 1, rotulo: 15.5, reforco: 1.5, niveis: {
-    principal: { w: 1, op: 1 }, conteudo: { w: .5, op: .9 }, secundaria: { w: .6, op: .34 },
-    cota: { w: 1, op: .31 }, imaterial: { w: .7, op: .32 }, fundo: { w: .3, op: .1 } } },
+  // escolhido pelo Nuno a 22.11.2026 para os seis blocos; os valores vivem nas normas (motivos.estilo_dpx)
+  dpx: (({ espessura, rotulo_px_por_1000, reforco, niveis }) => ({ nome: 'DPX', espessura, rotulo: rotulo_px_por_1000, reforco,
+    niveis: Object.fromEntries(Object.keys(NIVEIS).map(k => [k, { w: niveis[k].w, op: niveis[k].op }])) }))(N.motivos.estilo_dpx),
   tecnico: { nome: 'Técnico', espessura: 1.1, rotulo: 12, niveis: {
     principal: { w: 1, op: 1 }, conteudo: { w: .85, op: .9 }, secundaria: { w: .7, op: .45 },
     cota: { w: .7, op: .65 }, imaterial: { w: .6, op: .32 }, fundo: { w: .6, op: .15 } } },
@@ -99,7 +106,7 @@ export class Desenho {
     this.estilo = estilo;
     for (const [k, e] of Object.entries(this.ESTILOS)) {
       const nv = estilo.niveis[e.n] || estilo.niveis.cota, reforca = e.destaque && estilo.contraste !== false;
-      e.op = reforca ? Math.max(nv.op, 0.9) : nv.op; e.w = nv.w * (reforca ? (estilo.reforco ?? 2) : 1);
+      e.op = reforca ? Math.max(nv.op, CONTRASTE_OP_MIN) : nv.op; e.w = nv.w * (reforca ? (estilo.reforco ?? 2) : 1);
       if (!this.MAT[k]) {
         const [ds, gs] = Array.isArray(e.dash) ? e.dash : [2.2, 1.6];
         this.MAT[k] = new LineMaterial({ color: this.corDe(e), transparent: true, opacity: e.op, linewidth: 1,

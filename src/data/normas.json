@@ -72,7 +72,7 @@
   },
 
   "motivos": {
-    "_estado": "POR LIGAR: hoje a fonte efectiva é site/src/lib/motivos/nucleo.js (PREDEF.dpx e CORES), da sessão dos motivos. No site os motivos já recebem as cores do CSS; as bancadas ainda usam CORES do nucleo.js, com contraste #8484FD e linha #F2F1E8 (divergem). Pedido ao Nuno para levar à sessão dos motivos.",
+    "_estado": "LIGADO (26.11.2026): site/src/lib/motivos/nucleo.js lê daqui CORES (fundo, linha, contraste) e PREDEF.dpx, e a opacidade mínima do contraste. Fonte efectiva: estas normas, pela cópia site/src/data/normas.json. As bancadas lêem a mesma cópia; os estilos próprios de cada bloco (ESTILO) continuam nos ficheiros das cenas.",
     "cores": { "fundo": "fundo", "linha": "texto", "contraste": "contraste" },
     "estilo_dpx": {
       "_origem": "PREDEF.dpx, escolhido pelo Nuno a 22.11.2026 para os seis blocos",
